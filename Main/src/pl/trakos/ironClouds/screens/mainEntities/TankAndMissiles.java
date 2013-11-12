@@ -2,6 +2,7 @@ package pl.trakos.ironClouds.screens.mainEntities;
 
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.ironClouds.screens.mainEntities.tank.*;
 import pl.trakos.lib.GameEntity;
 import pl.trakos.lib.GameSettings;
@@ -35,6 +36,7 @@ public class TankAndMissiles extends GameEntity
             {
                 missiles.add(tank.getTankGunOriginX(), tank.getTankGunOriginY(), touchPosX, touchPosY);
                 tank.registerShot();
+                IronCloudsAssets.soundTankShot.play(0.4f);
             }
         }
     }
@@ -51,5 +53,12 @@ public class TankAndMissiles extends GameEntity
     {
         missiles.draw(camera, batch);
         tank.draw(camera, batch);
+    }
+
+    @Override
+    public void dispose()
+    {
+        tank.dispose();
+        missiles.dispose();
     }
 }

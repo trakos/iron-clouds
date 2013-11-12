@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Polygon;
 import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.lib.*;
 
@@ -22,9 +23,16 @@ public class Tank extends GameEntity
     final int tankMarginBottom = 0;
     final int tankHeight = 20;
     final int gunWidth = 24;
+    final Polygon tankPolygon = new Polygon(new float[] {
+            tankMarginLeft, tankMarginTop,
+            tankMarginLeft, tankMarginTop + tankHeight,
+            tankMarginLeft + tankWidth, tankMarginTop,
+            tankMarginLeft + tankWidth, tankMarginTop + tankHeight,
+    });
 
-    final float shootingDelay = 0.25f * 100;
+    final float shootingDelay = 0.5f * 100;
     final float maxSpeedX = 50f;
+
 
     TVector2 tankPos = new TVector2(0, GameSettings.groundPositionY);
     TVector2 destinationPos = new TVector2(0, GameSettings.groundPositionY);
@@ -42,6 +50,34 @@ public class Tank extends GameEntity
     {
         tankRegion = new TextureRegion(IronCloudsAssets.textureTank);
         gunRegion = new TextureRegion(IronCloudsAssets.textureGun);
+
+
+        IronCloudsAssets.soundTank.loop(0.8f);
+        IronCloudsAssets.soundTank.pause();
+    }
+
+    @Override
+    public Polygon getHitBox()
+    {
+        return tankPolygon;
+    }
+
+    boolean isPlayingEngineSound = false;
+
+    public void ensureEngineSoundIs(boolean stateToggle)
+    {
+        if (stateToggle != isPlayingEngineSound)
+        {
+            if (stateToggle)
+            {
+                IronCloudsAssets.soundTank.resume();
+            }
+            else
+            {
+                IronCloudsAssets.soundTank.pause();
+            }
+            isPlayingEngineSound = stateToggle;
+        }
     }
 
     @Override
@@ -51,14 +87,17 @@ public class Tank extends GameEntity
         if (Math.abs(this.destinationPos.x - this.tankPos.x) < deltaX)
         {
             this.tankPos.x = this.destinationPos.x;
+            ensureEngineSoundIs(false);
         }
         else if (this.destinationPos.x < this.tankPos.x)
         {
             this.tankPos.x -= deltaX;
+            ensureEngineSoundIs(true);
         }
         else
         {
             this.tankPos.x += deltaX;
+            ensureEngineSoundIs(true);
         }
 
         gunOriginPos.x = tankPos.x + tankWidth / 2 + tankMarginLeft;
@@ -100,6 +139,12 @@ public class Tank extends GameEntity
                 turnedForward ? 1 : -1,
                 1,
                 0);
+    }
+
+    @Override
+    public void dispose()
+    {
+        // @todo
     }
 
     private double cathetus;

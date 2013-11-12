@@ -1,6 +1,7 @@
 package pl.trakos.ironClouds.screens.mainEntities;
 
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -14,7 +15,6 @@ import pl.trakos.lib.*;
  */
 public class Background extends GameEntity
 {
-    Rectangle groundRectangle;
     Sprite groundSprite;
 
     public Background()
@@ -38,5 +38,10 @@ public class Background extends GameEntity
     public void draw(Camera camera, SpriteBatch batch)
     {
         groundSprite.draw(batch);
+    }
+
+    @Override
+    public void dispose()
+    {
     }
 }

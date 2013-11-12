@@ -7,10 +7,18 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.badlogic.gdx.math.Vector3;
+import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.ironClouds.screens.mainEntities.*;
 import pl.trakos.ironClouds.screens.mainEntities.tank.Tank;
+import pl.trakos.ironClouds.screens.mainEntities.tank.TankMissile;
 import pl.trakos.ironClouds.screens.mainEntities.tank.TankMissileContainer;
+import pl.trakos.ironClouds.screens.mainEntities.targets.Plane;
 import pl.trakos.lib.*;
+
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
 
 public class GameScreen implements Screen
 {
@@ -19,11 +27,13 @@ public class GameScreen implements Screen
 
     Background background;
     TankAndMissiles tankAndMissiles;
+    TargetsContainer targets;
 
     public GameScreen()
     {
         background = new Background();
         tankAndMissiles = new TankAndMissiles();
+        targets = new TargetsContainer();
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
@@ -42,21 +52,37 @@ public class GameScreen implements Screen
         }
     }
 
+    static private Hashtable<GameEntity, GameEntity[]> entitiesHitByAnyOf;
     public void update(float delta)
     {
+        GameFboParticle.instance.update(delta);
         tankAndMissiles.update(delta);
+        targets.update(delta);
+
+        entitiesHitByAnyOf = GameEntitiesContainer.getEntitiesHitByAnyOf(tankAndMissiles.missiles, targets);
+        for (Map.Entry<GameEntity, GameEntity[]> entry : entitiesHitByAnyOf.entrySet())
+        {
+            entry.getKey().alive = false;
+            entry.getValue()[0].alive = false;
+            GameFboParticle.instance.playParticleEffect(IronCloudsAssets.particleEffectExplosion, ((TankMissile)entry.getKey()).getPositionX(),
+                    ((TankMissile)entry.getKey()).getPositionY());
+            IronCloudsAssets.soundSimpleExplosion.play(0.7f);
+        }
     }
 
     public void draw()
     {
         Gdx.gl.glClearColor(1f, 1f, 1f, 1);
+        //Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         {
             background.draw(camera, batch);
+            GameFboParticle.instance.draw(camera, batch);
             tankAndMissiles.draw(camera, batch);
+            targets.draw(camera, batch);
         }
         batch.end();
     }
