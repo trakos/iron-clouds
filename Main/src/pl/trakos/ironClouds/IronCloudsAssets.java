@@ -20,11 +20,10 @@ public class IronCloudsAssets
     public static Sound soundSimpleExplosion;
 
     public static Texture textureGround;
-    public static Texture textureGun;
-    public static Texture textureShell;
-    public static TextureRegion textureRegionShell;
-    public static Texture textureTank;
-    public static Texture textureJumboJet;
+    public static TextureRegion textureGun;
+    public static TextureRegion textureShell;
+    public static TextureRegion textureTank;
+    public static TextureRegion texturePlane5;
 
     public static ParticleEffectPool particleEffectExhaust;
     public static ParticleEffectPool particleEffectExplosion;

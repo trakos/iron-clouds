@@ -1,10 +1,8 @@
 package pl.trakos.ironClouds.screens.mainEntities;
 
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.ironClouds.screens.mainEntities.tank.*;
-import pl.trakos.lib.GameEntity;
+import pl.trakos.lib.GameEntitiesContainer;
 import pl.trakos.lib.GameSettings;
 
 /**
@@ -12,15 +10,22 @@ import pl.trakos.lib.GameSettings;
  * Date: 11.11.13
  * Time: 03:04
  */
-public class TankAndMissiles extends GameEntity
+public class TankAndMissiles extends GameEntitiesContainer
 {
     public Tank tank;
     public TankMissileContainer missiles;
+    final int missileWidth;
+    final int missileHeight;
 
     public TankAndMissiles()
     {
         tank = new Tank();
         missiles = new TankMissileContainer();
+        add(tank);
+        add(missiles);
+
+        missileWidth = IronCloudsAssets.textureShell.getRegionWidth();
+        missileHeight = IronCloudsAssets.textureShell.getRegionHeight();
     }
 
     public void handleTouch(float touchPosX, float touchPosY)
@@ -34,31 +39,15 @@ public class TankAndMissiles extends GameEntity
             tank.aimAt(touchPosX, touchPosY);
             if (tank.isReadyToShoot() && missiles.canSpawnAdditionalMissile())
             {
-                missiles.add(tank.getTankGunOriginX(), tank.getTankGunOriginY(), touchPosX, touchPosY);
+                missiles.add(tank.getTankGunOriginX(), tank.getTankGunOriginY(), tank.getAimX(), tank.getAimY());
                 tank.registerShot();
                 IronCloudsAssets.soundTankShot.play(0.4f);
             }
         }
     }
 
-    @Override
-    public void update(float delta)
+    public float getTankPositionX()
     {
-        tank.update(delta);
-        missiles.update(delta);
-    }
-
-    @Override
-    public void draw(Camera camera, SpriteBatch batch)
-    {
-        missiles.draw(camera, batch);
-        tank.draw(camera, batch);
-    }
-
-    @Override
-    public void dispose()
-    {
-        tank.dispose();
-        missiles.dispose();
+        return tank.getTankX();
     }
 }

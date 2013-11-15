@@ -1,10 +1,7 @@
 package pl.trakos.ironClouds.screens.mainEntities;
 
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.lib.*;
 
@@ -23,7 +20,7 @@ public class Background extends GameEntity
                 IronCloudsAssets.textureGround,
                 0,
                 0,
-                GameSettings.getWidth(),
+                GameSettings.getMapWidth(),
                 IronCloudsAssets.textureGround.getHeight());
 
     }
@@ -35,9 +32,17 @@ public class Background extends GameEntity
     }
 
     @Override
-    public void draw(Camera camera, SpriteBatch batch)
+    public void draw(GameLayers layer, SpriteBatch batch)
     {
-        groundSprite.draw(batch);
+        if (layer == GameLayers.LayerBackground)
+        {
+            TGradient.sky.drawVertical(batch, 0, GameSettings.groundPositionY, GameSettings.getMapWidth(),
+                    GameSettings.getMapHeight() - GameSettings.groundPositionY);
+        }
+        else if (layer == GameLayers.LayerGround)
+        {
+            groundSprite.draw(batch);
+        }
     }
 
     @Override

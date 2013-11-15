@@ -1,31 +1,28 @@
 package pl.trakos.lib;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
-import pl.trakos.ironClouds.IronCloudsAssets;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class GameFboParticle extends GameEntity
 {
     static public GameFboParticle instance = new GameFboParticle();
 
     public ArrayList<ParticleEffectPool.PooledEffect> pooledEffectList = new ArrayList<ParticleEffectPool.PooledEffect>();
-    FrameBuffer particleFbo = new FrameBuffer(Pixmap.Format.RGBA4444, GameSettings.getWidth(), GameSettings.getHeight(), false);
+    FrameBuffer particleFbo = new FrameBuffer(Pixmap.Format.RGBA4444, GameSettings.getResolutionWidth(), GameSettings.getResolutionHeight(), false);
     SpriteBatch particleBatch = new SpriteBatch();
     TextureRegion particleFboRegion;
 
 
     public GameFboParticle()
     {
-        particleFboRegion = new TextureRegion(particleFbo.getColorBufferTexture(), 0, 0, GameSettings.getWidth(), GameSettings.getHeight());
+        particleFboRegion = new TextureRegion(particleFbo.getColorBufferTexture(), 0, 0, GameSettings.getResolutionWidth(), GameSettings.getResolutionHeight());
         particleFboRegion.flip(false, true);
         particleBatch.setBlendFunction(-1, -1);
         particleFbo.begin();
@@ -42,14 +39,14 @@ public class GameFboParticle extends GameEntity
         particleFbo.end();
         for (int i = 0; i < pooledEffectList.size(); i++)
         {
-            pooledEffectList.get(i).update(delta);
-            renderParticle(pooledEffectList.get(i));
             if (pooledEffectList.get(i).isComplete())
             {
                 pooledEffectList.get(i).free();
                 pooledEffectList.remove(i);
                 i--;
+                continue;
             }
+            pooledEffectList.get(i).update(delta);
         }
     }
 
@@ -62,23 +59,38 @@ public class GameFboParticle extends GameEntity
 
     public void renderParticle(ParticleEffectPool.PooledEffect particleEffect)
     {
-        particleFbo.begin();
-        {
-            particleBatch.begin();
-            {
-                particleEffect.draw(particleBatch);
-            }
-            particleBatch.end();
-        }
-        particleFbo.end();
+        particleEffect.draw(particleBatch);
     }
 
     @Override
-    public void draw(Camera camera, SpriteBatch batch)
+    public void draw(GameLayers layer, SpriteBatch batch)
     {
-        batch.setColor(1, 1, 1, .8f);
-        batch.draw(particleFboRegion, 0, 0);
-        batch.setColor(1, 1, 1, 1);
+        if (layer == GameLayers.LayerPrepareParticles)
+        {
+            for (ParticleEffectPool.PooledEffect pooledEffect : pooledEffectList)
+            {
+                renderParticle(pooledEffect);
+            }
+        }
+        if (layer == GameLayers.LayerParticles)
+        {
+            batch.setColor(1, 1, 1, .8f);
+            batch.draw(particleFboRegion, GameSettings.getCameraStartX(), GameSettings.getCameraStartY());
+            batch.setColor(1, 1, 1, 1);
+        }
+    }
+
+    public void beginPreparing()
+    {
+        particleFbo.begin();
+        particleBatch.setProjectionMatrix(GameSettings.getCamera().combined);
+        particleBatch.begin();
+    }
+
+    public void endPreparing()
+    {
+        particleBatch.end();
+        particleFbo.end();
     }
 
     @Override

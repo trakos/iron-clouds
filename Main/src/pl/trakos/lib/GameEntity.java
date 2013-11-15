@@ -1,6 +1,5 @@
 package pl.trakos.lib;
 
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Polygon;
@@ -31,7 +30,17 @@ public abstract class GameEntity implements Disposable
         return polygon2 != null && Intersector.overlapConvexPolygons(polygon, polygon2);
     }
 
+    public int getWidth()
+    {
+        return 0;
+    }
+
+    public int getHeight()
+    {
+        return 0;
+    }
+
     public abstract void update(float delta);
-    public abstract void draw(Camera camera, SpriteBatch batch);
+    public abstract void draw(GameLayers layer, SpriteBatch batch);
     public abstract void dispose();
 }

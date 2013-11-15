@@ -1,6 +1,5 @@
 package pl.trakos.ironClouds.screens.mainEntities.targets;
 
-import com.badlogic.gdx.math.Polygon;
 import pl.trakos.ironClouds.IronCloudsAssets;
 
 /**
@@ -12,13 +11,7 @@ public class Plane extends AbstractTarget
 {
     public Plane()
     {
-        texture = IronCloudsAssets.textureJumboJet;
-        targetPolygon = new Polygon(new float[] {
-                        0, 24,
-                        64, 24,
-                        0, 40,
-                        64, 40
-                });
+        texture = IronCloudsAssets.texturePlane5;
         initPosition();
     }
 }

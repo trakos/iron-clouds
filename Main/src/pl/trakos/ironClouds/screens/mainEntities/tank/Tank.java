@@ -1,7 +1,6 @@
 package pl.trakos.ironClouds.screens.mainEntities.tank;
 
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -16,29 +15,21 @@ import pl.trakos.lib.*;
  */
 public class Tank extends GameEntity
 {
-    final int tankMarginLeft = 0;
-    final int tankMarginRight = 20;
-    final int tankWidth = 44;
-    final int tankMarginTop = 36;
-    final int tankMarginBottom = 0;
-    final int tankHeight = 20;
-    final int gunWidth = 24;
-    final Polygon tankPolygon = new Polygon(new float[] {
-            tankMarginLeft, tankMarginTop,
-            tankMarginLeft, tankMarginTop + tankHeight,
-            tankMarginLeft + tankWidth, tankMarginTop,
-            tankMarginLeft + tankWidth, tankMarginTop + tankHeight,
-    });
+    final int tankWidth;
+    final int tankHeight;
+    final int gunWidth;
+    final int gunHeight;
+    final Polygon tankPolygon;
 
-    final float shootingDelay = 0.5f * 100;
-    final float maxSpeedX = 50f;
+    final float shootingDelay = 1f;
+    final float maxSpeedX = 500f;
 
 
     TVector2 tankPos = new TVector2(0, GameSettings.groundPositionY);
     TVector2 destinationPos = new TVector2(0, GameSettings.groundPositionY);
-    TVector2 gunOriginPos = new TVector2(tankWidth / 2, GameSettings.groundPositionY + tankHeight);
-    TVector2 gunMuzzlePos = new TVector2(tankWidth / 2 + gunWidth, GameSettings.groundPositionY + tankHeight);
-    TVector2 aimPos = new TVector2(GameSettings.getWidth() / 2, GameSettings.groundPositionY);
+    TVector2 gunOriginPos;
+    TVector2 gunMuzzlePos = new TVector2(0, 0);
+    TVector2 aimPos = new TVector2(GameSettings.getCameraWidth() / 2, GameSettings.groundPositionY);
 
     private float currentShootingDelay = 0;
     private float deltaX;
@@ -51,6 +42,17 @@ public class Tank extends GameEntity
         tankRegion = new TextureRegion(IronCloudsAssets.textureTank);
         gunRegion = new TextureRegion(IronCloudsAssets.textureGun);
 
+        tankWidth = tankRegion.getRegionWidth();
+        tankHeight = tankRegion.getRegionHeight();
+        gunWidth = gunRegion.getRegionWidth();
+        gunHeight = gunRegion.getRegionHeight();
+        tankPolygon = new Polygon(new float[]{
+                0, 0,
+                tankWidth, 0,
+                tankWidth, tankHeight,
+                0, tankHeight
+        });
+        gunOriginPos = new TVector2(0, GameSettings.groundPositionY + tankHeight - 10);
 
         IronCloudsAssets.soundTank.loop(0.8f);
         IronCloudsAssets.soundTank.pause();
@@ -100,65 +102,68 @@ public class Tank extends GameEntity
             ensureEngineSoundIs(true);
         }
 
-        gunOriginPos.x = tankPos.x + tankWidth / 2 + tankMarginLeft;
+        turnedForward = aimPos.x >= gunOriginPos.x;
+        gunOriginPos.x = tankPos.x + tankWidth / 2;
+        gunMuzzlePos.x = gunOriginPos.x + gunWidth * (turnedForward ? 1 : -1);
+        gunMuzzlePos.y = gunOriginPos.y;
 
-        turnedForward = aimPos.x >= tankPos.x;
-
-        gunMuzzlePos.x = gunOriginPos.x;
-        gunMuzzlePos.y = gunOriginPos.y + gunWidth * (turnedForward ? 1 : -1);
-        gunMuzzlePos.rotate(gunOriginPos.x, gunOriginPos.y, (float) getAimAngle() * (turnedForward ? 1 : -1) - 90);
+        gunMuzzlePos.rotate(gunOriginPos.x, gunOriginPos.y, (float) getAimAngle() * (turnedForward ? 1 : -1));
 
         if (currentShootingDelay >= 0)
         {
-            currentShootingDelay -= deltaX;
+            currentShootingDelay -= delta;
         }
     }
 
+    ShapeRenderer renderer = new ShapeRenderer();
     @Override
-    public void draw(Camera camera, SpriteBatch batch)
+    public void draw(GameLayers layer, SpriteBatch batch)
     {
-        batch.draw(
-                gunRegion,
-                this.tankPos.x + (tankWidth / 2),
-                GameSettings.groundPositionY + 2,
-                0,
-                16,
-                gunRegion.getRegionWidth(),
-                gunRegion.getRegionHeight(),
-                turnedForward ? 1 : -1,
-                1,
-                (float)getAimAngle() * (turnedForward ? 1 : -1));
-        batch.draw(
-                tankRegion,
-                turnedForward ? this.tankPos.x : (this.tankPos.x + tankWidth + tankMarginLeft),
-                GameSettings.groundPositionY,
-                0,
-                0,
-                tankRegion.getRegionWidth(),
-                tankRegion.getRegionHeight(),
-                turnedForward ? 1 : -1,
-                1,
-                0);
+        if (layer == GameLayers.LayerMain)
+        {
+            batch.draw(
+                    gunRegion,
+                    gunOriginPos.x,
+                    gunOriginPos.y - gunHeight / 2,
+                    0,
+                    gunHeight / 2,
+                    gunWidth,
+                    gunHeight,
+                    turnedForward ? 1 : -1,
+                    1,
+                    (float)getAimAngle() * (turnedForward ? 1 : -1));
+            batch.draw(
+                    tankRegion,
+                    turnedForward ? this.tankPos.x : (this.tankPos.x + tankWidth),
+                    GameSettings.groundPositionY,
+                    0,
+                    0,
+                    tankWidth,
+                    tankHeight,
+                    turnedForward ? 1 : -1,
+                    1,
+                    0);
+        }
     }
 
     @Override
     public void dispose()
     {
-        // @todo
     }
 
     private double cathetus;
     private double hypotenuse;
     public double getAimAngle()
     {
-        cathetus = aimPos.distance(aimPos.x, tankPos.y);
-        hypotenuse = aimPos.distance(tankPos);
+        cathetus = aimPos.distance(aimPos.x, gunOriginPos.y);
+        hypotenuse = aimPos.distance(gunOriginPos);
         if (hypotenuse == 0) return 90;
         return (Math.asin(cathetus / hypotenuse) / Math.PI) * 180;
     }
 
     public void registerShot()
     {
+        Gdx.app.log(null, String.valueOf(currentShootingDelay));
         currentShootingDelay = shootingDelay;
     }
 
@@ -170,7 +175,7 @@ public class Tank extends GameEntity
     public void aimAt(float x, float y)
     {
         aimPos.x = x;
-        aimPos.y = y;
+        aimPos.y = Math.max(y, gunOriginPos.y);
     }
 
     public float getDestinationX()
@@ -180,7 +185,17 @@ public class Tank extends GameEntity
 
     public void setDestinationX(float destinationX)
     {
-        this.destinationPos.x = Math.max(0, Math.min(destinationX, GameSettings.getWidth()));
+        this.destinationPos.x = Math.max(0, Math.min(destinationX, GameSettings.getMapWidth()));
+    }
+
+    public float getAimX()
+    {
+        return aimPos.x;
+    }
+
+    public float getAimY()
+    {
+        return aimPos.y;
     }
 
     public float getTankX()

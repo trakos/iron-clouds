@@ -1,10 +1,8 @@
 package pl.trakos.lib;
 
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -63,11 +61,11 @@ public class GameEntitiesContainer extends GameEntity
     }
 
     @Override
-    public void draw(Camera camera, SpriteBatch batch)
+    public void draw(GameLayers layer, SpriteBatch batch)
     {
         for (GameEntity entity : entities)
         {
-            entity.draw(camera, batch);
+            entity.draw(layer, batch);
         }
     }
 

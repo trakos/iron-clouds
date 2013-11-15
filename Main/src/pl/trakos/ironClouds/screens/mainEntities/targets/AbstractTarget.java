@@ -1,13 +1,11 @@
 package pl.trakos.ironClouds.screens.mainEntities.targets;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Polygon;
-import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.lib.GameEntity;
+import pl.trakos.lib.GameLayers;
 import pl.trakos.lib.GameSettings;
 
 /**
@@ -24,22 +22,39 @@ public abstract class AbstractTarget extends GameEntity
     int direction = 1;
 
     Polygon targetPolygon;
-    Texture texture;
+    TextureRegion texture;
 
     public void initPosition()
     {
-        positionX -= texture.getWidth();
+        positionX -= texture.getRegionWidth();
         positionY = MathUtils.random(200f, 400f);
+
+        targetPolygon = new Polygon(new float[] {
+                0, 0,
+                0, texture.getRegionHeight(),
+                texture.getRegionWidth(), texture.getRegionHeight(),
+                texture.getRegionWidth(), 0
+        });
+    }
+
+    public int getWidth()
+    {
+        return texture.getRegionWidth();
+    }
+
+    public int getHeight()
+    {
+        return texture.getRegionHeight();
     }
 
     @Override
     public void update(float delta)
     {
-        if (direction == 1 && positionX > GameSettings.getWidth())
+        if (direction == 1 && positionX > GameSettings.getMapWidth())
         {
             direction = -1;
         }
-        else if (direction == -1 && positionX < -texture.getWidth())
+        else if (direction == -1 && positionX < -texture.getRegionWidth())
         {
             direction = 1;
         }
@@ -49,25 +64,17 @@ public abstract class AbstractTarget extends GameEntity
     }
 
     @Override
-    public void draw(Camera camera, SpriteBatch batch)
+    public void draw(GameLayers layer, SpriteBatch batch)
     {
-        batch.draw(
-                texture,
-                positionX,
-                positionY,
-                positionX,
-                positionY,
-                texture.getWidth(),
-                texture.getHeight(),
-                1,
-                1,
-                0,
-                0,
-                0,
-                texture.getWidth(),
-                texture.getHeight(),
-                direction == -1,
-                false);
+        if (layer == GameLayers.LayerMain)
+        {
+            batch.draw(
+                    texture,
+                    positionX,
+                    positionY,
+                    texture.getRegionWidth() * direction,
+                    texture.getRegionHeight());
+        }
     }
 
     @Override
