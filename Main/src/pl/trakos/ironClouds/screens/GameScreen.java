@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.ironClouds.screens.mainEntities.*;
+import pl.trakos.ironClouds.screens.mainEntities.Background;
 import pl.trakos.ironClouds.screens.mainEntities.tank.TankMissile;
 import pl.trakos.lib.*;
 
@@ -50,6 +51,7 @@ public class GameScreen implements Screen
     private float fpsDrawDelay = 1;
     public void update(float delta)
     {
+        background.update(delta);
         GameFboParticle.instance.update(delta);
         tankAndMissiles.update(delta);
         targets.update(delta);
@@ -60,8 +62,8 @@ public class GameScreen implements Screen
             entry.getKey().alive = false;
             entry.getValue()[0].alive = false;
             GameFboParticle.instance.playParticleEffect(IronCloudsAssets.particleEffectExplosion,
-                    ((TankMissile)entry.getKey()).getPositionX() + entry.getValue()[0].getWidth() / 2,
-                    ((TankMissile)entry.getKey()).getPositionY() + entry.getValue()[0].getHeight() / 2);
+                    entry.getValue()[0].getX() + entry.getValue()[0].getWidth() / 2,
+                    entry.getValue()[0].getY() + entry.getValue()[0].getHeight() / 2);
             IronCloudsAssets.soundSimpleExplosion.play(0.7f);
         }
 

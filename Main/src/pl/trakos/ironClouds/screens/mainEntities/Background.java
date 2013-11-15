@@ -2,7 +2,9 @@ package pl.trakos.ironClouds.screens.mainEntities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import pl.trakos.ironClouds.IronCloudsAssets;
+import pl.trakos.ironClouds.screens.mainEntities.decorations.Cloud;
 import pl.trakos.lib.*;
 
 /**
@@ -10,12 +12,14 @@ import pl.trakos.lib.*;
  * Date: 10.11.13
  * Time: 07:15
  */
-public class Background extends GameEntity
+public class Background extends GameEntitiesContainer
 {
     Sprite groundSprite;
+    final float wind = MathUtils.random(0, 1) == 0 ? -1 : 1;
 
     public Background()
     {
+        super();
         groundSprite = new Sprite(
                 IronCloudsAssets.textureGround,
                 0,
@@ -23,12 +27,28 @@ public class Background extends GameEntity
                 GameSettings.getMapWidth(),
                 IronCloudsAssets.textureGround.getHeight());
 
+        int random = MathUtils.random(5, 10);
+        for (int i = 0; i < random; i++)
+        {
+            add(Cloud.randomizeNewCloud(wind, false));
+        }
     }
+
+    float randomlyAddCloudDelay = 1f;
 
     @Override
     public void update(float delta)
     {
-
+        super.update(delta);
+        if (randomlyAddCloudDelay < 0)
+        {
+            if (MathUtils.random(1, 10) > 8)
+            {
+                add(Cloud.randomizeNewCloud(wind, true));
+            }
+            randomlyAddCloudDelay = 1;
+        }
+        randomlyAddCloudDelay-=delta;
     }
 
     @Override
@@ -43,6 +63,7 @@ public class Background extends GameEntity
         {
             groundSprite.draw(batch);
         }
+        super.draw(layer, batch);
     }
 
     @Override

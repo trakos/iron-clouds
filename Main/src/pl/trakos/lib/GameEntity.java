@@ -30,6 +30,16 @@ public abstract class GameEntity implements Disposable
         return polygon2 != null && Intersector.overlapConvexPolygons(polygon, polygon2);
     }
 
+    public float getX()
+    {
+        return 0;
+    }
+
+    public float getY()
+    {
+        return 0;
+    }
+
     public int getWidth()
     {
         return 0;

@@ -4,6 +4,7 @@ package pl.trakos.lib;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Vector2;
 
 public class GameDebug
@@ -23,5 +24,14 @@ public class GameDebug
     static public void markPoint(SpriteBatch batch, Vector2 point)
     {
         markPoint(batch, point, Color.WHITE);
+    }
+
+    static public void markPolygon(SpriteBatch batch, Polygon polygon)
+    {
+        batch.end();
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        shapeRenderer.polygon(polygon.getTransformedVertices());
+        shapeRenderer.end();
+        batch.begin();
     }
 }

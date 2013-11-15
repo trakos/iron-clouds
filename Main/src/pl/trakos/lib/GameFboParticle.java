@@ -74,7 +74,7 @@ public class GameFboParticle extends GameEntity
         }
         if (layer == GameLayers.LayerParticles)
         {
-            batch.setColor(1, 1, 1, .8f);
+            batch.setColor(1, 1, 1, 1);
             batch.draw(particleFboRegion, GameSettings.getCameraStartX(), GameSettings.getCameraStartY());
             batch.setColor(1, 1, 1, 1);
         }

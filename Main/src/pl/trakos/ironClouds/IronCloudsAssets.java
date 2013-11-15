@@ -24,6 +24,13 @@ public class IronCloudsAssets
     public static TextureRegion textureShell;
     public static TextureRegion textureTank;
     public static TextureRegion texturePlane5;
+    public static TextureRegion textureCloud1;
+    public static TextureRegion textureCloud2;
+    public static TextureRegion textureCloud3;
+    public static TextureRegion textureCloud4;
+    public static TextureRegion textureCloud5;
+    public static TextureRegion textureCloud6;
+    public static TextureRegion textureCloud7;
 
     public static ParticleEffectPool particleEffectExhaust;
     public static ParticleEffectPool particleEffectExplosion;

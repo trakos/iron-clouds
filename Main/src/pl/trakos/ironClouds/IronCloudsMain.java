@@ -52,6 +52,13 @@ public class IronCloudsMain extends Game
         IronCloudsAssets.textureShell = atlas.findRegion("tank/shell");
         IronCloudsAssets.textureTank = atlas.findRegion("tank/tank");
         IronCloudsAssets.texturePlane5 = atlas.findRegion("enemies/plane5");
+        IronCloudsAssets.textureCloud1 = atlas.findRegion("clouds/cloud1");
+        IronCloudsAssets.textureCloud2 = atlas.findRegion("clouds/cloud2");
+        IronCloudsAssets.textureCloud3 = atlas.findRegion("clouds/cloud3");
+        IronCloudsAssets.textureCloud4 = atlas.findRegion("clouds/cloud4");
+        IronCloudsAssets.textureCloud5 = atlas.findRegion("clouds/cloud5");
+        IronCloudsAssets.textureCloud6 = atlas.findRegion("clouds/cloud6");
+        IronCloudsAssets.textureCloud7 = atlas.findRegion("clouds/cloud7");
 
         // particles
         ParticleEffect exhaustEffect = new ParticleEffect();

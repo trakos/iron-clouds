@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Polygon;
+import pl.trakos.lib.GameDebug;
 import pl.trakos.lib.GameEntity;
 import pl.trakos.lib.GameLayers;
 import pl.trakos.lib.GameSettings;
@@ -48,6 +49,18 @@ public abstract class AbstractTarget extends GameEntity
     }
 
     @Override
+    public float getX()
+    {
+        return positionX - (direction == 1 ? 0 : texture.getRegionWidth());
+    }
+
+    @Override
+    public float getY()
+    {
+        return positionY;
+    }
+
+    @Override
     public void update(float delta)
     {
         if (direction == 1 && positionX > GameSettings.getMapWidth())
@@ -60,7 +73,7 @@ public abstract class AbstractTarget extends GameEntity
         }
         positionX += direction * speed * delta;
 
-        targetPolygon.setPosition(positionX, positionY);
+        targetPolygon.setPosition(positionX - (direction == 1 ? 0 : texture.getRegionWidth()), positionY);
     }
 
     @Override
@@ -74,6 +87,7 @@ public abstract class AbstractTarget extends GameEntity
                     positionY,
                     texture.getRegionWidth() * direction,
                     texture.getRegionHeight());
+            //GameDebug.markPolygon(batch, targetPolygon);
         }
     }
 

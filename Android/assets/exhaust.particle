@@ -6,12 +6,12 @@ lowMin: 3000.0
 lowMax: 3000.0
 - Count - 
 min: 0
-max: 200
+max: 10000
 - Emission - 
 lowMin: 0.0
 lowMax: 0.0
-highMin: 250.0
-highMax: 250.0
+highMin: 400.0
+highMax: 400.0
 relative: false
 scalingCount: 1
 scaling0: 1.0
@@ -71,10 +71,10 @@ timelineCount: 1
 timeline0: 0.0
 - Velocity - 
 active: true
-lowMin: 15.0
-lowMax: 15.0
+lowMin: 25.0
+lowMax: 25.0
 highMin: 0.0
-highMax: 30.0
+highMax: 50.0
 relative: false
 scalingCount: 1
 scaling0: 1.0
@@ -102,33 +102,39 @@ active: false
 - Gravity - 
 active: false
 - Tint - 
-colorsCount: 3
+colorsCount: 9
 colors0: 0.9647059
-colors1: 0.14901961
+colors1: 0.9254902
 colors2: 0.08235294
-timelineCount: 1
+colors3: 0.9647059
+colors4: 0.08235294
+colors5: 0.08235294
+colors6: 0.9647059
+colors7: 0.1882353
+colors8: 0.08235294
+timelineCount: 3
 timeline0: 0.0
+timeline1: 0.7917384
+timeline2: 1.0
 - Transparency - 
 lowMin: 0.0
 lowMax: 0.0
 highMin: 1.0
 highMax: 1.0
 relative: false
-scalingCount: 4
+scalingCount: 3
 scaling0: 1.0
 scaling1: 1.0
-scaling2: 1.0
-scaling3: 1.0
-timelineCount: 4
+scaling2: 0.15168539
+timelineCount: 3
 timeline0: 0.0
-timeline1: 0.50666285
-timeline2: 0.999
-timeline3: 1.0
+timeline1: 0.3218391
+timeline2: 0.86206895
 - Options - 
 attached: false
 continuous: true
 aligned: false
-additive: true
+additive: false
 behind: false
 - Image Path -
-C:\home\coding\android\IronClouds\Android\assets\particle.png
+C:\home\coding\android\IronClouds\Main\assets.imgsrc\particle.png
