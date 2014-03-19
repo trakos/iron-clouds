@@ -1,12 +1,13 @@
 package pl.trakos.ironClouds.screens.mainEntities.tank;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Polygon;
 import pl.trakos.ironClouds.IronCloudsAssets;
-import pl.trakos.lib.*;
+import pl.trakos.lib.GameEntity;
+import pl.trakos.lib.GameLayers;
+import pl.trakos.lib.GameSettings;
+import pl.trakos.lib.TVector2;
 
 /**
  * User: trakos
@@ -113,9 +114,9 @@ public class Tank extends GameEntity
         {
             currentShootingDelay -= delta;
         }
+        tankPolygon.setPosition(tankPos.x, tankPos.y);
     }
 
-    ShapeRenderer renderer = new ShapeRenderer();
     @Override
     public void draw(GameLayers layer, SpriteBatch batch)
     {
@@ -163,7 +164,6 @@ public class Tank extends GameEntity
 
     public void registerShot()
     {
-        Gdx.app.log(null, String.valueOf(currentShootingDelay));
         currentShootingDelay = shootingDelay;
     }
 
@@ -196,6 +196,18 @@ public class Tank extends GameEntity
     public float getAimY()
     {
         return aimPos.y;
+    }
+
+    @Override
+    public float getX()
+    {
+        return getTankX();
+    }
+
+    @Override
+    public float getY()
+    {
+        return getTankY();
     }
 
     public float getTankX()

@@ -5,30 +5,19 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 import com.badlogic.gdx.math.Vector3;
-import pl.trakos.ironClouds.IronCloudsAssets;
-import pl.trakos.ironClouds.screens.mainEntities.*;
-import pl.trakos.ironClouds.screens.mainEntities.Background;
-import pl.trakos.ironClouds.screens.mainEntities.tank.TankMissile;
-import pl.trakos.lib.*;
-
-import java.util.Hashtable;
-import java.util.Map;
+import pl.trakos.lib.GameFboParticle;
+import pl.trakos.lib.GameLayers;
+import pl.trakos.lib.GameSettings;
 
 public class GameScreen implements Screen
 {
     SpriteBatch batch;
-
-    Background background;
-    TankAndMissiles tankAndMissiles;
-    TargetsContainer targets;
+    GameCoreEntity gameCoreEntity;
 
     public GameScreen()
     {
-        background = new Background();
-        tankAndMissiles = new TankAndMissiles();
-        targets = new TargetsContainer();
+        gameCoreEntity = new GameCoreEntity();
 
         GameSettings.getCamera().setToOrtho(false, GameSettings.getResolutionWidth(), GameSettings.getResolutionHeight());
         batch = new SpriteBatch();
@@ -43,31 +32,15 @@ public class GameScreen implements Screen
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             GameSettings.getCamera().unproject(touchPos);
 
-            tankAndMissiles.handleTouch(touchPos.x, touchPos.y);
+            gameCoreEntity.handleTouch(touchPos.x, touchPos.y);
         }
     }
 
-    static private Hashtable<GameEntity, GameEntity[]> entitiesHitByAnyOf;
     private float fpsDrawDelay = 1;
     public void update(float delta)
     {
-        background.update(delta);
-        GameFboParticle.instance.update(delta);
-        tankAndMissiles.update(delta);
-        targets.update(delta);
-
-        entitiesHitByAnyOf = GameEntitiesContainer.getEntitiesHitByAnyOf(tankAndMissiles.missiles, targets);
-        for (Map.Entry<GameEntity, GameEntity[]> entry : entitiesHitByAnyOf.entrySet())
-        {
-            entry.getKey().alive = false;
-            entry.getValue()[0].alive = false;
-            GameFboParticle.instance.playParticleEffect(IronCloudsAssets.particleEffectExplosion,
-                    entry.getValue()[0].getX() + entry.getValue()[0].getWidth() / 2,
-                    entry.getValue()[0].getY() + entry.getValue()[0].getHeight() / 2);
-            IronCloudsAssets.soundSimpleExplosion.play(0.7f);
-        }
-
-        updateCameraPosition(GameSettings.getCameraStartX(), tankAndMissiles.getTankPositionX(), GameSettings.getCamera());
+        gameCoreEntity.update(delta);
+        updateCameraPosition(GameSettings.getCameraStartX(), gameCoreEntity.getPlayerCameraX(), GameSettings.getCamera());
 
         if (fpsDrawDelay <= 0)
         {
@@ -119,10 +92,7 @@ public class GameScreen implements Screen
 
     protected void drawHelper(GameLayers layer)
     {
-        background.draw(layer, batch);
-        GameFboParticle.instance.draw(layer, batch);
-        tankAndMissiles.draw(layer, batch);
-        targets.draw(layer, batch);
+        gameCoreEntity.draw(layer, batch);
     }
 
     @Override

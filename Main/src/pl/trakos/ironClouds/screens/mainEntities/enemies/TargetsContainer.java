@@ -1,7 +1,10 @@
-package pl.trakos.ironClouds.screens.mainEntities;
+package pl.trakos.ironClouds.screens.mainEntities.enemies;
 
-import pl.trakos.ironClouds.screens.mainEntities.targets.Plane;
+import pl.trakos.ironClouds.screens.mainEntities.enemies.targets.AbstractTarget;
+import pl.trakos.ironClouds.screens.mainEntities.enemies.targets.Plane;
 import pl.trakos.lib.GameEntitiesContainer;
+
+import java.util.Random;
 
 /**
  * User: trakos
@@ -27,6 +30,15 @@ public class TargetsContainer extends GameEntitiesContainer
             nextPlane = spawnDelay;
         }
         nextPlane -= delta;
+    }
+
+    public AbstractTarget getRandom()
+    {
+        if (entities.size() < 1)
+        {
+            return null;
+        }
+        return (AbstractTarget) entities.get(new Random().nextInt(entities.size()));
     }
 
 }

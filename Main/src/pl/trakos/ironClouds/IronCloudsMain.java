@@ -35,6 +35,7 @@ public class IronCloudsMain extends Game
         //IronCloudsAssets.music01spaceFighterLoop = Gdx.audio.newMusic(Gdx.files.internal("music01_space_fighter_loop.mp3"));
 
         // sound
+        IronCloudsAssets.soundBomb = Gdx.audio.newSound(Gdx.files.internal("bomb.wav"));
         IronCloudsAssets.soundTank = Gdx.audio.newSound(Gdx.files.internal("tank.wav"));
         IronCloudsAssets.soundTankShot = Gdx.audio.newSound(Gdx.files.internal("tank_shot.wav"));
         IronCloudsAssets.soundSimpleExplosion = Gdx.audio.newSound(Gdx.files.internal("simple_explosion.wav"));
@@ -48,10 +49,14 @@ public class IronCloudsMain extends Game
 
         // textures
         IronCloudsAssets.textureGround = groundTexture;
+
         IronCloudsAssets.textureGun = atlas.findRegion("tank/gun");
         IronCloudsAssets.textureShell = atlas.findRegion("tank/shell");
         IronCloudsAssets.textureTank = atlas.findRegion("tank/tank");
+
         IronCloudsAssets.texturePlane5 = atlas.findRegion("enemies/plane5");
+        IronCloudsAssets.textureBomb1 = atlas.findRegion("enemies/bomb1");
+
         IronCloudsAssets.textureCloud1 = atlas.findRegion("clouds/cloud1");
         IronCloudsAssets.textureCloud2 = atlas.findRegion("clouds/cloud2");
         IronCloudsAssets.textureCloud3 = atlas.findRegion("clouds/cloud3");
@@ -64,8 +69,14 @@ public class IronCloudsMain extends Game
         ParticleEffect exhaustEffect = new ParticleEffect();
         exhaustEffect.load(Gdx.files.internal("exhaust.particle"), atlas);
         IronCloudsAssets.particleEffectExhaust = new ParticleEffectPool(exhaustEffect, 1, 1);
+        ParticleEffect grayExhaustEffect = new ParticleEffect();
+        grayExhaustEffect.load(Gdx.files.internal("exhaust_gray.particle"), atlas);
+        IronCloudsAssets.particleEffectGrayExhaust = new ParticleEffectPool(grayExhaustEffect, 1, 1);
         ParticleEffect explosionEffect = new ParticleEffect();
         explosionEffect.load(Gdx.files.internal("explosion.particle"), atlas);
         IronCloudsAssets.particleEffectExplosion = new ParticleEffectPool(explosionEffect, 1, 1);
+        ParticleEffect smallExplosionEffect = new ParticleEffect();
+        smallExplosionEffect.load(Gdx.files.internal("small_explosion.particle"), atlas);
+        IronCloudsAssets.particleEffectSmallExplosion = new ParticleEffectPool(smallExplosionEffect, 1, 1);
     }
 }

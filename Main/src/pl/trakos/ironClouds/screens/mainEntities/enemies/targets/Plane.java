@@ -1,4 +1,4 @@
-package pl.trakos.ironClouds.screens.mainEntities.targets;
+package pl.trakos.ironClouds.screens.mainEntities.enemies.targets;
 
 import pl.trakos.ironClouds.IronCloudsAssets;
 

@@ -1,0 +1,103 @@
+
+images.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+clouds/cloud1
+  rotate: false
+  xy: 668, 353
+  size: 263, 156
+  orig: 263, 156
+  offset: 0, 0
+  index: -1
+clouds/cloud2
+  rotate: false
+  xy: 2, 2
+  size: 265, 160
+  orig: 265, 160
+  offset: 0, 0
+  index: -1
+clouds/cloud3
+  rotate: false
+  xy: 2, 350
+  size: 359, 159
+  orig: 359, 159
+  offset: 0, 0
+  index: -1
+clouds/cloud4
+  rotate: false
+  xy: 363, 355
+  size: 303, 154
+  orig: 303, 154
+  offset: 0, 0
+  index: -1
+clouds/cloud5
+  rotate: false
+  xy: 627, 203
+  size: 213, 148
+  orig: 213, 148
+  offset: 0, 0
+  index: -1
+clouds/cloud6
+  rotate: false
+  xy: 2, 164
+  size: 278, 184
+  orig: 278, 184
+  offset: 0, 0
+  index: -1
+clouds/cloud7
+  rotate: false
+  xy: 363, 200
+  size: 262, 153
+  orig: 262, 153
+  offset: 0, 0
+  index: -1
+enemies/bomb1
+  rotate: false
+  xy: 269, 144
+  size: 8, 18
+  orig: 8, 18
+  offset: 0, 0
+  index: -1
+enemies/jumbojet
+  rotate: false
+  xy: 282, 329
+  size: 64, 19
+  orig: 64, 19
+  offset: 0, 0
+  index: -1
+enemies/plane5
+  rotate: false
+  xy: 933, 487
+  size: 64, 22
+  orig: 64, 22
+  offset: 0, 0
+  index: -1
+particle
+  rotate: false
+  xy: 933, 453
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+tank/gun
+  rotate: false
+  xy: 282, 320
+  size: 24, 7
+  orig: 24, 7
+  offset: 0, 0
+  index: -1
+tank/shell
+  rotate: false
+  xy: 999, 502
+  size: 18, 7
+  orig: 18, 7
+  offset: 0, 0
+  index: -1
+tank/tank
+  rotate: false
+  xy: 842, 323
+  size: 44, 28
+  orig: 44, 28
+  offset: 0, 0
+  index: -1

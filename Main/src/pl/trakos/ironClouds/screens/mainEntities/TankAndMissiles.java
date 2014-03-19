@@ -46,8 +46,13 @@ public class TankAndMissiles extends GameEntitiesContainer
         }
     }
 
-    public float getTankPositionX()
+    public float getPlayerTankX()
     {
         return tank.getTankX();
+    }
+
+    public void hitTank()
+    {
+        // @todo
     }
 }

@@ -14,7 +14,7 @@ public class GameFboParticle extends GameEntity
 {
     static public GameFboParticle instance = new GameFboParticle();
 
-    public ArrayList<ParticleEffectPool.PooledEffect> pooledEffectList = new ArrayList<ParticleEffectPool.PooledEffect>();
+    public ArrayList<TParticle> pooledEffectList = new ArrayList<TParticle>();
     FrameBuffer particleFbo = new FrameBuffer(Pixmap.Format.RGBA4444, GameSettings.getResolutionWidth(), GameSettings.getResolutionHeight(), false);
     SpriteBatch particleBatch = new SpriteBatch();
     TextureRegion particleFboRegion;
@@ -53,13 +53,13 @@ public class GameFboParticle extends GameEntity
     public void playParticleEffect(ParticleEffectPool particleEffectPool, float x, float y)
     {
         ParticleEffectPool.PooledEffect pooledEffect = particleEffectPool.obtain();
-        pooledEffect.setPosition(x, y);
-        pooledEffectList.add(pooledEffect);
+        pooledEffectList.add(new TParticle(pooledEffect, x, y));
     }
 
-    public void renderParticle(ParticleEffectPool.PooledEffect particleEffect)
+    public void playParticleEffect(ParticleEffectPool particleEffectPool, float x, float y, GameEntity followEntity)
     {
-        particleEffect.draw(particleBatch);
+        ParticleEffectPool.PooledEffect pooledEffect = particleEffectPool.obtain();
+        pooledEffectList.add(new TParticle(pooledEffect, x, y, followEntity));
     }
 
     @Override
@@ -67,9 +67,9 @@ public class GameFboParticle extends GameEntity
     {
         if (layer == GameLayers.LayerPrepareParticles)
         {
-            for (ParticleEffectPool.PooledEffect pooledEffect : pooledEffectList)
+            for (TParticle pooledEffect : pooledEffectList)
             {
-                renderParticle(pooledEffect);
+                pooledEffect.draw(particleBatch);
             }
         }
         if (layer == GameLayers.LayerParticles)
@@ -98,5 +98,10 @@ public class GameFboParticle extends GameEntity
     {
         particleFbo.dispose();
         particleBatch.dispose();
+    }
+
+    public void renderParticle(ParticleEffectPool.PooledEffect exhaustEffect)
+    {
+        exhaustEffect.draw(particleBatch);
     }
 }

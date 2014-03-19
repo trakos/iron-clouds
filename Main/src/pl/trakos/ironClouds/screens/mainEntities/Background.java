@@ -42,7 +42,7 @@ public class Background extends GameEntitiesContainer
         super.update(delta);
         if (randomlyAddCloudDelay < 0)
         {
-            if (MathUtils.random(1, 10) > 8)
+            if (MathUtils.random(1, 100) > 95)
             {
                 add(Cloud.randomizeNewCloud(wind, true));
             }

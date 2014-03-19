@@ -14,13 +14,13 @@ import java.util.List;
 public class GameEntitiesContainer extends GameEntity
 {
     static private Hashtable<GameEntity, GameEntity[]> hitPairsList = new Hashtable<GameEntity, GameEntity[]>();
-    static private GameEntity[] hitsHelper;
+
     static public Hashtable<GameEntity, GameEntity[]> getEntitiesHitByAnyOf(GameEntitiesContainer entityContainer1, GameEntitiesContainer entityContainer2)
     {
         hitPairsList.clear();
         for (GameEntity targetEntity : entityContainer1.entities)
         {
-            hitsHelper = entityContainer2.getEntitiesHitBy(targetEntity);
+            GameEntity[] hitsHelper = entityContainer2.getEntitiesHitBy(targetEntity);
             if (hitsHelper != null)
             {
                 hitPairsList.put(targetEntity, hitsHelper);
