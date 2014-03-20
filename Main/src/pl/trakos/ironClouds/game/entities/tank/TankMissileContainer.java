@@ -1,12 +1,6 @@
-package pl.trakos.ironClouds.screens.mainEntities.tank;
+package pl.trakos.ironClouds.game.entities.tank;
 
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pl.trakos.lib.GameEntitiesContainer;
-import pl.trakos.lib.GameEntity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * User: trakos

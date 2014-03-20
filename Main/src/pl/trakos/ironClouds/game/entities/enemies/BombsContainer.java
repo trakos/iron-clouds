@@ -1,4 +1,4 @@
-package pl.trakos.ironClouds.screens.mainEntities.enemies;
+package pl.trakos.ironClouds.game.entities.enemies;
 
 import pl.trakos.lib.GameEntitiesContainer;
 

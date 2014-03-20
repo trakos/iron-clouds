@@ -1,4 +1,4 @@
-package pl.trakos.ironClouds.screens;
+package pl.trakos.ironClouds.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -17,11 +17,12 @@ public class GameScreen implements Screen
 
     public GameScreen()
     {
-        gameCoreEntity = new GameCoreEntity();
-
         GameSettings.getCamera().setToOrtho(false, GameSettings.getResolutionWidth(), GameSettings.getResolutionHeight());
         batch = new SpriteBatch();
         cameraMarginX = GameSettings.getCameraWidth() / 4;
+
+        gameCoreEntity = GameCoreEntity.instance;
+        gameCoreEntity.start();
     }
 
     public void handleInput()

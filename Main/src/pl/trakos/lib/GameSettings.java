@@ -62,4 +62,9 @@ public class GameSettings
     {
         return camera.position.y - getCameraHeight() / 2;
     }
+
+    public static int getMissilesPerHitPoint()
+    {
+        return 3;
+    }
 }

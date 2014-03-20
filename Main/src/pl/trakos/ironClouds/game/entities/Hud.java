@@ -1,4 +1,4 @@
-package pl.trakos.ironClouds.screens.mainEntities;
+package pl.trakos.ironClouds.game.entities;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -28,9 +28,9 @@ public class Hud extends GameEntity
 
     }
 
-    public int health = 3;
+    public int health = 5;
     protected int maxHealth = 5;
-    public int missiles = 31;
+    public int missiles = 0;
 
     @Override
     public void draw(GameLayers layer, SpriteBatch batch)
@@ -51,10 +51,11 @@ public class Hud extends GameEntity
             }
 
             int missiles = Math.min(Math.max(this.missiles, 0), 99);
-            int firstDigit = (int) Math.floor(missiles / 10);
-            int secondDigit = missiles - firstDigit * 10;
+            int firstDigit = (int) Math.floor(missiles / 100);
+            int secondDigit = (int) Math.floor((missiles - firstDigit * 100) / 10);
+            int thirdDigit = missiles - firstDigit * 100 - secondDigit * 10;
 
-            positionX = GameSettings.getCameraWidth() - 80;
+            positionX = GameSettings.getCameraWidth() - 108;
             positionY = 28;
 
             batch.draw(
@@ -71,6 +72,14 @@ public class Hud extends GameEntity
                     positionY - 8,
                     IronCloudsAssets.textureHudDigits.get(secondDigit).getRegionWidth(),
                     IronCloudsAssets.textureHudDigits.get(secondDigit).getRegionHeight()
+            );
+            positionX += 20;
+            batch.draw(
+                    IronCloudsAssets.textureHudDigits.get(thirdDigit),
+                    positionX,
+                    positionY - 8,
+                    IronCloudsAssets.textureHudDigits.get(thirdDigit).getRegionWidth(),
+                    IronCloudsAssets.textureHudDigits.get(thirdDigit).getRegionHeight()
             );
             positionX += 20;
             batch.draw(

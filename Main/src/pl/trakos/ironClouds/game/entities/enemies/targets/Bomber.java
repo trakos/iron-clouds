@@ -1,12 +1,14 @@
-package pl.trakos.ironClouds.screens.mainEntities.enemies.targets;
+package pl.trakos.ironClouds.game.entities.enemies.targets;
 
 import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.lib.TParticle;
 
 public class Bomber extends AbstractTarget
 {
-    public Bomber()
+
+    public Bomber(float y)
     {
+        super(y);
         speed = 500;
         texture = IronCloudsAssets.textureBomber;
         initPosition();
@@ -21,7 +23,7 @@ public class Bomber extends AbstractTarget
     @Override
     protected int getInitialHp()
     {
-        return 3;
+        return EnemyType.Bomber.hitPoints;
     }
 
     @Override

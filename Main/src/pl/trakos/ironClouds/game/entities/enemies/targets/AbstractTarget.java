@@ -1,8 +1,7 @@
-package pl.trakos.ironClouds.screens.mainEntities.enemies.targets;
+package pl.trakos.ironClouds.game.entities.enemies.targets;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Polygon;
 import pl.trakos.lib.*;
 
@@ -15,6 +14,45 @@ import java.util.ArrayList;
  */
 public abstract class AbstractTarget extends GameEntity
 {
+    public enum EnemyType
+    {
+        PlaneWeak(.2f, 1, 1),
+        PlaneNormal(.4f, 1, 1),
+        Heli(0, 1, 1),
+        Zeppelin(.7f, 1, 5),
+        Bomber(.8f, 1, 3);
+
+        public float minHeight;
+        public float maxHeight;
+        public int hitPoints;
+
+        EnemyType(float minHeight, float maxHeight, int hitPoints)
+        {
+            this.minHeight = minHeight;
+            this.maxHeight = maxHeight;
+            this.hitPoints = hitPoints;
+        }
+    }
+
+    static public AbstractTarget instantiate(EnemyType enemyType, float y)
+    {
+        switch (enemyType)
+        {
+            case PlaneWeak:
+                return new PlaneWeak(y);
+            case PlaneNormal:
+                return new PlaneNormal(y);
+            case Heli:
+                return new Heli(y);
+            case Zeppelin:
+                return new Zeppelin(y);
+            case Bomber:
+                return new Bomber(y);
+            default:
+                throw new RuntimeException("unknown enemy type: " + enemyType.toString());
+        }
+    }
+
     float speed = 300f;
 
     float positionX = 0;
@@ -29,23 +67,27 @@ public abstract class AbstractTarget extends GameEntity
     ArrayList<TParticle> particles = new ArrayList<TParticle>(4);
 
     abstract protected int getInitialHp();
+
     abstract protected void addHitEffectParticle(int remainingHp);
+
     protected abstract float getNextBombDelay();
+
     protected abstract float getOutOfMapTimeout();
 
-    public AbstractTarget()
+    public AbstractTarget(float y)
     {
         hp = getInitialHp();
         nextBombIn = getNextBombDelay();
+        float minHeight = GameSettings.groundPositionY + 50;
+        positionY = (GameSettings.getMapHeight() - minHeight) * y + minHeight;
     }
 
 
     public void initPosition()
     {
         positionX -= texture.getRegionWidth();
-        positionY = MathUtils.random(200f, 400f);
 
-        targetPolygon = new Polygon(new float[] {
+        targetPolygon = new Polygon(new float[]{
                 0, 0,
                 0, texture.getRegionHeight(),
                 texture.getRegionWidth(), texture.getRegionHeight(),
@@ -83,7 +125,7 @@ public abstract class AbstractTarget extends GameEntity
             timeout -= delta;
             return;
         }
-        nextBombIn-=delta;
+        nextBombIn -= delta;
         if (direction == 1 && positionX > GameSettings.getMapWidth())
         {
             direction = -1;

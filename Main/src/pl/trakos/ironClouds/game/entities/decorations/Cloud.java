@@ -1,6 +1,5 @@
-package pl.trakos.ironClouds.screens.mainEntities.decorations;
+package pl.trakos.ironClouds.game.entities.decorations;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;

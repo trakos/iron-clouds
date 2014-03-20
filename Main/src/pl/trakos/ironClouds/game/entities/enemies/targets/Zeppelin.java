@@ -1,12 +1,14 @@
-package pl.trakos.ironClouds.screens.mainEntities.enemies.targets;
+package pl.trakos.ironClouds.game.entities.enemies.targets;
 
 import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.lib.TParticle;
 
 public class Zeppelin extends AbstractTarget
 {
-    public Zeppelin()
+
+    public Zeppelin(float y)
     {
+        super(y);
         speed = 50;
         texture = IronCloudsAssets.textureZeppelin;
         initPosition();
@@ -21,7 +23,7 @@ public class Zeppelin extends AbstractTarget
     @Override
     protected int getInitialHp()
     {
-        return 5;
+        return EnemyType.Zeppelin.hitPoints;
     }
 
     @Override

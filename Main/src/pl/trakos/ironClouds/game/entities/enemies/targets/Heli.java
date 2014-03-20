@@ -1,27 +1,28 @@
-package pl.trakos.ironClouds.screens.mainEntities.enemies.targets;
+package pl.trakos.ironClouds.game.entities.enemies.targets;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pl.trakos.ironClouds.IronCloudsAssets;
-import pl.trakos.ironClouds.screens.mainEntities.enemies.targets.heli.Tail;
+import pl.trakos.ironClouds.game.entities.enemies.targets.heli.Tail;
 import pl.trakos.lib.GameLayers;
 
 import java.util.Random;
 
 public class Heli extends AbstractTarget
 {
+    final Tail tail = new Tail();
+
+    public Heli(float y)
+    {
+        super(y);
+        texture = IronCloudsAssets.textureHeli;
+        initPosition();
+    }
+
     @Override
     public void dispose()
     {
-        super.dispose();
         ensureEngineSoundIs(false);
-    }
-
-    final Tail tail = new Tail();
-
-    public Heli()
-    {
-        texture = IronCloudsAssets.textureHeli;
-        initPosition();
+        super.dispose();
     }
 
     @Override
@@ -35,6 +36,7 @@ public class Heli extends AbstractTarget
     }
 
     float time = 0;
+
     @Override
     public void update(float delta)
     {
@@ -58,7 +60,7 @@ public class Heli extends AbstractTarget
     @Override
     protected int getInitialHp()
     {
-        return 1;
+        return EnemyType.Heli.hitPoints;
     }
 
     @Override
@@ -74,6 +76,7 @@ public class Heli extends AbstractTarget
     }
 
     long soundId = 0;
+
     public void ensureEngineSoundIs(boolean stateToggle)
     {
         if (stateToggle != (soundId != 0))

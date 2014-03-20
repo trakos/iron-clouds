@@ -1,4 +1,4 @@
-package pl.trakos.ironClouds.screens.mainEntities.enemies;
+package pl.trakos.ironClouds.game.entities.enemies;
 
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

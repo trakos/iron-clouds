@@ -1,11 +1,12 @@
-package pl.trakos.ironClouds.screens.mainEntities.enemies.targets;
+package pl.trakos.ironClouds.game.entities.enemies.targets;
 
 import pl.trakos.ironClouds.IronCloudsAssets;
 
 public class PlaneNormal extends AbstractTarget
 {
-    public PlaneNormal()
+    public PlaneNormal(float y)
     {
+        super(y);
         speed = 300;
         texture = IronCloudsAssets.texturePlane2;
         initPosition();
@@ -20,7 +21,7 @@ public class PlaneNormal extends AbstractTarget
     @Override
     protected int getInitialHp()
     {
-        return 1;
+        return EnemyType.PlaneNormal.hitPoints;
     }
 
     @Override

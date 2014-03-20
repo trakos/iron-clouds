@@ -1,4 +1,4 @@
-package pl.trakos.ironClouds.screens.mainEntities.enemies.targets.heli;
+package pl.trakos.ironClouds.game.entities.enemies.targets.heli;
 
 import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.lib.GameAnimation;

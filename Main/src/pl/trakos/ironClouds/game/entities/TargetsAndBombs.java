@@ -1,10 +1,10 @@
-package pl.trakos.ironClouds.screens.mainEntities;
+package pl.trakos.ironClouds.game.entities;
 
-import pl.trakos.ironClouds.screens.mainEntities.enemies.BombsContainer;
-import pl.trakos.ironClouds.screens.mainEntities.enemies.PlaneBomb;
-import pl.trakos.ironClouds.screens.mainEntities.enemies.TargetsContainer;
-import pl.trakos.ironClouds.screens.mainEntities.enemies.targets.AbstractTarget;
-import pl.trakos.ironClouds.screens.mainEntities.tank.Tank;
+import pl.trakos.ironClouds.game.entities.enemies.BombsContainer;
+import pl.trakos.ironClouds.game.entities.enemies.PlaneBomb;
+import pl.trakos.ironClouds.game.entities.enemies.TargetsContainer;
+import pl.trakos.ironClouds.game.entities.enemies.targets.AbstractTarget;
+import pl.trakos.ironClouds.game.entities.tank.Tank;
 import pl.trakos.lib.GameEntitiesContainer;
 import pl.trakos.lib.GameEntity;
 

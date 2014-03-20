@@ -1,9 +1,10 @@
-package pl.trakos.ironClouds.screens.mainEntities.tank;
+package pl.trakos.ironClouds.game.entities.tank;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Polygon;
 import pl.trakos.ironClouds.IronCloudsAssets;
+import pl.trakos.ironClouds.game.entities.Hud;
 import pl.trakos.lib.GameEntity;
 import pl.trakos.lib.GameLayers;
 import pl.trakos.lib.GameSettings;
@@ -16,6 +17,7 @@ import pl.trakos.lib.TVector2;
  */
 public class Tank extends GameEntity
 {
+
     final int tankWidth;
     final int tankHeight;
     final int gunWidth;
@@ -23,7 +25,7 @@ public class Tank extends GameEntity
     final Polygon tankPolygon;
 
     final float shootingDelay = 1f;
-    final float maxSpeedX = 500f;
+    final float maxSpeedX = 250f;
 
 
     TVector2 tankPos = new TVector2(0, GameSettings.groundPositionY);
@@ -37,6 +39,9 @@ public class Tank extends GameEntity
     private boolean turnedForward = false;
     private TextureRegion tankRegion;
     private TextureRegion gunRegion;
+
+    protected int missilesLeft = 50;
+    protected int healthLeft = 5;
 
     public Tank()
     {
@@ -57,6 +62,17 @@ public class Tank extends GameEntity
 
         IronCloudsAssets.soundTank.loop(0.8f);
         IronCloudsAssets.soundTank.pause();
+    }
+
+    public void setHealth(int health)
+    {
+        healthLeft = health;
+        Hud.instance.health = health;
+    }
+    public void setMissiles(int missiles)
+    {
+        missilesLeft = missiles;
+        Hud.instance.missiles = missiles;
     }
 
     @Override
@@ -165,11 +181,13 @@ public class Tank extends GameEntity
     public void registerShot()
     {
         currentShootingDelay = shootingDelay;
+        missilesLeft--;
+        Hud.instance.missiles = missilesLeft;
     }
 
     public boolean isReadyToShoot()
     {
-        return currentShootingDelay < 0;
+        return currentShootingDelay < 0 && missilesLeft > 0;
     }
 
     public void aimAt(float x, float y)
@@ -238,5 +256,26 @@ public class Tank extends GameEntity
     public float getTankGunOriginY()
     {
         return gunOriginPos.y;
+    }
+
+    public void hit()
+    {
+        healthLeft--;
+        Hud.instance.health = healthLeft;
+    }
+
+    public int getHealth()
+    {
+        return healthLeft;
+    }
+
+    public int getMissilesCount()
+    {
+        return missilesLeft;
+    }
+
+    public void setPositionX(int x)
+    {
+        tankPos.x = x;
     }
 }

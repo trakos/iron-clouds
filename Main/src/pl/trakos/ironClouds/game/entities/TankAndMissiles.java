@@ -1,15 +1,11 @@
-package pl.trakos.ironClouds.screens.mainEntities;
+package pl.trakos.ironClouds.game.entities;
 
 import pl.trakos.ironClouds.IronCloudsAssets;
-import pl.trakos.ironClouds.screens.mainEntities.tank.Tank;
-import pl.trakos.ironClouds.screens.mainEntities.tank.TankMissileContainer;
+import pl.trakos.ironClouds.game.entities.tank.Tank;
+import pl.trakos.ironClouds.game.entities.tank.TankMissileContainer;
 import pl.trakos.lib.GameEntitiesContainer;
 
-/**
- * User: trakos
- * Date: 11.11.13
- * Time: 03:04
- */
+
 public class TankAndMissiles extends GameEntitiesContainer
 {
     public Tank tank;
@@ -53,6 +49,6 @@ public class TankAndMissiles extends GameEntitiesContainer
 
     public void hitTank()
     {
-        // @todo
+        tank.hit();
     }
 }

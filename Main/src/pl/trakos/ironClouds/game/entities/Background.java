@@ -1,10 +1,10 @@
-package pl.trakos.ironClouds.screens.mainEntities;
+package pl.trakos.ironClouds.game.entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import pl.trakos.ironClouds.IronCloudsAssets;
-import pl.trakos.ironClouds.screens.mainEntities.decorations.Cloud;
+import pl.trakos.ironClouds.game.entities.decorations.Cloud;
 import pl.trakos.lib.*;
 
 /**

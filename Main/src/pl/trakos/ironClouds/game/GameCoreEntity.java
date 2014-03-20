@@ -1,28 +1,30 @@
-package pl.trakos.ironClouds.screens;
+package pl.trakos.ironClouds.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pl.trakos.ironClouds.IronCloudsAssets;
-import pl.trakos.ironClouds.screens.mainEntities.Background;
-import pl.trakos.ironClouds.screens.mainEntities.Hud;
-import pl.trakos.ironClouds.screens.mainEntities.TankAndMissiles;
-import pl.trakos.ironClouds.screens.mainEntities.TargetsAndBombs;
-import pl.trakos.ironClouds.screens.mainEntities.enemies.targets.AbstractTarget;
-import pl.trakos.lib.GameEntitiesContainer;
-import pl.trakos.lib.GameEntity;
-import pl.trakos.lib.GameFboParticle;
-import pl.trakos.lib.GameLayers;
+import pl.trakos.ironClouds.game.entities.Background;
+import pl.trakos.ironClouds.game.entities.Hud;
+import pl.trakos.ironClouds.game.entities.TankAndMissiles;
+import pl.trakos.ironClouds.game.entities.TargetsAndBombs;
+import pl.trakos.ironClouds.game.entities.enemies.targets.AbstractTarget;
+import pl.trakos.ironClouds.game.levels.AbstractLevel;
+import pl.trakos.ironClouds.game.levels.Level1;
+import pl.trakos.lib.*;
 
 import java.util.Hashtable;
 import java.util.Map;
 
 public class GameCoreEntity extends GameEntitiesContainer
 {
+    static public GameCoreEntity instance = new GameCoreEntity();
 
     Background background;
     TankAndMissiles tankAndMissiles;
     TargetsAndBombs targetsAndBombs;
+    AbstractLevel currentLevel;
 
-    public GameCoreEntity()
+    protected GameCoreEntity()
     {
         background = new Background();
         tankAndMissiles = new TankAndMissiles();
@@ -34,6 +36,30 @@ public class GameCoreEntity extends GameEntitiesContainer
         add(targetsAndBombs);
         add(GameFboParticle.foregroundInstance);
         add(Hud.instance);
+
+    }
+
+    public void start()
+    {
+        // @TODO
+        currentLevel = new Level1();
+        currentLevel.start();
+    }
+
+    public void addEnemy(AbstractTarget.EnemyType enemyType, float y)
+    {
+        targetsAndBombs.targets.addEnemy(enemyType, y);
+    }
+
+    public void resetGame(int missilesLeft)
+    {
+        tankAndMissiles.missiles.clear();
+        targetsAndBombs.targets.clear();
+        targetsAndBombs.bombs.clear();
+        tankAndMissiles.tank.setPositionX(GameSettings.getMapWidth() / 2);
+        tankAndMissiles.tank.setDestinationX(GameSettings.getMapWidth() / 2);
+        tankAndMissiles.tank.setHealth(5);
+        tankAndMissiles.tank.setMissiles(missilesLeft);
     }
 
     @Override
@@ -59,6 +85,18 @@ public class GameCoreEntity extends GameEntitiesContainer
         {
             tankAndMissiles.hitTank();
         }
+
+        currentLevel.update(delta);
+
+        // @TODO
+        if (currentLevel.checkForWin())
+        {
+            Gdx.app.exit();
+        }
+        else if (currentLevel.checkForLoss())
+        {
+            Gdx.app.exit();
+        }
     }
 
     @Override
@@ -75,5 +113,25 @@ public class GameCoreEntity extends GameEntitiesContainer
     public float getPlayerCameraX()
     {
         return tankAndMissiles.getPlayerTankX();
+    }
+
+    public int getTargetsCount()
+    {
+        return targetsAndBombs.targets.entitiesSize();
+    }
+
+    public int getAirborneMissilesCount()
+    {
+        return tankAndMissiles.missiles.entitiesSize();
+    }
+
+    public int getTankHealth()
+    {
+        return tankAndMissiles.tank.getHealth();
+    }
+
+    public int getTankMissilesLeft()
+    {
+        return tankAndMissiles.tank.getMissilesCount();
     }
 }

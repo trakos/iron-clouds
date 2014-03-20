@@ -1,8 +1,6 @@
-package pl.trakos.ironClouds.screens.mainEntities.enemies;
+package pl.trakos.ironClouds.game.entities.enemies;
 
-import pl.trakos.ironClouds.screens.mainEntities.enemies.targets.AbstractTarget;
-import pl.trakos.ironClouds.screens.mainEntities.enemies.targets.PlaneWeak;
-import pl.trakos.ironClouds.screens.mainEntities.enemies.targets.Zeppelin;
+import pl.trakos.ironClouds.game.entities.enemies.targets.AbstractTarget;
 import pl.trakos.lib.GameEntitiesContainer;
 import pl.trakos.lib.GameEntity;
 
@@ -18,21 +16,17 @@ public class TargetsContainer extends GameEntitiesContainer implements Iterable<
 {
     public TargetsContainer()
     {
-        add(new PlaneWeak());
     }
 
-    final float spawnDelay = 4.0f;
-    float nextPlane = 0f;
+    public void addEnemy(AbstractTarget.EnemyType enemyType, float y)
+    {
+        add(AbstractTarget.instantiate(enemyType, y));
+    }
+
     @Override
     public void update(float delta)
     {
         super.update(delta);
-        if (nextPlane <= 0 && entities.size() < 5)
-        {
-            add(new Zeppelin());
-            nextPlane = spawnDelay;
-        }
-        nextPlane -= delta;
     }
 
     class TargetsIterator implements Iterator<AbstractTarget>

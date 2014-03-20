@@ -1,13 +1,22 @@
-package pl.trakos.ironClouds.screens.mainEntities.enemies.targets;
+package pl.trakos.ironClouds.game.entities.enemies.targets;
 
 import pl.trakos.ironClouds.IronCloudsAssets;
 
 public class PlaneWeak extends AbstractTarget
 {
+
+    public PlaneWeak(float y)
+    {
+        super(y);
+        speed = 200;
+        texture = IronCloudsAssets.texturePlane1;
+        initPosition();
+    }
+
     @Override
     protected int getInitialHp()
     {
-        return 1;
+        return EnemyType.PlaneWeak.hitPoints;
     }
 
     @Override
@@ -19,13 +28,6 @@ public class PlaneWeak extends AbstractTarget
     protected float getNextBombDelay()
     {
         return 3;
-    }
-
-    public PlaneWeak()
-    {
-        speed = 200;
-        texture = IronCloudsAssets.texturePlane1;
-        initPosition();
     }
 
     @Override

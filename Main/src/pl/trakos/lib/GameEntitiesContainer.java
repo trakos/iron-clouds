@@ -69,14 +69,19 @@ public class GameEntitiesContainer extends GameEntity
         }
     }
 
-    @Override
-    public void dispose()
+    public void clear()
     {
         for (int i = entities.size() - 1; i > 0; i--)
         {
             entities.get(i).dispose();
             entities.remove(i);
         }
+    }
+
+    @Override
+    public void dispose()
+    {
+        clear();
         entities = null;
     }
 
@@ -92,5 +97,10 @@ public class GameEntitiesContainer extends GameEntity
             }
         }
         return hitTargets.isEmpty() ? null : hitTargets.toArray(new GameEntity[hitTargets.size()]);
+    }
+
+    public int entitiesSize()
+    {
+        return entities.size();
     }
 }
