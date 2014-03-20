@@ -79,7 +79,7 @@ public abstract class AbstractTarget extends GameEntity
         hp = getInitialHp();
         nextBombIn = getNextBombDelay();
         float minHeight = GameSettings.groundPositionY + 50;
-        positionY = (GameSettings.getMapHeight() - minHeight) * y + minHeight;
+        positionY = (GameSettings.getMapHeight() - minHeight - 50) * y + minHeight;
     }
 
 

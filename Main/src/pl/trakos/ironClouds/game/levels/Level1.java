@@ -12,4 +12,10 @@ public class Level1 extends AbstractLevel
         }
         sortSpawns();
     }
+
+    @Override
+    protected String getTitle()
+    {
+        return "LEVEL 1";
+    }
 }

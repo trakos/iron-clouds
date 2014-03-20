@@ -2,6 +2,7 @@ package pl.trakos.ironClouds.game.levels;
 
 
 import pl.trakos.ironClouds.game.GameCoreEntity;
+import pl.trakos.ironClouds.game.entities.Hud;
 import pl.trakos.ironClouds.game.entities.enemies.targets.AbstractTarget;
 import pl.trakos.lib.GameSettings;
 
@@ -10,7 +11,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Random;
 
-public class AbstractLevel
+public abstract class AbstractLevel
 {
     class EnemySpawn
     {
@@ -50,7 +51,10 @@ public class AbstractLevel
         nextSpawn = 0;
         nextSpawnTime = enemySpawns.get(0).time;
         GameCoreEntity.instance.resetGame(getTotalHitPoints() * GameSettings.getMissilesPerHitPoint());
+        Hud.instance.showTitle(getTitle(), 2f);
     }
+
+    abstract protected String getTitle();
 
     public int getTotalHitPoints()
     {

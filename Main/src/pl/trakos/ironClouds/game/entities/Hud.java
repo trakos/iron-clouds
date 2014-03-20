@@ -1,5 +1,6 @@
 package pl.trakos.ironClouds.game.entities;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import pl.trakos.ironClouds.IronCloudsAssets;
@@ -25,7 +26,19 @@ public class Hud extends GameEntity
     @Override
     public void update(float delta)
     {
+        if (timeTitleLeft > 0)
+        {
+            timeTitleLeft -= delta;
+        }
+    }
 
+    float timeTitleLeft = 0;
+    String titleText;
+
+    public void showTitle(String text, float time)
+    {
+        timeTitleLeft = time;
+        titleText = text;
     }
 
     public int health = 5;
@@ -37,6 +50,19 @@ public class Hud extends GameEntity
     {
         if (layer == GameLayers.LayerHud)
         {
+            if (timeTitleLeft > 0)
+            {
+                IronCloudsAssets.fontDejavuBI.drawWrapped(
+                        batch,
+                        titleText,
+                        0,
+                        GameSettings.getCameraHeight() / 2 + 60,
+                        GameSettings.getCameraWidth(),
+                        BitmapFont.HAlignment.CENTER
+                );
+            }
+
+
             float positionX = 20;
             float positionY = 15;
             for (int k = 1; k <= maxHealth; k++)
@@ -50,7 +76,7 @@ public class Hud extends GameEntity
                 positionX += heartTexture.getRegionWidth() + 10;
             }
 
-            int missiles = Math.min(Math.max(this.missiles, 0), 99);
+            int missiles = Math.min(Math.max(this.missiles, 0), 999);
             int firstDigit = (int) Math.floor(missiles / 100);
             int secondDigit = (int) Math.floor((missiles - firstDigit * 100) / 10);
             int thirdDigit = missiles - firstDigit * 100 - secondDigit * 10;
@@ -101,7 +127,6 @@ public class Hud extends GameEntity
                     1,
                     1,
                     90);
-
 
 
         }

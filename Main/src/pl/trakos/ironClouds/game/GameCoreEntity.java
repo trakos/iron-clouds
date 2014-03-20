@@ -8,8 +8,7 @@ import pl.trakos.ironClouds.game.entities.Hud;
 import pl.trakos.ironClouds.game.entities.TankAndMissiles;
 import pl.trakos.ironClouds.game.entities.TargetsAndBombs;
 import pl.trakos.ironClouds.game.entities.enemies.targets.AbstractTarget;
-import pl.trakos.ironClouds.game.levels.AbstractLevel;
-import pl.trakos.ironClouds.game.levels.Level1;
+import pl.trakos.ironClouds.game.levels.*;
 import pl.trakos.lib.*;
 
 import java.util.Hashtable;
@@ -23,6 +22,8 @@ public class GameCoreEntity extends GameEntitiesContainer
     TankAndMissiles tankAndMissiles;
     TargetsAndBombs targetsAndBombs;
     AbstractLevel currentLevel;
+    AbstractLevel[] levels;
+    int currentLevelIndex = 0;
 
     protected GameCoreEntity()
     {
@@ -37,12 +38,25 @@ public class GameCoreEntity extends GameEntitiesContainer
         add(GameFboParticle.foregroundInstance);
         add(Hud.instance);
 
+        levels = new AbstractLevel[]
+                {
+                        new Level1(),
+                        new Level2(),
+                        new Level3(),
+                        new Level4(),
+                        new Level5(),
+                        new Level6(),
+                        new Level7(),
+                        new Level8(),
+                        new Level9(),
+                        new Level10(),
+                };
     }
 
     public void start()
     {
         // @TODO
-        currentLevel = new Level1();
+        currentLevel = levels[currentLevelIndex];
         currentLevel.start();
     }
 
@@ -91,11 +105,17 @@ public class GameCoreEntity extends GameEntitiesContainer
         // @TODO
         if (currentLevel.checkForWin())
         {
-            Gdx.app.exit();
+            currentLevelIndex++;
+            if (currentLevelIndex >= levels.length)
+            {
+                Gdx.app.exit();
+            }
+            currentLevel = levels[currentLevelIndex];
+            currentLevel.start();
         }
         else if (currentLevel.checkForLoss())
         {
-            Gdx.app.exit();
+            currentLevel.start();
         }
     }
 

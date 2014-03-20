@@ -14,6 +14,11 @@ import com.badlogic.gdx.utils.Array;
  */
 public class IronCloudsAssets
 {
+    public static BitmapFont fontDejavu;
+    public static BitmapFont fontDejavuB;
+    public static BitmapFont fontDejavuI;
+    public static BitmapFont fontDejavuBI;
+
     public static Music music01spaceFighterLoop;
 
     public static Sound soundBomb;
@@ -59,6 +64,9 @@ public class IronCloudsAssets
     {
         // fonts
         fontDejavu = new BitmapFont(Gdx.files.internal("fonts/dejavu.fnt"));
+        fontDejavuB = new BitmapFont(Gdx.files.internal("fonts/dejavub.fnt"));
+        fontDejavuI = new BitmapFont(Gdx.files.internal("fonts/dejavui.fnt"));
+        fontDejavuBI = new BitmapFont(Gdx.files.internal("fonts/dejavubi.fnt"));
 
         // music
         IronCloudsAssets.music01spaceFighterLoop = Gdx.audio.newMusic(Gdx.files.internal("music01_space_fighter_loop.mp3"));
