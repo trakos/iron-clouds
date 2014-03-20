@@ -3,6 +3,7 @@ package pl.trakos.ironClouds.screens;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.ironClouds.screens.mainEntities.Background;
+import pl.trakos.ironClouds.screens.mainEntities.Hud;
 import pl.trakos.ironClouds.screens.mainEntities.TankAndMissiles;
 import pl.trakos.ironClouds.screens.mainEntities.TargetsAndBombs;
 import pl.trakos.ironClouds.screens.mainEntities.enemies.targets.AbstractTarget;
@@ -31,6 +32,8 @@ public class GameCoreEntity extends GameEntitiesContainer
         add(GameFboParticle.instance);
         add(tankAndMissiles);
         add(targetsAndBombs);
+        add(GameFboParticle.foregroundInstance);
+        add(Hud.instance);
     }
 
     @Override

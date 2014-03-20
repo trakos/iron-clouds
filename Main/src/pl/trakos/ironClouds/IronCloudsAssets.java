@@ -4,7 +4,9 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * User: trakos
@@ -16,18 +18,29 @@ public class IronCloudsAssets
     public static Music music01spaceFighterLoop;
 
     public static Sound soundBomb;
+    public static Sound soundHeli;
     public static Sound soundTank;
     public static Sound soundTankShot;
     public static Sound soundSimpleExplosion;
 
     public static Texture textureGround;
 
+    public static Array<TextureAtlas.AtlasRegion> textureHudDigits;
+    public static TextureRegion textureHudX;
+    public static TextureRegion textureHudHeart;
+    public static TextureRegion textureHudHeartEmpty;
+
     public static TextureRegion textureGun;
     public static TextureRegion textureShell;
     public static TextureRegion textureTank;
 
-    public static TextureRegion texturePlane5;
-    public static TextureRegion textureBomb1;
+    public static TextureRegion texturePlane1;
+    public static TextureRegion texturePlane2;
+    public static TextureRegion textureHeli;
+    public static TextureRegion textureHeliTail;
+    public static TextureRegion textureZeppelin;
+    public static TextureRegion textureBomber;
+    public static TextureRegion textureBomb;
 
     public static TextureRegion textureCloud1;
     public static TextureRegion textureCloud2;

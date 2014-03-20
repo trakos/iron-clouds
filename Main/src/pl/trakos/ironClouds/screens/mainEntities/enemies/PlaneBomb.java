@@ -54,8 +54,8 @@ public class PlaneBomb extends GameEntity
         missileBottomTip = new TVector2(imageWidth / 2, 0);
         velocityComponents = new TVector2(planeSpeed * (planeDirection ? 1 : -1), verticalInitSpeed);
 
-        imageWidth = IronCloudsAssets.textureBomb1.getRegionWidth();
-        imageHeight = IronCloudsAssets.textureBomb1.getRegionHeight();
+        imageWidth = IronCloudsAssets.textureBomb.getRegionWidth();
+        imageHeight = IronCloudsAssets.textureBomb.getRegionHeight();
 
         bombPolygon.setVertices(new float[]{
                 0, 0,
@@ -123,13 +123,13 @@ public class PlaneBomb extends GameEntity
         else if (layer == GameLayers.LayerMain)
         {
             batch.draw(
-                    IronCloudsAssets.textureBomb1,
+                    IronCloudsAssets.textureBomb,
                     position.x,
-                    position.y - IronCloudsAssets.textureBomb1.getRegionHeight() / 2,
+                    position.y - IronCloudsAssets.textureBomb.getRegionHeight() / 2,
                     0,
-                    IronCloudsAssets.textureBomb1.getRegionHeight() / 2,
-                    IronCloudsAssets.textureBomb1.getRegionWidth(),
-                    IronCloudsAssets.textureBomb1.getRegionHeight(),
+                    IronCloudsAssets.textureBomb.getRegionHeight() / 2,
+                    IronCloudsAssets.textureBomb.getRegionWidth(),
+                    IronCloudsAssets.textureBomb.getRegionHeight(),
                     1,
                     1,
                     0);

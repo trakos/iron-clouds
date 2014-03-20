@@ -1,9 +1,9 @@
 package pl.trakos.ironClouds.screens.mainEntities;
 
 import pl.trakos.ironClouds.IronCloudsAssets;
-import pl.trakos.ironClouds.screens.mainEntities.tank.*;
+import pl.trakos.ironClouds.screens.mainEntities.tank.Tank;
+import pl.trakos.ironClouds.screens.mainEntities.tank.TankMissileContainer;
 import pl.trakos.lib.GameEntitiesContainer;
-import pl.trakos.lib.GameSettings;
 
 /**
  * User: trakos
@@ -30,7 +30,7 @@ public class TankAndMissiles extends GameEntitiesContainer
 
     public void handleTouch(float touchPosX, float touchPosY)
     {
-        if (touchPosY < GameSettings.groundPositionY)
+        if (touchPosY < tank.getTankGunOriginY())
         {
             tank.setDestinationX(touchPosX - 20);
         }

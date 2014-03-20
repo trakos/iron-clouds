@@ -77,11 +77,15 @@ public class GameScreen implements Screen
         drawHelper(GameLayers.LayerPrepareParticles);
         GameFboParticle.instance.endPreparing();
 
+        GameFboParticle.foregroundInstance.beginPreparing();
+        drawHelper(GameLayers.LayerPrepareParticlesForeground);
+        GameFboParticle.foregroundInstance.endPreparing();
+
         batch.setProjectionMatrix(GameSettings.getCamera().combined);
         batch.begin();
         for (GameLayers layer : GameLayers.values())
         {
-            if (layer == GameLayers.LayerPrepareParticles)
+            if (layer == GameLayers.LayerPrepareParticles || layer == GameLayers.LayerPrepareParticlesForeground)
             {
                 continue;
             }

@@ -1,15 +1,12 @@
 package pl.trakos.ironClouds.screens.mainEntities.enemies.targets;
 
-import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Polygon;
-import pl.trakos.ironClouds.IronCloudsAssets;
-import pl.trakos.lib.GameEntity;
-import pl.trakos.lib.GameFboParticle;
-import pl.trakos.lib.GameLayers;
-import pl.trakos.lib.GameSettings;
+import pl.trakos.lib.*;
+
+import java.util.ArrayList;
 
 /**
  * User: trakos
@@ -23,17 +20,25 @@ public abstract class AbstractTarget extends GameEntity
     float positionX = 0;
     float positionY = 300f;
     int direction = 1;
-    int initialHp = 2;
     int hp;
+    float timeout = 0;
+    float nextBombIn;
 
     Polygon targetPolygon;
     TextureRegion texture;
-    private ParticleEffectPool.PooledEffect smokeEffect;
+    ArrayList<TParticle> particles = new ArrayList<TParticle>(4);
+
+    abstract protected int getInitialHp();
+    abstract protected void addHitEffectParticle(int remainingHp);
+    protected abstract float getNextBombDelay();
+    protected abstract float getOutOfMapTimeout();
 
     public AbstractTarget()
     {
-        hp = initialHp;
+        hp = getInitialHp();
+        nextBombIn = getNextBombDelay();
     }
+
 
     public void initPosition()
     {
@@ -46,7 +51,6 @@ public abstract class AbstractTarget extends GameEntity
                 texture.getRegionWidth(), texture.getRegionHeight(),
                 texture.getRegionWidth(), 0
         });
-        smokeEffect = IronCloudsAssets.particleEffectGrayExhaust.obtain();
     }
 
     public int getWidth()
@@ -74,29 +78,56 @@ public abstract class AbstractTarget extends GameEntity
     @Override
     public void update(float delta)
     {
+        if (timeout > 0)
+        {
+            timeout -= delta;
+            return;
+        }
+        nextBombIn-=delta;
         if (direction == 1 && positionX > GameSettings.getMapWidth())
         {
             direction = -1;
+            positionX = GameSettings.getMapWidth() + texture.getRegionWidth();
+            timeout = getOutOfMapTimeout();
         }
         else if (direction == -1 && positionX < -texture.getRegionWidth())
         {
             direction = 1;
+            timeout = getOutOfMapTimeout();
         }
         positionX += direction * speed * delta;
 
         targetPolygon.setPosition(positionX - (direction == 1 ? 0 : texture.getRegionWidth()), positionY);
-        smokeEffect.setPosition(positionX, getY() + getHeight() / 2);
-        smokeEffect.update(delta);
+        for (TParticle particle : particles)
+        {
+            particle.effect.setPosition(positionX + particle.x * direction, getY() + particle.y);
+            particle.effect.update(delta);
+        }
     }
+
+    public boolean shouldDropBombNow()
+    {
+        if (nextBombIn < 0)
+        {
+            nextBombIn = getNextBombDelay();
+            return true;
+        }
+        return false;
+    }
+
 
     @Override
     public void draw(GameLayers layer, SpriteBatch batch)
     {
-        if (layer == GameLayers.LayerPrepareParticles)
+        if (timeout > 0)
         {
-            if (initialHp > hp && hp > 0)
+            return;
+        }
+        if (layer == GameLayers.LayerPrepareParticlesForeground)
+        {
+            for (TParticle particle : particles)
             {
-                GameFboParticle.instance.renderParticle(smokeEffect);
+                GameFboParticle.foregroundInstance.renderParticle(particle.effect);
             }
         }
         if (layer == GameLayers.LayerMain)
@@ -120,7 +151,11 @@ public abstract class AbstractTarget extends GameEntity
     @Override
     public void dispose()
     {
-        smokeEffect.dispose();
+        for (TParticle particle : particles)
+        {
+            particle.effect.dispose();
+        }
+        particles.clear();
     }
 
     public float getSpeed()
@@ -138,6 +173,10 @@ public abstract class AbstractTarget extends GameEntity
         if (--hp <= 0)
         {
             alive = false;
+        }
+        else
+        {
+            addHitEffectParticle(hp);
         }
     }
 }

@@ -21,9 +21,9 @@ public class IronCloudsMain extends Game
         loadAssets();
 
 
-        /*IronCloudsAssets.music01spaceFighterLoop.setLooping(true);
-        IronCloudsAssets.music01spaceFighterLoop.setVolume(0.1f);
-        IronCloudsAssets.music01spaceFighterLoop.play();*/
+        IronCloudsAssets.music01spaceFighterLoop.setLooping(true);
+        IronCloudsAssets.music01spaceFighterLoop.setVolume(0.4f);
+        IronCloudsAssets.music01spaceFighterLoop.play();
 
         gameScreen = new GameScreen();
         setScreen(gameScreen);
@@ -32,9 +32,10 @@ public class IronCloudsMain extends Game
     protected void loadAssets()
     {
         // music
-        //IronCloudsAssets.music01spaceFighterLoop = Gdx.audio.newMusic(Gdx.files.internal("music01_space_fighter_loop.mp3"));
+        IronCloudsAssets.music01spaceFighterLoop = Gdx.audio.newMusic(Gdx.files.internal("music01_space_fighter_loop.mp3"));
 
         // sound
+        IronCloudsAssets.soundHeli = Gdx.audio.newSound(Gdx.files.internal("heli.wav"));
         IronCloudsAssets.soundBomb = Gdx.audio.newSound(Gdx.files.internal("bomb.wav"));
         IronCloudsAssets.soundTank = Gdx.audio.newSound(Gdx.files.internal("tank.wav"));
         IronCloudsAssets.soundTankShot = Gdx.audio.newSound(Gdx.files.internal("tank_shot.wav"));
@@ -50,12 +51,22 @@ public class IronCloudsMain extends Game
         // textures
         IronCloudsAssets.textureGround = groundTexture;
 
+        IronCloudsAssets.textureHudDigits = atlas.findRegions("hud/hud");
+        IronCloudsAssets.textureHudX = atlas.findRegion("hud/x");
+        IronCloudsAssets.textureHudHeart = atlas.findRegion("hud/heart");
+        IronCloudsAssets.textureHudHeartEmpty = atlas.findRegion("hud/empty_heart");
+
         IronCloudsAssets.textureGun = atlas.findRegion("tank/gun");
         IronCloudsAssets.textureShell = atlas.findRegion("tank/shell");
         IronCloudsAssets.textureTank = atlas.findRegion("tank/tank");
 
-        IronCloudsAssets.texturePlane5 = atlas.findRegion("enemies/plane5");
-        IronCloudsAssets.textureBomb1 = atlas.findRegion("enemies/bomb1");
+        IronCloudsAssets.texturePlane1 = atlas.findRegion("enemies/plane1");
+        IronCloudsAssets.texturePlane2 = atlas.findRegion("enemies/plane2");
+        IronCloudsAssets.textureHeli = atlas.findRegion("enemies/heli");
+        IronCloudsAssets.textureHeliTail = atlas.findRegion("enemies/heli_tail");
+        IronCloudsAssets.textureZeppelin = atlas.findRegion("enemies/zeppelin");
+        IronCloudsAssets.textureBomber = atlas.findRegion("enemies/bomber");
+        IronCloudsAssets.textureBomb = atlas.findRegion("enemies/bomb1");
 
         IronCloudsAssets.textureCloud1 = atlas.findRegion("clouds/cloud1");
         IronCloudsAssets.textureCloud2 = atlas.findRegion("clouds/cloud2");

@@ -12,15 +12,17 @@ import java.util.ArrayList;
 
 public class GameFboParticle extends GameEntity
 {
-    static public GameFboParticle instance = new GameFboParticle();
+    static public GameFboParticle instance = new GameFboParticle(GameLayers.LayerParticles);
+    static public GameFboParticle foregroundInstance = new GameFboParticle(GameLayers.LayerParticlesForeground);
 
+    protected final GameLayers drawOnLayer;
     public ArrayList<TParticle> pooledEffectList = new ArrayList<TParticle>();
     FrameBuffer particleFbo = new FrameBuffer(Pixmap.Format.RGBA4444, GameSettings.getResolutionWidth(), GameSettings.getResolutionHeight(), false);
     SpriteBatch particleBatch = new SpriteBatch();
     TextureRegion particleFboRegion;
 
 
-    public GameFboParticle()
+    public GameFboParticle(GameLayers drawOnLayer)
     {
         particleFboRegion = new TextureRegion(particleFbo.getColorBufferTexture(), 0, 0, GameSettings.getResolutionWidth(), GameSettings.getResolutionHeight());
         particleFboRegion.flip(false, true);
@@ -28,6 +30,7 @@ public class GameFboParticle extends GameEntity
         particleFbo.begin();
         Gdx.gl20.glBlendFuncSeparate(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA, GL10.GL_ONE, GL10.GL_ONE);
         particleFbo.end();
+        this.drawOnLayer = drawOnLayer;
     }
 
     @Override
@@ -72,7 +75,7 @@ public class GameFboParticle extends GameEntity
                 pooledEffect.draw(particleBatch);
             }
         }
-        if (layer == GameLayers.LayerParticles)
+        if (layer == drawOnLayer)
         {
             batch.setColor(1, 1, 1, 1);
             batch.draw(particleFboRegion, GameSettings.getCameraStartX(), GameSettings.getCameraStartY());

@@ -7,10 +7,13 @@ package pl.trakos.lib;
  */
 public enum GameLayers
 {
-    LayerBackground,
     LayerPrepareParticles,
+    LayerPrepareParticlesForeground,
+    LayerBackground,
     LayerParticles,
     LayerGround,
     LayerMain,
-    LayerForeground
+    LayerForeground,
+    LayerParticlesForeground,
+    LayerHud
 }

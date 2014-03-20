@@ -42,7 +42,6 @@ public class TParticle
         else
         {
             effect.setPosition(followEntity.getX() + x, followEntity.getY() + y);
-            System.out.println(followEntity.getX());
         }
         effect.update(delta);
     }
