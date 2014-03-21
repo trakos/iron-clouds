@@ -71,7 +71,7 @@ public class GameEntitiesContainer extends GameEntity
 
     public void clear()
     {
-        for (int i = entities.size() - 1; i > 0; i--)
+        for (int i = entities.size() - 1; i >= 0; i--)
         {
             entities.get(i).dispose();
             entities.remove(i);

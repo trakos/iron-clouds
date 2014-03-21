@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.ironClouds.game.entities.enemies.targets.heli.Tail;
 import pl.trakos.lib.GameLayers;
+import pl.trakos.lib.GameSettings;
 
 import java.util.Random;
 
@@ -72,7 +73,7 @@ public class Heli extends AbstractTarget
     @Override
     protected float getNextBombDelay()
     {
-        return 2;
+        return 1.5f + .5f * (float)Math.random();
     }
 
     long soundId = 0;
@@ -83,7 +84,7 @@ public class Heli extends AbstractTarget
         {
             if (stateToggle && soundId == 0)
             {
-                soundId = IronCloudsAssets.soundHeli.loop(0.2f);
+                soundId = IronCloudsAssets.soundHeli.loop(GameSettings.getSoundVolume() * 0.4f);
             }
             else
             {

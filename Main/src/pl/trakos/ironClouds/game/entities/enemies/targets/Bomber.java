@@ -9,7 +9,7 @@ public class Bomber extends AbstractTarget
     public Bomber(float y)
     {
         super(y);
-        speed = 500;
+        speed = 300;
         texture = IronCloudsAssets.textureBomber;
         initPosition();
     }

@@ -92,7 +92,7 @@ public class GameCoreEntity extends GameEntitiesContainer
                     (targetHit.alive ? 0 : targetHit.getX()) + entry.getValue()[0].getWidth() / 2,
                     (targetHit.alive ? 0 : targetHit.getY()) + entry.getValue()[0].getHeight() / 2,
                     targetHit.alive ? targetHit : null);
-            IronCloudsAssets.soundSimpleExplosion.play(0.7f);
+            IronCloudsAssets.soundSimpleExplosion.play(GameSettings.getSoundVolume() * 0.7f);
         }
 
         if (targetsAndBombs.isTankHit(tankAndMissiles.tank))
@@ -153,5 +153,10 @@ public class GameCoreEntity extends GameEntitiesContainer
     public int getTankMissilesLeft()
     {
         return tankAndMissiles.tank.getMissilesCount();
+    }
+
+    public int getTargetsSize()
+    {
+        return targetsAndBombs.targets.entitiesSize();
     }
 }

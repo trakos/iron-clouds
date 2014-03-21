@@ -24,8 +24,9 @@ public class Tank extends GameEntity
     final int gunHeight;
     final Polygon tankPolygon;
 
-    final float shootingDelay = 1f;
+    final float shootingDelay = .7f;
     final float maxSpeedX = 250f;
+    final long soundTankLoopId;
 
 
     TVector2 tankPos = new TVector2(0, GameSettings.groundPositionY);
@@ -60,8 +61,8 @@ public class Tank extends GameEntity
         });
         gunOriginPos = new TVector2(0, GameSettings.groundPositionY + tankHeight - 10);
 
-        IronCloudsAssets.soundTank.loop(0.8f);
-        IronCloudsAssets.soundTank.pause();
+        soundTankLoopId = IronCloudsAssets.soundTank.loop(0.8f * GameSettings.getSoundVolume());
+        IronCloudsAssets.soundTank.pause(soundTankLoopId);
     }
 
     public void setHealth(int health)
@@ -89,11 +90,12 @@ public class Tank extends GameEntity
         {
             if (stateToggle)
             {
-                IronCloudsAssets.soundTank.resume();
+                IronCloudsAssets.soundTank.setVolume(soundTankLoopId, .8f * GameSettings.getSoundVolume());
+                IronCloudsAssets.soundTank.resume(soundTankLoopId);
             }
             else
             {
-                IronCloudsAssets.soundTank.pause();
+                IronCloudsAssets.soundTank.pause(soundTankLoopId);
             }
             isPlayingEngineSound = stateToggle;
         }

@@ -27,7 +27,7 @@ public class PlaneWeak extends AbstractTarget
     @Override
     protected float getNextBombDelay()
     {
-        return 3;
+        return 2.5f + .5f * (float)Math.random();
     }
 
     @Override

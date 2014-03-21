@@ -16,9 +16,9 @@ public abstract class AbstractTarget extends GameEntity
 {
     public enum EnemyType
     {
-        PlaneWeak(.2f, 1, 1),
-        PlaneNormal(.4f, 1, 1),
-        Heli(0, 1, 1),
+        PlaneWeak(.2f, .7f, 1),
+        PlaneNormal(.4f, .9f, 1),
+        Heli(0, .6f, 1),
         Zeppelin(.7f, 1, 5),
         Bomber(.8f, 1, 3);
 

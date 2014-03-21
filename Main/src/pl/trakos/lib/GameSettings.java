@@ -1,6 +1,7 @@
 package pl.trakos.lib;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import pl.trakos.ironClouds.IronCloudsAssets;
 
 /**
  * User: trakos
@@ -63,8 +64,23 @@ public class GameSettings
         return camera.position.y - getCameraHeight() / 2;
     }
 
-    public static int getMissilesPerHitPoint()
+    public static float getMissilesPerHitPoint()
     {
-        return 3;
+        return 1.7f;
+    }
+
+    public static float getMusicVolume()
+    {
+        return 0;
+    }
+
+    public static float getSoundVolume()
+    {
+        return .1f;
+    }
+
+    public static void refreshMusicVolume()
+    {
+        IronCloudsAssets.music01spaceFighterLoop.setVolume(GameSettings.getMusicVolume() * 0.4f);
     }
 }

@@ -33,6 +33,6 @@ public class PlaneNormal extends AbstractTarget
     @Override
     protected float getNextBombDelay()
     {
-        return 1.5f;
+        return 1f + .5f * (float)Math.random();
     }
 }

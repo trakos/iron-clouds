@@ -14,7 +14,8 @@ import pl.trakos.lib.*;
 public class PlaneBomb extends GameEntity
 {
     static final float verticalInitSpeed = -50f;
-    static final float verticalAcceleration = -300f;
+    static final float verticalAcceleration = -100f;
+    static final float verticalMaxSpeed = -1000f;
     static int imageWidth;
     static int imageHeight;
     public Polygon bombPolygon = new Polygon(new float[8]);
@@ -78,7 +79,8 @@ public class PlaneBomb extends GameEntity
     {
         position.x += velocityComponents.x * delta;
         position.y += velocityComponents.y * delta;
-        velocityComponents.y += verticalAcceleration * delta;
+        // max bo to sa ujemne wartosci
+        velocityComponents.y += Math.max(verticalAcceleration * delta, verticalMaxSpeed);
 
         alive = alive && position.x >= 0 && position.x <= GameSettings.getMapWidth() && position.y >= 0 && position.y <= GameSettings.getMapHeight();
 
@@ -98,7 +100,7 @@ public class PlaneBomb extends GameEntity
                 bigBoom ? IronCloudsAssets.particleEffectExplosion : IronCloudsAssets.particleEffectSmallExplosion,
                 getX() + getWidth() / 2,
                 getY() + getHeight() / 2);
-        IronCloudsAssets.soundBomb.play(bigBoom ? 0.8f : 0.1f);
+        IronCloudsAssets.soundBomb.play(GameSettings.getSoundVolume() * (bigBoom ? 0.8f : 0.1f));
         alive = false;
     }
 

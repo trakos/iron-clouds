@@ -50,7 +50,7 @@ public abstract class AbstractLevel
         timeTaken = 0;
         nextSpawn = 0;
         nextSpawnTime = enemySpawns.get(0).time;
-        GameCoreEntity.instance.resetGame(getTotalHitPoints() * GameSettings.getMissilesPerHitPoint());
+        GameCoreEntity.instance.resetGame((int) Math.floor(getTotalHitPoints() * GameSettings.getMissilesPerHitPoint()));
         Hud.instance.showTitle(getTitle(), 2f);
     }
 
@@ -83,6 +83,7 @@ public abstract class AbstractLevel
                 nextSpawnTime = enemySpawns.get(nextSpawn).time;
             }
         }
+        Hud.instance.enemiesLeft = enemySpawns.size() - nextSpawn + GameCoreEntity.instance.getTargetsSize();
     }
 
     public boolean checkForWin()

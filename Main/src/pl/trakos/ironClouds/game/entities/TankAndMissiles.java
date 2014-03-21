@@ -4,6 +4,7 @@ import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.ironClouds.game.entities.tank.Tank;
 import pl.trakos.ironClouds.game.entities.tank.TankMissileContainer;
 import pl.trakos.lib.GameEntitiesContainer;
+import pl.trakos.lib.GameSettings;
 
 
 public class TankAndMissiles extends GameEntitiesContainer
@@ -37,7 +38,7 @@ public class TankAndMissiles extends GameEntitiesContainer
             {
                 missiles.add(tank.getTankGunOriginX(), tank.getTankGunOriginY(), tank.getAimX(), tank.getAimY());
                 tank.registerShot();
-                IronCloudsAssets.soundTankShot.play(0.4f);
+                IronCloudsAssets.soundTankShot.play(0.4f * GameSettings.getSoundVolume());
             }
         }
     }

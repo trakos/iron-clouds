@@ -77,7 +77,7 @@ public class Zeppelin extends AbstractTarget
         if (bombBurstIndex >= 5)
         {
             bombBurstIndex = 0;
-            return 4f;
+            return 3.5f + .5f * (float)Math.random();
         }
         bombBurstIndex++;
         return .75f;
