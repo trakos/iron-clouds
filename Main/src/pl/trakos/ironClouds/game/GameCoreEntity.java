@@ -24,6 +24,7 @@ public class GameCoreEntity extends GameEntitiesContainer
     AbstractLevel currentLevel;
     AbstractLevel[] levels;
     int currentLevelIndex = 0;
+    boolean gameActive = true;
 
     protected GameCoreEntity()
     {
@@ -40,10 +41,10 @@ public class GameCoreEntity extends GameEntitiesContainer
 
         levels = new AbstractLevel[]
                 {
-                        new Level1(),
+                        /*new Level1(),
                         new Level2(),
                         new Level3(),
-                        new Level4(),
+                        new Level4(),*/
                         new Level5(),
                         new Level6(),
                         new Level7(),
@@ -58,6 +59,16 @@ public class GameCoreEntity extends GameEntitiesContainer
         // @TODO
         currentLevel = levels[currentLevelIndex];
         currentLevel.start();
+    }
+
+    public void pause()
+    {
+        gameActive = false;
+    }
+
+    public void resume()
+    {
+        gameActive = true;
     }
 
     public void addEnemy(AbstractTarget.EnemyType enemyType, float y)
@@ -79,6 +90,10 @@ public class GameCoreEntity extends GameEntitiesContainer
     @Override
     public void update(float delta)
     {
+        if (!gameActive)
+        {
+            return;
+        }
         super.update(delta);
 
         Hashtable<GameEntity, GameEntity[]> entitiesHitByAnyOf = GameEntitiesContainer.getEntitiesHitByAnyOf(tankAndMissiles.missiles, targetsAndBombs.targets);
@@ -127,7 +142,10 @@ public class GameCoreEntity extends GameEntitiesContainer
 
     public void handleTouch(float x, float y)
     {
-        tankAndMissiles.handleTouch(x, y);
+        if (gameActive)
+        {
+            tankAndMissiles.handleTouch(x, y);
+        }
     }
 
     public float getPlayerCameraX()

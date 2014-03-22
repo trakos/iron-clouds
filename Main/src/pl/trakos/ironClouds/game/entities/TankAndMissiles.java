@@ -38,7 +38,7 @@ public class TankAndMissiles extends GameEntitiesContainer
             {
                 missiles.add(tank.getTankGunOriginX(), tank.getTankGunOriginY(), tank.getAimX(), tank.getAimY());
                 tank.registerShot();
-                IronCloudsAssets.soundTankShot.play(0.4f * GameSettings.getSoundVolume());
+                IronCloudsAssets.soundTankShot.play(.4f * GameSettings.getSoundVolume());
             }
         }
     }

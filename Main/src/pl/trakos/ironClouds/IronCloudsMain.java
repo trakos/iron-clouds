@@ -14,12 +14,31 @@ public class IronCloudsMain extends Game
     public void create()
     {
         IronCloudsAssets.loadAssets();
-
         IronCloudsAssets.music01spaceFighterLoop.setLooping(true);
         GameSettings.refreshMusicVolume();
         IronCloudsAssets.music01spaceFighterLoop.play();
 
         gameScreen = new GameScreen();
         setScreen(gameScreen);
+    }
+
+    @Override
+    public void resume()
+    {
+        /*IronCloudsAssets.loadAssets();
+        IronCloudsAssets.music01spaceFighterLoop.setLooping(true);
+        GameSettings.refreshMusicVolume();
+        IronCloudsAssets.music01spaceFighterLoop.play();*/
+
+        super.resume();
+    }
+
+    @Override
+    public void pause()
+    {
+        /*IronCloudsAssets.music01spaceFighterLoop.stop();
+        IronCloudsAssets.unloadAssets();*/
+
+        super.pause();
     }
 }

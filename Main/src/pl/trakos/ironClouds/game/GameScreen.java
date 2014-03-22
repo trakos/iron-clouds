@@ -17,6 +17,7 @@ public class GameScreen implements Screen
 
     public GameScreen()
     {
+        GameFboParticle.createOrResumeAll();
         GameSettings.getCamera().setToOrtho(false, GameSettings.getResolutionWidth(), GameSettings.getResolutionHeight());
         batch = new SpriteBatch();
         cameraMarginX = GameSettings.getCameraWidth() / 4;
@@ -27,13 +28,16 @@ public class GameScreen implements Screen
 
     public void handleInput()
     {
-        if (Gdx.input.isTouched())
+        for (int k = 0; k < 10; k++)
         {
-            Vector3 touchPos = new Vector3();
-            touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            GameSettings.getCamera().unproject(touchPos);
+            if (Gdx.input.isTouched(k))
+            {
+                Vector3 touchPos = new Vector3();
+                touchPos.set(Gdx.input.getX(k), Gdx.input.getY(k), 0);
+                GameSettings.getCamera().unproject(touchPos);
 
-            gameCoreEntity.handleTouch(touchPos.x, touchPos.y);
+                gameCoreEntity.handleTouch(touchPos.x, touchPos.y);
+            }
         }
     }
 
@@ -126,16 +130,20 @@ public class GameScreen implements Screen
     @Override
     public void pause()
     {
-
+        gameCoreEntity.pause();
+        GameFboParticle.disposeAll();
     }
 
     @Override
     public void resume()
     {
+        GameFboParticle.createOrResumeAll();
+        gameCoreEntity.resume();
     }
 
     @Override
     public void dispose()
     {
+        GameFboParticle.disposeAll();
     }
 }

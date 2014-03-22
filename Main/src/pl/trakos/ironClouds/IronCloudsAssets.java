@@ -20,11 +20,11 @@ public class IronCloudsAssets
     public static BitmapFont fontDejavuBI;
 
     public static Music music01spaceFighterLoop;
+    public static Music soundTank;
 
-    public static Sound soundBomb;
-    public static Sound soundHeli;
-    public static Sound soundTank;
     public static Sound soundTankShot;
+    public static Sound soundHeli;
+    public static Sound soundBomb;
     public static Sound soundSimpleExplosion;
 
     public static Texture textureGround;
@@ -71,11 +71,12 @@ public class IronCloudsAssets
         // music
         IronCloudsAssets.music01spaceFighterLoop = Gdx.audio.newMusic(Gdx.files.internal("music01_space_fighter_loop.mp3"));
 
+        // sound as music objects
+        IronCloudsAssets.soundTank = Gdx.audio.newMusic(Gdx.files.internal("tank.mp3"));
         // sound
+        IronCloudsAssets.soundTankShot = Gdx.audio.newSound(Gdx.files.internal("tank_shot.wav"));
         IronCloudsAssets.soundHeli = Gdx.audio.newSound(Gdx.files.internal("heli.wav"));
         IronCloudsAssets.soundBomb = Gdx.audio.newSound(Gdx.files.internal("bomb.wav"));
-        IronCloudsAssets.soundTank = Gdx.audio.newSound(Gdx.files.internal("tank.wav"));
-        IronCloudsAssets.soundTankShot = Gdx.audio.newSound(Gdx.files.internal("tank_shot.wav"));
         IronCloudsAssets.soundSimpleExplosion = Gdx.audio.newSound(Gdx.files.internal("simple_explosion.wav"));
 
         // textures (non-atlased)

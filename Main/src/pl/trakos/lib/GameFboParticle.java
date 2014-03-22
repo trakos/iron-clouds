@@ -15,22 +15,41 @@ public class GameFboParticle extends GameEntity
     static public GameFboParticle instance = new GameFboParticle(GameLayers.LayerParticles);
     static public GameFboParticle foregroundInstance = new GameFboParticle(GameLayers.LayerParticlesForeground);
 
+    static public void createOrResumeAll()
+    {
+        instance.create();
+        foregroundInstance.create();
+    }
+
+    static public void disposeAll()
+    {
+        instance.dispose();
+        foregroundInstance.dispose();
+    }
+
+
     protected final GameLayers drawOnLayer;
     public ArrayList<TParticle> pooledEffectList = new ArrayList<TParticle>();
-    FrameBuffer particleFbo = new FrameBuffer(Pixmap.Format.RGBA4444, GameSettings.getResolutionWidth(), GameSettings.getResolutionHeight(), false);
-    SpriteBatch particleBatch = new SpriteBatch();
+    FrameBuffer particleFbo;
+    SpriteBatch particleBatch;
     TextureRegion particleFboRegion;
 
 
     public GameFboParticle(GameLayers drawOnLayer)
     {
+        this.drawOnLayer = drawOnLayer;
+    }
+
+    public void create()
+    {
+        particleFbo = new FrameBuffer(Pixmap.Format.RGBA4444, GameSettings.getResolutionWidth(), GameSettings.getResolutionHeight(), false);
+        particleBatch = new SpriteBatch();
         particleFboRegion = new TextureRegion(particleFbo.getColorBufferTexture(), 0, 0, GameSettings.getResolutionWidth(), GameSettings.getResolutionHeight());
         particleFboRegion.flip(false, true);
         particleBatch.setBlendFunction(-1, -1);
         particleFbo.begin();
         Gdx.gl20.glBlendFuncSeparate(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA, GL10.GL_ONE, GL10.GL_ONE);
         particleFbo.end();
-        this.drawOnLayer = drawOnLayer;
     }
 
     @Override
@@ -101,6 +120,8 @@ public class GameFboParticle extends GameEntity
     {
         particleFbo.dispose();
         particleBatch.dispose();
+        particleFbo = null;
+        particleBatch = null;
     }
 
     public void renderParticle(ParticleEffectPool.PooledEffect exhaustEffect)
