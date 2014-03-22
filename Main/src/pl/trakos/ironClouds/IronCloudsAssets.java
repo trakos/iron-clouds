@@ -28,6 +28,7 @@ public class IronCloudsAssets
     public static Sound soundSimpleExplosion;
 
     public static Texture textureGround;
+    public static TextureRegion textureBackground;
 
     public static Array<TextureAtlas.AtlasRegion> textureHudDigits;
     public static TextureRegion textureHudX;
@@ -88,6 +89,7 @@ public class IronCloudsAssets
 
         // textures
         IronCloudsAssets.textureGround = groundTexture;
+        IronCloudsAssets.textureBackground = atlas.findRegion("bg");
 
         IronCloudsAssets.textureHudDigits = atlas.findRegions("hud/digit");
         IronCloudsAssets.textureHudX = atlas.findRegion("hud/x");

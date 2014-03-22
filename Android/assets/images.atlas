@@ -3,219 +3,226 @@ images.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+bg
+  rotate: false
+  xy: 2, 808
+  size: 800, 200
+  orig: 800, 200
+  offset: 0, 0
+  index: -1
 clouds/cloud1
   rotate: false
-  xy: 668, 353
+  xy: 2, 141
   size: 263, 156
   orig: 263, 156
   offset: 0, 0
   index: -1
 clouds/cloud2
   rotate: false
-  xy: 2, 2
+  xy: 2, 299
   size: 265, 160
   orig: 265, 160
   offset: 0, 0
   index: -1
 clouds/cloud3
   rotate: false
-  xy: 2, 350
+  xy: 2, 647
   size: 359, 159
   orig: 359, 159
   offset: 0, 0
   index: -1
 clouds/cloud4
   rotate: false
-  xy: 363, 355
+  xy: 363, 652
   size: 303, 154
   orig: 303, 154
   offset: 0, 0
   index: -1
 clouds/cloud5
   rotate: false
-  xy: 627, 203
+  xy: 804, 860
   size: 213, 148
   orig: 213, 148
   offset: 0, 0
   index: -1
 clouds/cloud6
   rotate: false
-  xy: 2, 164
+  xy: 2, 461
   size: 278, 184
   orig: 278, 184
   offset: 0, 0
   index: -1
 clouds/cloud7
   rotate: false
-  xy: 363, 200
+  xy: 668, 653
   size: 262, 153
   orig: 262, 153
   offset: 0, 0
   index: -1
 enemies/bomb1
   rotate: false
-  xy: 269, 144
+  xy: 269, 441
   size: 8, 18
   orig: 8, 18
   offset: 0, 0
   index: -1
 enemies/bomber
   rotate: false
-  xy: 933, 460
+  xy: 950, 842
   size: 64, 16
   orig: 64, 16
   offset: 0, 0
   index: -1
 enemies/heli
   rotate: false
-  xy: 933, 478
+  xy: 2, 74
   size: 80, 31
   orig: 80, 31
   offset: 0, 0
   index: -1
 enemies/heli_tail
   rotate: false
-  xy: 842, 335
+  xy: 804, 842
   size: 144, 16
   orig: 144, 16
   offset: 0, 0
   index: -1
 enemies/plane1
   rotate: false
-  xy: 282, 326
+  xy: 282, 623
   size: 64, 22
   orig: 64, 22
   offset: 0, 0
   index: -1
 enemies/plane2
   rotate: false
-  xy: 842, 312
+  xy: 170, 118
   size: 64, 21
   orig: 64, 21
   offset: 0, 0
   index: -1
 enemies/zeppelin
   rotate: false
-  xy: 627, 169
+  xy: 2, 107
   size: 166, 32
   orig: 166, 32
   offset: 0, 0
   index: -1
 hud/digit
   rotate: false
-  xy: 908, 314
+  xy: 282, 602
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 0
 hud/digit
   rotate: false
-  xy: 282, 271
+  xy: 236, 120
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 1
 hud/digit
   rotate: false
-  xy: 316, 305
+  xy: 2, 23
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 2
 hud/digit
   rotate: false
-  xy: 842, 266
+  xy: 48, 53
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 3
 hud/digit
   rotate: false
-  xy: 871, 291
+  xy: 113, 86
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 4
 hud/digit
   rotate: false
-  xy: 933, 414
+  xy: 867, 821
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 5
 hud/digit
   rotate: false
-  xy: 962, 439
+  xy: 282, 581
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 6
 hud/digit
   rotate: false
-  xy: 929, 314
+  xy: 303, 602
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 7
 hud/digit
   rotate: false
-  xy: 282, 250
+  xy: 2, 2
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 8
 hud/digit
   rotate: false
-  xy: 842, 245
+  xy: 23, 23
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 9
 hud/empty_heart
   rotate: false
-  xy: 842, 287
+  xy: 84, 82
   size: 27, 23
   orig: 27, 23
   offset: 0, 0
   index: -1
 hud/heart
   rotate: false
-  xy: 933, 435
+  xy: 838, 817
   size: 27, 23
   orig: 27, 23
   offset: 0, 0
   index: -1
 hud/x
   rotate: false
-  xy: 933, 395
+  xy: 134, 88
   size: 17, 17
   orig: 17, 17
   offset: 0, 0
   index: -1
 particle
   rotate: false
-  xy: 282, 292
+  xy: 804, 808
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 tank/gun
   rotate: false
-  xy: 950, 326
+  xy: 838, 808
   size: 24, 7
   orig: 24, 7
   offset: 0, 0
   index: -1
 tank/shell
   rotate: false
-  xy: 316, 296
+  xy: 864, 808
   size: 18, 7
   orig: 18, 7
   offset: 0, 0
   index: -1
 tank/tank
   rotate: false
-  xy: 795, 173
+  xy: 2, 44
   size: 44, 28
   orig: 44, 28
   offset: 0, 0

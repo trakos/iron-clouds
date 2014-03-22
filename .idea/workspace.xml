@@ -5,19 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b1d806e-24c6-4bde-a7f4-88a874012db6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_0.png" afterPath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_1.png" afterPath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_2.png" afterPath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_3.png" afterPath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_4.png" afterPath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_4.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_5.png" afterPath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_5.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_6.png" afterPath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_6.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_7.png" afterPath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_7.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_8.png" afterPath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_8.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_9.png" afterPath="$PROJECT_DIR$/Main/assets.imgsrc/hud/digit_9.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Android/assets/images.png" afterPath="$PROJECT_DIR$/Android/assets/images.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main/assets.imgsrc/hud/x.png" afterPath="$PROJECT_DIR$/Main/assets.imgsrc/hud/x.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/Hud.java" afterPath="$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/Hud.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/Background.java" afterPath="$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/Background.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/IronCloudsAssets.java" afterPath="$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/IronCloudsAssets.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Android/assets/images.atlas" afterPath="$PROJECT_DIR$/Android/assets/images.atlas" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -84,21 +73,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GameScreen.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/GameScreen.java">
+      <file leaf-file-name="AbstractTarget.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/enemies/targets/AbstractTarget.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="89" column="22" selection-start="3056" selection-end="3056" vertical-scroll-proportion="0.0" vertical-offset="1362" max-vertical-offset="2635">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="181" column="47" selection-start="4498" selection-end="4706" vertical-scroll-proportion="0.0" vertical-offset="2193" max-vertical-offset="3553">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Hud.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Hud.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/Hud.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="129" column="59" selection-start="4345" selection-end="4345" vertical-scroll-proportion="0.71900827" vertical-offset="1482" max-vertical-offset="3060">
+            <state line="129" column="59" selection-start="4345" selection-end="4345" vertical-scroll-proportion="0.0" vertical-offset="1482" max-vertical-offset="3060">
               <folding />
             </state>
           </provider>
@@ -113,10 +100,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IronCloudsAssets.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Background.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/Background.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="61" column="21" selection-start="1731" selection-end="1731" vertical-scroll-proportion="0.0" vertical-offset="414" max-vertical-offset="1309">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpriteBatch.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/Main/libs/gdx-sources.jar!/com/badlogic/gdx/graphics/g2d/SpriteBatch.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1096" column="28" selection-start="34062" selection-end="34062" vertical-scroll-proportion="0.0" vertical-offset="15808" max-vertical-offset="18156">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IronCloudsAssets.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/IronCloudsAssets.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="91" column="72" selection-start="3570" selection-end="3570" vertical-scroll-proportion="0.0" vertical-offset="870" max-vertical-offset="2176">
+            <state line="103" column="29" selection-start="4237" selection-end="4237" vertical-scroll-proportion="0.8002421" vertical-offset="937" max-vertical-offset="2210">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlaneNormal.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/enemies/targets/PlaneNormal.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="37" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="697">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cloud.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/decorations/Cloud.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="52" column="49" selection-start="1855" selection-end="1855" vertical-scroll-proportion="0.0" vertical-offset="416" max-vertical-offset="1751">
               <folding />
             </state>
           </provider>
@@ -131,46 +154,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TankAndMissiles.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/TankAndMissiles.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="36" selection-start="1280" selection-end="1280" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="969">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Tank.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/tank/Tank.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="92" column="55" selection-start="2715" selection-end="2715" vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="4046">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Heli.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/enemies/targets/Heli.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="86" column="93" selection-start="2041" selection-end="2041" vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="1581">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Audio.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/Main/libs/gdx-sources.jar!/com/badlogic/gdx/Audio.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="17" selection-start="3377" selection-end="3377" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameCoreEntity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/GameCoreEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="146" column="46" selection-start="4536" selection-end="4536" vertical-scroll-proportion="0.0" vertical-offset="1654" max-vertical-offset="2958">
+            <state line="47" column="13" selection-start="1340" selection-end="1340" vertical-scroll-proportion="0.0" vertical-offset="1589" max-vertical-offset="4046">
               <folding />
             </state>
           </provider>
@@ -222,7 +209,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Main/src/pl/trakos/lib/GameAnimation.java" />
         <option value="$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/screens/GameScreen.java" />
         <option value="$PROJECT_DIR$/Main/src/pl/trakos/lib/TParticle.java" />
         <option value="$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/screens/mainEntities/enemies/targets/PlaneBomber.java" />
@@ -271,8 +257,9 @@
         <option value="$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/enemies/targets/Heli.java" />
         <option value="$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/GameCoreEntity.java" />
         <option value="$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/GameScreen.java" />
-        <option value="$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/IronCloudsAssets.java" />
         <option value="$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/Hud.java" />
+        <option value="$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/IronCloudsAssets.java" />
+        <option value="$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/Background.java" />
       </list>
     </option>
   </component>
@@ -988,7 +975,7 @@
       <workItem from="1394010300680" duration="963000" />
       <workItem from="1395247395053" duration="41682000" />
       <workItem from="1395373620243" duration="3414000" />
-      <workItem from="1395492533585" duration="6093000" />
+      <workItem from="1395492533585" duration="10504000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1384058557885</created>
@@ -1018,7 +1005,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53928000" />
+    <option name="totallyTimeSpent" value="58339000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="168" y="-8" width="2400" height="1456" extended-state="0" />
@@ -1089,15 +1076,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/lib/TParticle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="81" selection-start="1019" selection-end="1019" vertical-scroll-proportion="0.6781065" vertical-offset="158" max-vertical-offset="1003">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/lib/GameLayers.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="12" selection-start="306" selection-end="306" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
@@ -1189,14 +1167,11 @@
         <state line="44" column="18" selection-start="1073" selection-end="1073" vertical-scroll-proportion="0.0" vertical-offset="56" max-vertical-offset="901" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/enemies/targets/PlaneNormal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="5" selection-start="653" selection-end="701" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/enemies/targets/PlaneWeak.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="5" selection-start="561" selection-end="611" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="697" />
+        <state line="28" column="5" selection-start="561" selection-end="611" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="697">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/enemies/targets/Zeppelin.java">
@@ -1275,13 +1250,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/enemies/targets/AbstractTarget.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="25" selection-start="427" selection-end="427" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="3638">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/Main/libs/gdx-sources.jar!/com/badlogic/gdx/Input.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="306" column="19" selection-start="12301" selection-end="12301" vertical-scroll-proportion="0.33252427" vertical-offset="4010" max-vertical-offset="5712">
@@ -1306,23 +1274,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/Background.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="27" selection-start="1777" selection-end="1777" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1190">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/Main/libs/gdx-sources.jar!/com/badlogic/gdx/graphics/g2d/Sprite.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="474" column="23" selection-start="16463" selection-end="16463" vertical-scroll-proportion="0.0" vertical-offset="6603" max-vertical-offset="9401">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/Main/libs/gdx-sources.jar!/com/badlogic/gdx/graphics/g2d/SpriteBatch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="684" column="16" selection-start="23242" selection-end="23242" vertical-scroll-proportion="0.0" vertical-offset="9272" max-vertical-offset="18156">
           <folding />
         </state>
       </provider>
@@ -1371,20 +1325,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/tank/Tank.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="55" selection-start="2715" selection-end="2715" vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="4046">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/IronCloudsMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="14" selection-start="599" selection-end="599" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/enemies/targets/Heli.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="86" column="93" selection-start="2041" selection-end="2041" vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="1581">
@@ -1408,13 +1348,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/IronCloudsAssets.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="72" selection-start="3570" selection-end="3570" vertical-scroll-proportion="0.0" vertical-offset="870" max-vertical-offset="2176">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/enemies/BombsContainer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="10" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
@@ -1424,7 +1357,63 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/Hud.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="129" column="59" selection-start="4345" selection-end="4345" vertical-scroll-proportion="0.71900827" vertical-offset="1482" max-vertical-offset="3060">
+        <state line="129" column="59" selection-start="4345" selection-end="4345" vertical-scroll-proportion="0.0" vertical-offset="1482" max-vertical-offset="3060">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/decorations/Cloud.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="49" selection-start="1855" selection-end="1855" vertical-scroll-proportion="0.0" vertical-offset="416" max-vertical-offset="1751">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/IronCloudsMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="14" selection-start="599" selection-end="599" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/tank/Tank.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="13" selection-start="1340" selection-end="1340" vertical-scroll-proportion="0.0" vertical-offset="1589" max-vertical-offset="4046">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/enemies/targets/PlaneNormal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="37" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="697">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/enemies/targets/AbstractTarget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="181" column="47" selection-start="4498" selection-end="4706" vertical-scroll-proportion="0.0" vertical-offset="2193" max-vertical-offset="3553">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/game/entities/Background.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="21" selection-start="1731" selection-end="1731" vertical-scroll-proportion="0.0" vertical-offset="414" max-vertical-offset="1309">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/Main/libs/gdx-sources.jar!/com/badlogic/gdx/graphics/g2d/SpriteBatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1096" column="28" selection-start="34062" selection-end="34062" vertical-scroll-proportion="0.0" vertical-offset="15808" max-vertical-offset="18156">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/src/pl/trakos/ironClouds/IronCloudsAssets.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="103" column="29" selection-start="4237" selection-end="4237" vertical-scroll-proportion="0.8002421" vertical-offset="937" max-vertical-offset="2210">
           <folding />
         </state>
       </provider>

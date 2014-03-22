@@ -58,6 +58,13 @@ public class Background extends GameEntitiesContainer
         {
             TGradient.sky.drawVertical(batch, 0, GameSettings.groundPositionY, GameSettings.getMapWidth(),
                     GameSettings.getMapHeight() - GameSettings.groundPositionY);
+            float scale = 1f;
+            batch.draw(
+                    IronCloudsAssets.textureBackground,
+                    0,
+                    50,
+                    scale * IronCloudsAssets.textureBackground.getRegionWidth(),
+                    scale * IronCloudsAssets.textureBackground.getRegionHeight());
         }
         else if (layer == GameLayers.LayerGround)
         {
