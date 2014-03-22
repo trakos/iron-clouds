@@ -89,7 +89,7 @@ public class IronCloudsAssets
         // textures
         IronCloudsAssets.textureGround = groundTexture;
 
-        IronCloudsAssets.textureHudDigits = atlas.findRegions("hud/hud");
+        IronCloudsAssets.textureHudDigits = atlas.findRegions("hud/digit");
         IronCloudsAssets.textureHudX = atlas.findRegion("hud/x");
         IronCloudsAssets.textureHudHeart = atlas.findRegion("hud/heart");
         IronCloudsAssets.textureHudHeartEmpty = atlas.findRegion("hud/empty_heart");

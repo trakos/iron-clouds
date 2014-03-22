@@ -62,7 +62,7 @@ public class Hud extends GameEntity
                 IronCloudsAssets.textureHudDigits.get(firstDigit).getRegionWidth(),
                 IronCloudsAssets.textureHudDigits.get(firstDigit).getRegionHeight()
         );
-        positionX += 20;
+        positionX += 24;
         batch.draw(
                 IronCloudsAssets.textureHudDigits.get(secondDigit),
                 positionX,
@@ -70,7 +70,7 @@ public class Hud extends GameEntity
                 IronCloudsAssets.textureHudDigits.get(secondDigit).getRegionWidth(),
                 IronCloudsAssets.textureHudDigits.get(secondDigit).getRegionHeight()
         );
-        positionX += 20;
+        positionX += 24;
         batch.draw(
                 IronCloudsAssets.textureHudDigits.get(thirdDigit),
                 positionX,
@@ -78,12 +78,13 @@ public class Hud extends GameEntity
                 IronCloudsAssets.textureHudDigits.get(thirdDigit).getRegionWidth(),
                 IronCloudsAssets.textureHudDigits.get(thirdDigit).getRegionHeight()
         );
-        positionX += 20;
+        positionX += 24;
         return positionX;
     }
 
     protected float drawX(SpriteBatch batch, float positionX, float positionY)
     {
+        positionX += 4;
         batch.draw(
                 IronCloudsAssets.textureHudX,
                 positionX,
@@ -91,7 +92,7 @@ public class Hud extends GameEntity
                 IronCloudsAssets.textureHudX.getRegionWidth(),
                 IronCloudsAssets.textureHudX.getRegionHeight()
         );
-        positionX += 24;
+        positionX += 28;
         return positionX;
     }
 
@@ -126,7 +127,7 @@ public class Hud extends GameEntity
                 positionX += heartTexture.getRegionWidth() + 10;
             }
 
-            positionX = GameSettings.getCameraWidth() - 208;
+            positionX = GameSettings.getCameraWidth() - 258;
             positionY = 28;
             positionX = typeNumber(batch, enemiesLeft, positionX, positionY);
             positionX = drawX(batch, positionX, positionY);
