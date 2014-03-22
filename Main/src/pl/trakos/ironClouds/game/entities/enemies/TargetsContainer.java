@@ -23,10 +23,24 @@ public class TargetsContainer extends GameEntitiesContainer implements Iterable<
         add(AbstractTarget.instantiate(enemyType, y));
     }
 
+    public void addEnemy(AbstractTarget.EnemyType enemyType, float x, float y)
+    {
+        add(AbstractTarget.instantiate(enemyType, x, y));
+    }
+
     @Override
     public void update(float delta)
     {
         super.update(delta);
+    }
+
+    public void randomlyPlaceEnemiesForBackground()
+    {
+        addEnemy(AbstractTarget.EnemyType.PlaneWeak, (float) Math.random(), (float) Math.random());
+        addEnemy(AbstractTarget.EnemyType.PlaneNormal, (float) Math.random(), (float) Math.random());
+        addEnemy(AbstractTarget.EnemyType.Heli, (float) Math.random(), (float) Math.random());
+        addEnemy(AbstractTarget.EnemyType.Zeppelin, (float) Math.random(), (float) Math.random());
+        addEnemy(AbstractTarget.EnemyType.Bomber, (float) Math.random(), (float) Math.random());
     }
 
     class TargetsIterator implements Iterator<AbstractTarget>

@@ -16,15 +16,28 @@ import java.util.Map;
 
 public class GameCoreEntity extends GameEntitiesContainer
 {
+    public GameState getGameState()
+    {
+        return gameState;
+    }
+
+    public enum GameState
+    {
+        MainMenu,
+        GameActive,
+        GamePausedInMenu,
+        GamePausedByOS
+    }
+
     static public GameCoreEntity instance = new GameCoreEntity();
 
+    GameState gameState = GameState.GameActive;
     Background background;
     TankAndMissiles tankAndMissiles;
     TargetsAndBombs targetsAndBombs;
     AbstractLevel currentLevel;
     AbstractLevel[] levels;
     int currentLevelIndex = 0;
-    boolean gameActive = true;
 
     protected GameCoreEntity()
     {
@@ -44,31 +57,31 @@ public class GameCoreEntity extends GameEntitiesContainer
                         /*new Level1(),
                         new Level2(),
                         new Level3(),
-                        new Level4(),*/
+                        new Level4(),
                         new Level5(),
                         new Level6(),
                         new Level7(),
                         new Level8(),
-                        new Level9(),
+                        new Level9(),*/
                         new Level10(),
                 };
     }
 
+    public void showRandomlyPlacedEnemiesForBackground()
+    {
+        targetsAndBombs.targets.randomlyPlaceEnemiesForBackground();
+    }
+
+    public void changeGameState(GameState newGameState)
+    {
+        gameState = newGameState;
+    }
+
     public void start()
     {
-        // @TODO
+        //showRandomlyPlacedEnemiesForBackground();
         currentLevel = levels[currentLevelIndex];
         currentLevel.start();
-    }
-
-    public void pause()
-    {
-        gameActive = false;
-    }
-
-    public void resume()
-    {
-        gameActive = true;
     }
 
     public void addEnemy(AbstractTarget.EnemyType enemyType, float y)
@@ -83,14 +96,15 @@ public class GameCoreEntity extends GameEntitiesContainer
         targetsAndBombs.bombs.clear();
         tankAndMissiles.tank.setPositionX(GameSettings.getMapWidth() / 2);
         tankAndMissiles.tank.setDestinationX(GameSettings.getMapWidth() / 2);
-        tankAndMissiles.tank.setHealth(5);
+        tankAndMissiles.tank.setMaxHealth(GameSettings.getMaxHealth());
+        tankAndMissiles.tank.setHealth(GameSettings.getMaxHealth());
         tankAndMissiles.tank.setMissiles(missilesLeft);
     }
 
     @Override
     public void update(float delta)
     {
-        if (!gameActive)
+        if (gameState != GameState.GameActive)
         {
             return;
         }
@@ -140,9 +154,13 @@ public class GameCoreEntity extends GameEntitiesContainer
         super.draw(layer, batch);
     }
 
-    public void handleTouch(float x, float y)
+    public void handleTouch(float x, float y, boolean justTouched)
     {
-        if (gameActive)
+        if (gameState == GameState.MainMenu)
+        {
+
+        }
+        else if (!Hud.instance.interceptTouch(x, y, justTouched) && gameState == GameState.GameActive)
         {
             tankAndMissiles.handleTouch(x, y);
         }

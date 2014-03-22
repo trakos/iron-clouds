@@ -4,12 +4,10 @@ import pl.trakos.ironClouds.IronCloudsAssets;
 
 public class PlaneNormal extends AbstractTarget
 {
-    public PlaneNormal(float y)
+    public PlaneNormal(float x, float y)
     {
-        super(y);
+        super(x, y, IronCloudsAssets.texturePlane2);
         speed = 300;
-        texture = IronCloudsAssets.texturePlane2;
-        initPosition();
     }
 
     @Override

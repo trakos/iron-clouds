@@ -38,13 +38,13 @@ public class PlaneBomb extends GameEntity
     }
 
     @Override
-    public int getHeight()
+    public float getHeight()
     {
         return imageHeight;
     }
 
     @Override
-    public int getWidth()
+    public float getWidth()
     {
         return imageWidth;
     }

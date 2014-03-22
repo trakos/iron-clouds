@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Polygon;
 import pl.trakos.ironClouds.IronCloudsAssets;
+import pl.trakos.ironClouds.game.GameCoreEntity;
 import pl.trakos.ironClouds.game.entities.Hud;
 import pl.trakos.lib.GameEntity;
 import pl.trakos.lib.GameLayers;
@@ -63,6 +64,11 @@ public class Tank extends GameEntity
         IronCloudsAssets.soundTank.setLooping(true);
         IronCloudsAssets.soundTank.setVolume(0.8f * GameSettings.getSoundVolume());
         IronCloudsAssets.soundTank.pause();
+    }
+
+    public void setMaxHealth(int health)
+    {
+        Hud.instance.maxHealth = health;
     }
 
     public void setHealth(int health)
@@ -140,6 +146,10 @@ public class Tank extends GameEntity
     {
         if (layer == GameLayers.LayerMain)
         {
+            if (GameCoreEntity.instance.getGameState() == GameCoreEntity.GameState.MainMenu)
+            {
+                return;
+            }
             batch.draw(
                     gunRegion,
                     gunOriginPos.x,
@@ -228,6 +238,18 @@ public class Tank extends GameEntity
     public float getY()
     {
         return getTankY();
+    }
+
+    @Override
+    public float getWidth()
+    {
+        return tankWidth;
+    }
+
+    @Override
+    public float getHeight()
+    {
+        return tankHeight;
     }
 
     public float getTankX()

@@ -81,6 +81,30 @@ public class Cloud extends GameEntity
     }
 
     @Override
+    public float getX()
+    {
+        return position.x;
+    }
+
+    @Override
+    public float getY()
+    {
+        return position.y;
+    }
+
+    @Override
+    public float getWidth()
+    {
+        return textureRegion.getRegionWidth();
+    }
+
+    @Override
+    public float getHeight()
+    {
+        return textureRegion.getRegionHeight();
+    }
+
+    @Override
     public void update(float delta)
     {
         position.x += delta * speed * wind;

@@ -6,12 +6,10 @@ import pl.trakos.lib.TParticle;
 public class Zeppelin extends AbstractTarget
 {
 
-    public Zeppelin(float y)
+    public Zeppelin(float x, float y)
     {
-        super(y);
+        super(x, y, IronCloudsAssets.textureZeppelin);
         speed = 50;
-        texture = IronCloudsAssets.textureZeppelin;
-        initPosition();
     }
 
     @Override

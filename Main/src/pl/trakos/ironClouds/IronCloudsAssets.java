@@ -18,6 +18,7 @@ public class IronCloudsAssets
     public static BitmapFont fontDejavuB;
     public static BitmapFont fontDejavuI;
     public static BitmapFont fontDejavuBI;
+    public static BitmapFont fontKenVector;
 
     public static Music music01spaceFighterLoop;
     public static Music soundTank;
@@ -34,6 +35,9 @@ public class IronCloudsAssets
     public static TextureRegion textureHudX;
     public static TextureRegion textureHudHeart;
     public static TextureRegion textureHudHeartEmpty;
+    public static TextureRegion textureHudOscPause;
+    public static TextureRegion textureHudOscButtonA;
+    public static TextureRegion textureHudOscButtonN;
 
     public static TextureRegion textureGun;
     public static TextureRegion textureShell;
@@ -68,6 +72,7 @@ public class IronCloudsAssets
         fontDejavuB = new BitmapFont(Gdx.files.internal("fonts/dejavub.fnt"));
         fontDejavuI = new BitmapFont(Gdx.files.internal("fonts/dejavui.fnt"));
         fontDejavuBI = new BitmapFont(Gdx.files.internal("fonts/dejavubi.fnt"));
+        fontKenVector = new BitmapFont(Gdx.files.internal("fonts/kenvector.fnt"));
 
         // music
         IronCloudsAssets.music01spaceFighterLoop = Gdx.audio.newMusic(Gdx.files.internal("music01_space_fighter_loop.mp3"));
@@ -95,6 +100,9 @@ public class IronCloudsAssets
         IronCloudsAssets.textureHudX = atlas.findRegion("hud/x");
         IronCloudsAssets.textureHudHeart = atlas.findRegion("hud/heart");
         IronCloudsAssets.textureHudHeartEmpty = atlas.findRegion("hud/empty_heart");
+        IronCloudsAssets.textureHudOscPause = atlas.findRegion("hud/osc_pause");
+        IronCloudsAssets.textureHudOscButtonN = atlas.findRegion("hud/osc_button_neutral");
+        IronCloudsAssets.textureHudOscButtonA = atlas.findRegion("hud/osc_button_active");
 
         IronCloudsAssets.textureGun = atlas.findRegion("tank/gun");
         IronCloudsAssets.textureShell = atlas.findRegion("tank/shell");

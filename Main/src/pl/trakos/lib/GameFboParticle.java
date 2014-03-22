@@ -53,12 +53,32 @@ public class GameFboParticle extends GameEntity
     }
 
     @Override
+    public float getX()
+    {
+        return 0;
+    }
+
+    @Override
+    public float getY()
+    {
+        return 0;
+    }
+
+    @Override
+    public float getWidth()
+    {
+        return 0;
+    }
+
+    @Override
+    public float getHeight()
+    {
+        return 0;
+    }
+
+    @Override
     public void update(float delta)
     {
-        particleFbo.begin();
-        Gdx.gl.glClearColor(0f, 0f, 0f, 0f);
-        Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-        particleFbo.end();
         for (int i = 0; i < pooledEffectList.size(); i++)
         {
             if (pooledEffectList.get(i).isComplete())
@@ -87,7 +107,10 @@ public class GameFboParticle extends GameEntity
     @Override
     public void draw(GameLayers layer, SpriteBatch batch)
     {
-        if (layer == GameLayers.LayerPrepareParticles)
+        if (
+            drawOnLayer == GameLayers.LayerParticles && layer == GameLayers.LayerPrepareParticles
+            || drawOnLayer == GameLayers.LayerParticlesForeground && layer == GameLayers.LayerPrepareParticlesForeground
+        )
         {
             for (TParticle pooledEffect : pooledEffectList)
             {
@@ -106,6 +129,8 @@ public class GameFboParticle extends GameEntity
     {
         particleFbo.begin();
         particleBatch.setProjectionMatrix(GameSettings.getCamera().combined);
+        Gdx.gl.glClearColor(0f, 0f, 0f, 0f);
+        Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
         particleBatch.begin();
     }
 

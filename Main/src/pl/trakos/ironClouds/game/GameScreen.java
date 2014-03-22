@@ -26,17 +26,24 @@ public class GameScreen implements Screen
         gameCoreEntity.start();
     }
 
+    boolean[] activeTouches = new boolean[10];
     public void handleInput()
     {
         for (int k = 0; k < 10; k++)
         {
             if (Gdx.input.isTouched(k))
             {
+                boolean justTouched = !activeTouches[k];
                 Vector3 touchPos = new Vector3();
                 touchPos.set(Gdx.input.getX(k), Gdx.input.getY(k), 0);
                 GameSettings.getCamera().unproject(touchPos);
 
-                gameCoreEntity.handleTouch(touchPos.x, touchPos.y);
+                gameCoreEntity.handleTouch(touchPos.x, touchPos.y, justTouched);
+                activeTouches[k] = true;
+            }
+            else
+            {
+                activeTouches[k] = false;
             }
         }
     }
@@ -130,7 +137,7 @@ public class GameScreen implements Screen
     @Override
     public void pause()
     {
-        gameCoreEntity.pause();
+        gameCoreEntity.changeGameState(GameCoreEntity.GameState.GamePausedByOS);
         GameFboParticle.disposeAll();
     }
 
@@ -138,7 +145,7 @@ public class GameScreen implements Screen
     public void resume()
     {
         GameFboParticle.createOrResumeAll();
-        gameCoreEntity.resume();
+        gameCoreEntity.changeGameState(GameCoreEntity.GameState.GamePausedInMenu);
     }
 
     @Override

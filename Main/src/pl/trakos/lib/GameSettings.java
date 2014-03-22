@@ -83,4 +83,9 @@ public class GameSettings
     {
         IronCloudsAssets.music01spaceFighterLoop.setVolume(GameSettings.getMusicVolume() * 0.4f);
     }
+
+    public static int getMaxHealth()
+    {
+        return 5;
+    }
 }

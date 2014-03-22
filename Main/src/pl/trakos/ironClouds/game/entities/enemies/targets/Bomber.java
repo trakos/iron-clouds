@@ -6,12 +6,10 @@ import pl.trakos.lib.TParticle;
 public class Bomber extends AbstractTarget
 {
 
-    public Bomber(float y)
+    public Bomber(float x, float y)
     {
-        super(y);
+        super(x, y, IronCloudsAssets.textureBomber);
         speed = 300;
-        texture = IronCloudsAssets.textureBomber;
-        initPosition();
     }
 
     @Override

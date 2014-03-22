@@ -12,11 +12,9 @@ public class Heli extends AbstractTarget
 {
     final Tail tail = new Tail();
 
-    public Heli(float y)
+    public Heli(float x, float y)
     {
-        super(y);
-        texture = IronCloudsAssets.textureHeli;
-        initPosition();
+        super(x, y, IronCloudsAssets.textureHeli);
     }
 
     @Override

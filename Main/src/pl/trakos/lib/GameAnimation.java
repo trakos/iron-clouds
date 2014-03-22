@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import pl.trakos.ironClouds.IronCloudsAssets;
 
-public class GameAnimation extends GameEntity
+public abstract class GameAnimation extends GameEntity
 {
     protected final Animation animation;
     private final int height;
@@ -36,13 +36,13 @@ public class GameAnimation extends GameEntity
     }
 
     @Override
-    public int getWidth()
+    public float getWidth()
     {
         return width;
     }
 
     @Override
-    public int getHeight()
+    public float getHeight()
     {
         return height;
     }

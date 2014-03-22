@@ -14,6 +14,7 @@ import java.util.ArrayList;
  */
 public abstract class AbstractTarget extends GameEntity
 {
+
     public enum EnemyType
     {
         PlaneWeak(.2f, .7f, 1),
@@ -36,18 +37,24 @@ public abstract class AbstractTarget extends GameEntity
 
     static public AbstractTarget instantiate(EnemyType enemyType, float y)
     {
+        return instantiate(enemyType, 0, y);
+    }
+
+    public static AbstractTarget instantiate(EnemyType enemyType, float x, float y)
+    {
+        y = enemyType.minHeight + y * (enemyType.maxHeight - enemyType.minHeight);
         switch (enemyType)
         {
             case PlaneWeak:
-                return new PlaneWeak(y);
+                return new PlaneWeak(x, y);
             case PlaneNormal:
-                return new PlaneNormal(y);
+                return new PlaneNormal(x, y);
             case Heli:
-                return new Heli(y);
+                return new Heli(x, y);
             case Zeppelin:
-                return new Zeppelin(y);
+                return new Zeppelin(x, y);
             case Bomber:
-                return new Bomber(y);
+                return new Bomber(x, y);
             default:
                 throw new RuntimeException("unknown enemy type: " + enemyType.toString());
         }
@@ -74,19 +81,20 @@ public abstract class AbstractTarget extends GameEntity
 
     protected abstract float getOutOfMapTimeout();
 
-    public AbstractTarget(float y)
+    public AbstractTarget(float x, float y, TextureRegion texture)
     {
+        this.texture = texture;
         hp = getInitialHp();
         nextBombIn = getNextBombDelay();
         float minHeight = GameSettings.groundPositionY + 50;
+        positionX = GameSettings.getMapWidth() * x - texture.getRegionWidth();
         positionY = (GameSettings.getMapHeight() - minHeight - 50) * y + minHeight;
+        initPolygon();
     }
 
 
-    public void initPosition()
+    public void initPolygon()
     {
-        positionX -= texture.getRegionWidth();
-
         targetPolygon = new Polygon(new float[]{
                 0, 0,
                 0, texture.getRegionHeight(),
@@ -95,12 +103,12 @@ public abstract class AbstractTarget extends GameEntity
         });
     }
 
-    public int getWidth()
+    public float getWidth()
     {
         return texture.getRegionWidth();
     }
 
-    public int getHeight()
+    public float getHeight()
     {
         return texture.getRegionHeight();
     }

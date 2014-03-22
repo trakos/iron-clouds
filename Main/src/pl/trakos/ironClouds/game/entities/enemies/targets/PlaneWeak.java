@@ -5,12 +5,10 @@ import pl.trakos.ironClouds.IronCloudsAssets;
 public class PlaneWeak extends AbstractTarget
 {
 
-    public PlaneWeak(float y)
+    public PlaneWeak(float x, float y)
     {
-        super(y);
+        super(x, y, IronCloudsAssets.texturePlane1);
         speed = 200;
-        texture = IronCloudsAssets.texturePlane1;
-        initPosition();
     }
 
     @Override
