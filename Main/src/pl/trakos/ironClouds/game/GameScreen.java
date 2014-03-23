@@ -1,5 +1,6 @@
 package pl.trakos.ironClouds.game;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 import pl.trakos.lib.GameFboParticle;
 import pl.trakos.lib.GameLayers;
 import pl.trakos.lib.GameSettings;
+import pl.trakos.lib.GameTouchType;
 
 public class GameScreen implements Screen
 {
@@ -26,29 +28,33 @@ public class GameScreen implements Screen
         gameCoreEntity.start();
     }
 
-    boolean[] activeTouches = new boolean[10];
+    GameTouchType[] activeTouches = new GameTouchType[10];
+
     public void handleInput()
     {
         for (int k = 0; k < 10; k++)
         {
             if (Gdx.input.isTouched(k))
             {
-                boolean justTouched = !activeTouches[k];
                 Vector3 touchPos = new Vector3();
                 touchPos.set(Gdx.input.getX(k), Gdx.input.getY(k), 0);
                 GameSettings.getCamera().unproject(touchPos);
 
-                gameCoreEntity.handleTouch(touchPos.x, touchPos.y, justTouched);
-                activeTouches[k] = true;
+                GameTouchType touchType = gameCoreEntity.handleTouch(touchPos.x, touchPos.y, activeTouches[k]);
+                activeTouches[k] =
+                    touchType != GameTouchType.NotIntercepted
+                    ? touchType
+                    : (activeTouches[k] == null ? GameTouchType.NotIntercepted : activeTouches[k]);
             }
             else
             {
-                activeTouches[k] = false;
+                activeTouches[k] = null;
             }
         }
     }
 
     private float fpsDrawDelay = 1;
+
     public void update(float delta)
     {
         gameCoreEntity.update(delta);
@@ -66,12 +72,14 @@ public class GameScreen implements Screen
     }
 
     final float cameraMarginX;
+
     public void updateCameraPosition(float cameraStartX, float tankPositionX, OrthographicCamera camera)
     {
         float cameraStartMin = Math.max(tankPositionX - cameraMarginX, 0);
         float cameraStartMax = Math.min(tankPositionX - GameSettings.getCameraWidth() + cameraMarginX,
                 GameSettings.getMapWidth() - GameSettings.getCameraWidth());
-        float newPositionX = Math.min(cameraStartMin, Math.max(cameraStartMax, cameraStartX)) + GameSettings.getCameraWidth() / 2;
+        float newPositionX = Math.min(cameraStartMin, Math.max(cameraStartMax, cameraStartX))
+                             + GameSettings.getCameraWidth() / 2;
         if (newPositionX != camera.position.x)
         {
             camera.position.x = newPositionX;
@@ -122,6 +130,8 @@ public class GameScreen implements Screen
     @Override
     public void resize(int width, int height)
     {
+        GameSettings.setScreenWidth(width);
+        GameSettings.setScreenHeight(height);
     }
 
     @Override
@@ -137,15 +147,29 @@ public class GameScreen implements Screen
     @Override
     public void pause()
     {
-        gameCoreEntity.changeGameState(GameCoreEntity.GameState.GamePausedByOS);
-        GameFboParticle.disposeAll();
+        if (Gdx.app.getType() == Application.ApplicationType.Android)
+        {
+            gameCoreEntity.changeGameState(
+                    gameCoreEntity.getGameState() == GameCoreEntity.GameState.GameActive
+                            ? GameCoreEntity.GameState.GamePausedByOSGame
+                            : GameCoreEntity.GameState.GamePausedByOSMainMenu
+            );
+            GameFboParticle.disposeAll();
+        }
     }
 
     @Override
     public void resume()
     {
-        GameFboParticle.createOrResumeAll();
-        gameCoreEntity.changeGameState(GameCoreEntity.GameState.GamePausedInMenu);
+        if (Gdx.app.getType() == Application.ApplicationType.Android)
+        {
+            GameFboParticle.createOrResumeAll();
+            gameCoreEntity.changeGameState(
+                    gameCoreEntity.getGameState() == GameCoreEntity.GameState.GamePausedByOSMainMenu
+                            ? GameCoreEntity.GameState.MainMenu
+                            : GameCoreEntity.GameState.GamePausedInMenu
+            );
+        }
     }
 
     @Override

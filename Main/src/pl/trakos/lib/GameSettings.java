@@ -10,6 +10,12 @@ import pl.trakos.ironClouds.IronCloudsAssets;
  */
 public class GameSettings
 {
+    private static int resolutionWidth;
+
+    private static int resolutionHeight;
+    private static int screenWidth;
+    private static int screenHeight;
+
     static public int getResolutionWidth()
     {
         return 800;
@@ -87,5 +93,25 @@ public class GameSettings
     public static int getMaxHealth()
     {
         return 5;
+    }
+
+    public static void setScreenWidth(int screenWidth)
+    {
+        GameSettings.screenWidth = screenWidth;
+    }
+
+    public static void setScreenHeight(int screenHeight)
+    {
+        GameSettings.screenHeight = screenHeight;
+    }
+
+    public static int getScreenWidth()
+    {
+        return screenWidth;
+    }
+
+    public static int getScreenHeight()
+    {
+        return screenHeight;
     }
 }

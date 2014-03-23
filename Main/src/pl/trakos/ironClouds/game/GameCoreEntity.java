@@ -3,10 +3,7 @@ package pl.trakos.ironClouds.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pl.trakos.ironClouds.IronCloudsAssets;
-import pl.trakos.ironClouds.game.entities.Background;
-import pl.trakos.ironClouds.game.entities.Hud;
-import pl.trakos.ironClouds.game.entities.TankAndMissiles;
-import pl.trakos.ironClouds.game.entities.TargetsAndBombs;
+import pl.trakos.ironClouds.game.entities.*;
 import pl.trakos.ironClouds.game.entities.enemies.targets.AbstractTarget;
 import pl.trakos.ironClouds.game.levels.*;
 import pl.trakos.lib.*;
@@ -26,12 +23,14 @@ public class GameCoreEntity extends GameEntitiesContainer
         MainMenu,
         GameActive,
         GamePausedInMenu,
-        GamePausedByOS
+        GamePausedByOSMainMenu,
+        GamePausedByOSGame,
     }
 
     static public GameCoreEntity instance = new GameCoreEntity();
 
     GameState gameState = GameState.GameActive;
+    Menu menu = Menu.instance;
     Background background;
     TankAndMissiles tankAndMissiles;
     TargetsAndBombs targetsAndBombs;
@@ -51,24 +50,27 @@ public class GameCoreEntity extends GameEntitiesContainer
         add(targetsAndBombs);
         add(GameFboParticle.foregroundInstance);
         add(Hud.instance);
+        add(menu);
 
         levels = new AbstractLevel[]
-                {
-                        /*new Level1(),
-                        new Level2(),
-                        new Level3(),
-                        new Level4(),
-                        new Level5(),
-                        new Level6(),
-                        new Level7(),
-                        new Level8(),
-                        new Level9(),*/
-                        new Level10(),
-                };
+        {
+                new Level1(),
+                new Level2(),
+                new Level3(),
+                new Level4(),
+                new Level5(),
+                new Level6(),
+                new Level7(),
+                new Level8(),
+                new Level9(),
+                new Level10(),
+        };
     }
 
     public void showRandomlyPlacedEnemiesForBackground()
     {
+        resetGame(1);
+        targetsAndBombs.targets.randomlyPlaceEnemiesForBackground();
         targetsAndBombs.targets.randomlyPlaceEnemiesForBackground();
     }
 
@@ -79,9 +81,26 @@ public class GameCoreEntity extends GameEntitiesContainer
 
     public void start()
     {
-        //showRandomlyPlacedEnemiesForBackground();
+        showMainMenu();
+    }
+
+    public void startLevel(int levelNumber)
+    {
+        changeGameState(GameState.GameActive);
+        if (levelNumber > levels.length)
+        {
+            throw new RuntimeException("Level number too high!");
+        }
+        currentLevelIndex = levelNumber;
         currentLevel = levels[currentLevelIndex];
         currentLevel.start();
+    }
+
+    public void showMainMenu()
+    {
+        showRandomlyPlacedEnemiesForBackground();
+        menu.currentMenu = Menu.CurrentMenu.MainMenu;
+        changeGameState(GameState.MainMenu);
     }
 
     public void addEnemy(AbstractTarget.EnemyType enemyType, float y)
@@ -154,15 +173,24 @@ public class GameCoreEntity extends GameEntitiesContainer
         super.draw(layer, batch);
     }
 
-    public void handleTouch(float x, float y, boolean justTouched)
+    public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType)
     {
         if (gameState == GameState.MainMenu)
         {
-
+            return menu.handleTouch(x, y, previousTouchType);
         }
-        else if (!Hud.instance.interceptTouch(x, y, justTouched) && gameState == GameState.GameActive)
+        else
         {
-            tankAndMissiles.handleTouch(x, y);
+            GameTouchType hudInterception = Hud.instance.handleTouch(x, y, previousTouchType);
+            if (hudInterception != GameTouchType.NotIntercepted)
+            {
+                return hudInterception;
+            }
+            if (gameState == GameState.GameActive)
+            {
+                return tankAndMissiles.handleTouch(x, y, previousTouchType);
+            }
+            return GameTouchType.NotIntercepted;
         }
     }
 

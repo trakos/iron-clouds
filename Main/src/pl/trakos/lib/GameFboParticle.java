@@ -107,6 +107,7 @@ public class GameFboParticle extends GameEntity
     @Override
     public void draw(GameLayers layer, SpriteBatch batch)
     {
+        if (particleFbo == null) return;
         if (
             drawOnLayer == GameLayers.LayerParticles && layer == GameLayers.LayerPrepareParticles
             || drawOnLayer == GameLayers.LayerParticlesForeground && layer == GameLayers.LayerPrepareParticlesForeground
@@ -127,6 +128,7 @@ public class GameFboParticle extends GameEntity
 
     public void beginPreparing()
     {
+        if (particleFbo == null) return;
         particleFbo.begin();
         particleBatch.setProjectionMatrix(GameSettings.getCamera().combined);
         Gdx.gl.glClearColor(0f, 0f, 0f, 0f);
@@ -136,6 +138,7 @@ public class GameFboParticle extends GameEntity
 
     public void endPreparing()
     {
+        if (particleFbo == null) return;
         particleBatch.end();
         particleFbo.end();
     }

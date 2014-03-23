@@ -5,245 +5,259 @@ filter: Nearest,Nearest
 repeat: none
 bg
   rotate: false
-  xy: 2, 814
+  xy: 2, 806
   size: 800, 200
   orig: 800, 200
   offset: 0, 0
   index: -1
 clouds/cloud1
   rotate: false
-  xy: 2, 147
+  xy: 2, 139
   size: 263, 156
   orig: 263, 156
   offset: 0, 0
   index: -1
 clouds/cloud2
   rotate: false
-  xy: 2, 305
+  xy: 2, 297
   size: 265, 160
   orig: 265, 160
   offset: 0, 0
   index: -1
 clouds/cloud3
   rotate: false
-  xy: 2, 653
+  xy: 2, 645
   size: 359, 159
   orig: 359, 159
   offset: 0, 0
   index: -1
 clouds/cloud4
   rotate: false
-  xy: 363, 658
+  xy: 363, 650
   size: 303, 154
   orig: 303, 154
   offset: 0, 0
   index: -1
 clouds/cloud5
   rotate: false
-  xy: 804, 866
+  xy: 804, 858
   size: 213, 148
   orig: 213, 148
   offset: 0, 0
   index: -1
 clouds/cloud6
   rotate: false
-  xy: 2, 467
+  xy: 2, 459
   size: 278, 184
   orig: 278, 184
   offset: 0, 0
   index: -1
 clouds/cloud7
   rotate: false
-  xy: 668, 659
+  xy: 668, 651
   size: 262, 153
   orig: 262, 153
   offset: 0, 0
   index: -1
 enemies/bomb1
   rotate: false
-  xy: 269, 447
+  xy: 932, 786
   size: 8, 18
   orig: 8, 18
   offset: 0, 0
   index: -1
 enemies/bomber
   rotate: false
-  xy: 282, 611
+  xy: 363, 632
   size: 64, 16
   orig: 64, 16
   offset: 0, 0
   index: -1
 enemies/heli
   rotate: false
-  xy: 2, 11
+  xy: 2, 2
   size: 80, 31
   orig: 80, 31
   offset: 0, 0
   index: -1
 enemies/heli_tail
   rotate: false
-  xy: 2, 44
+  xy: 804, 806
   size: 144, 16
   orig: 144, 16
   offset: 0, 0
   index: -1
 enemies/plane1
   rotate: false
-  xy: 282, 629
+  xy: 208, 63
   size: 64, 22
   orig: 64, 22
   offset: 0, 0
   index: -1
 enemies/plane2
   rotate: false
-  xy: 194, 124
+  xy: 208, 40
   size: 64, 21
   orig: 64, 21
   offset: 0, 0
   index: -1
 enemies/zeppelin
   rotate: false
-  xy: 2, 62
+  xy: 804, 824
   size: 166, 32
   orig: 166, 32
   offset: 0, 0
   index: -1
 hud/digit
   rotate: false
-  xy: 996, 845
+  xy: 84, 14
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 0
 hud/digit
   rotate: false
-  xy: 170, 75
+  xy: 269, 438
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 1
 hud/digit
   rotate: false
-  xy: 223, 103
+  xy: 337, 615
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 2
 hud/digit
   rotate: false
-  xy: 282, 531
+  xy: 269, 417
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 3
 hud/digit
   rotate: false
-  xy: 996, 824
+  xy: 290, 438
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 4
 hud/digit
   rotate: false
-  xy: 282, 510
+  xy: 337, 594
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 5
 hud/digit
   rotate: false
-  xy: 282, 489
+  xy: 269, 396
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 6
 hud/digit
   rotate: false
-  xy: 282, 468
+  xy: 290, 417
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 7
 hud/digit
   rotate: false
-  xy: 148, 41
+  xy: 269, 375
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 8
 hud/digit
   rotate: false
-  xy: 932, 798
+  xy: 290, 396
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: 9
 hud/empty_heart
   rotate: false
-  xy: 194, 99
+  xy: 282, 484
   size: 27, 23
   orig: 27, 23
   offset: 0, 0
   index: -1
 hud/heart
   rotate: false
-  xy: 282, 552
+  xy: 282, 459
   size: 27, 23
   orig: 27, 23
   offset: 0, 0
   index: -1
 hud/osc_button_active
   rotate: false
-  xy: 804, 819
-  size: 190, 45
-  orig: 190, 45
+  xy: 282, 593
+  size: 53, 50
+  orig: 53, 50
   offset: 0, 0
   index: -1
 hud/osc_button_neutral
   rotate: false
-  xy: 2, 96
-  size: 190, 49
-  orig: 190, 49
+  xy: 208, 87
+  size: 53, 50
+  orig: 53, 50
+  offset: 0, 0
+  index: -1
+hud/osc_panel_dark
+  rotate: false
+  xy: 106, 37
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+hud/osc_panel_light
+  rotate: false
+  xy: 2, 35
+  size: 102, 102
+  orig: 102, 102
   offset: 0, 0
   index: -1
 hud/osc_pause
   rotate: false
-  xy: 316, 585
-  size: 24, 24
-  orig: 24, 24
+  xy: 282, 543
+  size: 48, 48
+  orig: 48, 48
   offset: 0, 0
   index: -1
 hud/x
   rotate: false
-  xy: 932, 779
+  xy: 269, 356
   size: 17, 17
   orig: 17, 17
   offset: 0, 0
   index: -1
 particle
   rotate: false
-  xy: 282, 577
+  xy: 282, 509
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 tank/gun
   rotate: false
-  xy: 2, 2
+  xy: 337, 636
   size: 24, 7
   orig: 24, 7
   offset: 0, 0
   index: -1
 tank/shell
   rotate: false
-  xy: 170, 66
+  xy: 950, 815
   size: 18, 7
   orig: 18, 7
   offset: 0, 0
   index: -1
 tank/tank
   rotate: false
-  xy: 84, 14
+  xy: 972, 828
   size: 44, 28
   orig: 44, 28
   offset: 0, 0

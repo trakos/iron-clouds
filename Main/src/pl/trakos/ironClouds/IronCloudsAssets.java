@@ -31,13 +31,16 @@ public class IronCloudsAssets
     public static Texture textureGround;
     public static TextureRegion textureBackground;
 
+    public static NinePatch textureHudButtonA;
+    public static NinePatch textureHudButtonN;
+    public static NinePatch textureHudPanelDark;
+    public static NinePatch textureHudPanelLight;
+
     public static Array<TextureAtlas.AtlasRegion> textureHudDigits;
     public static TextureRegion textureHudX;
     public static TextureRegion textureHudHeart;
     public static TextureRegion textureHudHeartEmpty;
-    public static TextureRegion textureHudOscPause;
-    public static TextureRegion textureHudOscButtonA;
-    public static TextureRegion textureHudOscButtonN;
+    public static TextureRegion textureHudPause;
 
     public static TextureRegion textureGun;
     public static TextureRegion textureShell;
@@ -100,9 +103,19 @@ public class IronCloudsAssets
         IronCloudsAssets.textureHudX = atlas.findRegion("hud/x");
         IronCloudsAssets.textureHudHeart = atlas.findRegion("hud/heart");
         IronCloudsAssets.textureHudHeartEmpty = atlas.findRegion("hud/empty_heart");
-        IronCloudsAssets.textureHudOscPause = atlas.findRegion("hud/osc_pause");
-        IronCloudsAssets.textureHudOscButtonN = atlas.findRegion("hud/osc_button_neutral");
-        IronCloudsAssets.textureHudOscButtonA = atlas.findRegion("hud/osc_button_active");
+        IronCloudsAssets.textureHudPause = atlas.findRegion("hud/osc_pause");
+        IronCloudsAssets.textureHudButtonN = new NinePatch(atlas.findRegion("hud/osc_button_neutral"),
+            6, 6, 7, 10
+        );
+        IronCloudsAssets.textureHudButtonA = new NinePatch(atlas.findRegion("hud/osc_button_active"),
+            6, 6, 7, 10
+        );
+        IronCloudsAssets.textureHudPanelLight = new NinePatch(atlas.findRegion("hud/osc_panel_light"),
+            10, 10, 10, 10
+        );
+        IronCloudsAssets.textureHudPanelDark = new NinePatch(atlas.findRegion("hud/osc_panel_dark"),
+            10, 10, 10, 10
+        );
 
         IronCloudsAssets.textureGun = atlas.findRegion("tank/gun");
         IronCloudsAssets.textureShell = atlas.findRegion("tank/shell");

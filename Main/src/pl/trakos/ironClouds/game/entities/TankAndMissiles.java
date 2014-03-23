@@ -5,6 +5,7 @@ import pl.trakos.ironClouds.game.entities.tank.Tank;
 import pl.trakos.ironClouds.game.entities.tank.TankMissileContainer;
 import pl.trakos.lib.GameEntitiesContainer;
 import pl.trakos.lib.GameSettings;
+import pl.trakos.lib.GameTouchType;
 
 
 public class TankAndMissiles extends GameEntitiesContainer
@@ -25,8 +26,12 @@ public class TankAndMissiles extends GameEntitiesContainer
         missileHeight = IronCloudsAssets.textureShell.getRegionHeight();
     }
 
-    public void handleTouch(float touchPosX, float touchPosY)
+    public GameTouchType handleTouch(float touchPosX, float touchPosY, GameTouchType previousTouchType)
     {
+        if (previousTouchType == GameTouchType.InterceptedByMenu)
+        {
+            return GameTouchType.NotIntercepted;
+        }
         if (touchPosY < tank.getTankGunOriginY())
         {
             tank.setDestinationX(touchPosX - 20);
@@ -41,6 +46,7 @@ public class TankAndMissiles extends GameEntitiesContainer
                 IronCloudsAssets.soundTankShot.play(.4f * GameSettings.getSoundVolume());
             }
         }
+        return GameTouchType.InterceptedByGame;
     }
 
     public float getPlayerTankX()

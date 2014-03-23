@@ -1,24 +1,27 @@
 package pl.trakos.lib;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import pl.trakos.ironClouds.IronCloudsAssets;
 
 public class GameButton extends GameEntity
 {
     String text;
-    TextureRegion textureRegion;
-    TextureRegion activeTextureRegion;
+    NinePatch textureRegion;
+    NinePatch activeTextureRegion;
 
     float x;
     float y;
+    float width = getStandardButtonWidth();
+    float height = getStandardButtonHeight();
     public boolean active = false;
 
     public GameButton(String text, float x, float y)
     {
-        textureRegion = IronCloudsAssets.textureHudOscButtonN;
-        activeTextureRegion = IronCloudsAssets.textureHudOscButtonA;
+        textureRegion = IronCloudsAssets.textureHudButtonN;
+        activeTextureRegion = IronCloudsAssets.textureHudButtonA;
         this.text = text;
         this.x = x;
         this.y = y;
@@ -45,16 +48,36 @@ public class GameButton extends GameEntity
         this.y = y;
     }
 
+    static public float getStandardButtonWidth()
+    {
+        return 400;
+    }
+
+    static public float getStandardButtonHeight()
+    {
+        return 80;
+    }
+
     @Override
     public float getWidth()
     {
-        return textureRegion.getRegionWidth();
+        return width;
     }
 
     @Override
     public float getHeight()
     {
-        return textureRegion.getRegionHeight();
+        return height;
+    }
+
+    public void setWidth(float width)
+    {
+        this.width = width;
+    }
+
+    public void setHeight(float height)
+    {
+        this.height = height;
     }
 
     @Override
@@ -68,21 +91,25 @@ public class GameButton extends GameEntity
     {
         if (layer == GameLayers.LayerHud)
         {
-            batch.draw(
-                    active ? activeTextureRegion : textureRegion,
+            NinePatch ninePatch = active ? activeTextureRegion : textureRegion;
+            ninePatch.draw(
+                    batch,
                     getX(),
                     getY(),
-                    textureRegion.getRegionWidth(),
-                    textureRegion.getRegionHeight()
+                    getWidth(),
+                    getHeight()
             );
+            IronCloudsAssets.fontKenVector.setColor(new Color(1, 1, 1, .8f));
             IronCloudsAssets.fontKenVector.drawWrapped(
                     batch,
                     text,
                     getX(),
-                    getY() + 35 + (active ? -2 : 0),
-                    textureRegion.getRegionWidth(),
+                    getY() + getHeight() / 2 + IronCloudsAssets.fontKenVector.getLineHeight() / 2 - getHeight() / 20
+                    + (active ? -2 : 0),
+                    getWidth(),
                     BitmapFont.HAlignment.CENTER
             );
+            IronCloudsAssets.fontKenVector.setColor(Color.WHITE);
         }
     }
 

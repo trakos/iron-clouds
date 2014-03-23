@@ -28,4 +28,9 @@ public abstract class GameEntity implements Disposable, IGameEntity
         Polygon polygon2 = getHitBox();
         return polygon2 != null && Intersector.overlapConvexPolygons(polygon, polygon2);
     }
+
+    public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType)
+    {
+        return GameTouchType.NotIntercepted;
+    }
 }

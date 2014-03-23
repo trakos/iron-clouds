@@ -12,6 +12,14 @@ public abstract class GameEntityMenu extends GameEntitiesContainer
         {
             button.draw(layer, batch);
         }
+        deactivateButtons();
+    }
+
+    @Override
+    public void draw(GameLayers layer, SpriteBatch batch)
+    {
+        super.draw(layer, batch);
+        drawButtons(layer, batch);
     }
 
     protected void deactivateButtons()
@@ -22,7 +30,7 @@ public abstract class GameEntityMenu extends GameEntitiesContainer
         }
     }
 
-    public boolean handleButtonTouch(float x, float y, boolean justTouched)
+    public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType)
     {
         for (GameButton button : buttons)
         {
@@ -34,14 +42,14 @@ public abstract class GameEntityMenu extends GameEntitiesContainer
                     )
             {
                 button.active = true;
-                if (justTouched)
+                if (previousTouchType == null || previousTouchType == GameTouchType.NotIntercepted)
                 {
                     buttonClicked(button);
                 }
-                return true;
+                return GameTouchType.InterceptedByMenu;
             }
         }
-        return false;
+        return GameTouchType.NotIntercepted;
     }
 
     abstract protected void buttonClicked(GameButton button);
