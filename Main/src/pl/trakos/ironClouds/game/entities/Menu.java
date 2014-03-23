@@ -7,6 +7,7 @@ import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.ironClouds.game.GameCoreEntity;
 import pl.trakos.ironClouds.game.entities.menu.*;
 import pl.trakos.lib.*;
+import pl.trakos.lib.input.GameButton;
 
 public class Menu extends GameEntitiesContainer
 {
@@ -90,7 +91,7 @@ public class Menu extends GameEntitiesContainer
         if (layer == GameLayers.LayerHud)
         {
             float width =
-                currentMenu == CurrentMenu.CreditsMenu
+                currentMenu == CurrentMenu.CreditsMenu || currentMenu == CurrentMenu.OptionsMenu
                 ? GameSettings.getCameraWidth() - 80
                 : GameButton.getStandardButtonWidth() + 50;
             float positionX = (GameSettings.getCameraWidth() - width) / 2;

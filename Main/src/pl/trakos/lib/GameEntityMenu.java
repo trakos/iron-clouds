@@ -1,14 +1,15 @@
 package pl.trakos.lib;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import pl.trakos.lib.input.IGameInput;
 
 public abstract class GameEntityMenu extends GameEntitiesContainer
 {
-    protected GameButton[] buttons;
+    public IGameInput[] buttons;
 
     protected void drawButtons(GameLayers layer, SpriteBatch batch)
     {
-        for (GameButton button : buttons)
+        for (IGameInput button : buttons)
         {
             button.draw(layer, batch);
         }
@@ -24,27 +25,35 @@ public abstract class GameEntityMenu extends GameEntitiesContainer
 
     protected void deactivateButtons()
     {
-        for (GameButton button : buttons)
+        for (IGameInput button : buttons)
         {
-            button.active = false;
+            button.setActive(false);
         }
     }
 
     public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType)
     {
-        for (GameButton button : buttons)
+        GameTouchType gameTouchType = GameTouchType.NotIntercepted;
+        for (IGameInput button : buttons)
         {
-            if (
-                    x > button.getX()
-                    && y > button.getY()
-                    && x < button.getX() + button.getWidth()
-                    && y < button.getY() + button.getHeight()
-                    )
+            if (button instanceof GameEntityMenu)
             {
-                button.active = true;
+                if (button.handleTouch(x, y, previousTouchType) == GameTouchType.NotIntercepted)
+                {
+                    break;
+                }
+            }
+            else if (
+                x > button.getX()
+                && y > button.getY()
+                && x < button.getX() + button.getWidth()
+                && y < button.getY() + button.getHeight()
+            )
+            {
+                button.setActive(true);
                 if (previousTouchType == null || previousTouchType == GameTouchType.NotIntercepted)
                 {
-                    buttonClicked(button);
+                    inputClicked(button);
                 }
                 return GameTouchType.InterceptedByMenu;
             }
@@ -52,5 +61,5 @@ public abstract class GameEntityMenu extends GameEntitiesContainer
         return GameTouchType.NotIntercepted;
     }
 
-    abstract protected void buttonClicked(GameButton button);
+    abstract protected void inputClicked(IGameInput button);
 }

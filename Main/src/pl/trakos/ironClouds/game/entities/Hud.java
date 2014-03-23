@@ -9,7 +9,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.ironClouds.game.GameCoreEntity;
-import pl.trakos.lib.*;
+import pl.trakos.lib.GameEntityMenu;
+import pl.trakos.lib.GameLayers;
+import pl.trakos.lib.GameSettings;
+import pl.trakos.lib.GameTouchType;
+import pl.trakos.lib.input.GameButton;
+import pl.trakos.lib.input.IGameInput;
 
 public class Hud extends GameEntityMenu
 {
@@ -307,7 +312,8 @@ public class Hud extends GameEntityMenu
         return super.handleTouch(x, y, previousTouchType);
     }
 
-    protected void buttonClicked(GameButton button)
+    @Override
+    protected void inputClicked(IGameInput button)
     {
         if (button == resumeButton)
         {

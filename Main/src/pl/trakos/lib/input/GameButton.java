@@ -1,25 +1,23 @@
-package pl.trakos.lib;
+package pl.trakos.lib.input;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pl.trakos.ironClouds.IronCloudsAssets;
+import pl.trakos.lib.GameLayers;
 
-public class GameButton extends GameEntity
+public class GameButton extends GameInputElement
 {
     String text;
     NinePatch textureRegion;
     NinePatch activeTextureRegion;
 
-    float x;
-    float y;
-    float width = getStandardButtonWidth();
-    float height = getStandardButtonHeight();
-    public boolean active = false;
-
     public GameButton(String text, float x, float y)
     {
+        width = getStandardButtonWidth();
+        height = getStandardButtonHeight();
+
         textureRegion = IronCloudsAssets.textureHudButtonN;
         activeTextureRegion = IronCloudsAssets.textureHudButtonA;
         this.text = text;
@@ -27,26 +25,6 @@ public class GameButton extends GameEntity
         this.y = y;
     }
 
-    @Override
-    public float getX()
-    {
-        return x;
-    }
-
-    @Override
-    public float getY()
-    {
-        return y;
-    }
-
-    public void setX(float x)
-    {
-        this.x = x;
-    }
-    public void setY(float y)
-    {
-        this.y = y;
-    }
 
     static public float getStandardButtonWidth()
     {
@@ -56,34 +34,6 @@ public class GameButton extends GameEntity
     static public float getStandardButtonHeight()
     {
         return 80;
-    }
-
-    @Override
-    public float getWidth()
-    {
-        return width;
-    }
-
-    @Override
-    public float getHeight()
-    {
-        return height;
-    }
-
-    public void setWidth(float width)
-    {
-        this.width = width;
-    }
-
-    public void setHeight(float height)
-    {
-        this.height = height;
-    }
-
-    @Override
-    public void update(float delta)
-    {
-
     }
 
     @Override
@@ -111,12 +61,6 @@ public class GameButton extends GameEntity
             );
             IronCloudsAssets.fontKenVector.setColor(Color.WHITE);
         }
-    }
-
-    @Override
-    public void dispose()
-    {
-
     }
 
     public String getText()

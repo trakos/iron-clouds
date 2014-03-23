@@ -6,7 +6,11 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.utils.ScissorStack;
 import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.ironClouds.game.entities.Menu;
-import pl.trakos.lib.*;
+import pl.trakos.lib.GameEntityMenu;
+import pl.trakos.lib.GameLayers;
+import pl.trakos.lib.GameSettings;
+import pl.trakos.lib.input.GameButton;
+import pl.trakos.lib.input.IGameInput;
 
 public class CreditsMenu extends GameEntityMenu
 {
@@ -38,7 +42,7 @@ public class CreditsMenu extends GameEntityMenu
     }
 
     @Override
-    protected void buttonClicked(GameButton button)
+    protected void inputClicked(IGameInput button)
     {
         if (button == backButton)
         {

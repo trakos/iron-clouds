@@ -3,9 +3,10 @@ package pl.trakos.ironClouds.game.entities.menu;
 import com.badlogic.gdx.Gdx;
 import pl.trakos.ironClouds.game.GameCoreEntity;
 import pl.trakos.ironClouds.game.entities.Menu;
-import pl.trakos.lib.GameButton;
 import pl.trakos.lib.GameEntityMenu;
 import pl.trakos.lib.GameSettings;
+import pl.trakos.lib.input.GameButton;
+import pl.trakos.lib.input.IGameInput;
 
 public class MainMenuButtons extends GameEntityMenu
 {
@@ -56,7 +57,7 @@ public class MainMenuButtons extends GameEntityMenu
 
 
     @Override
-    protected void buttonClicked(GameButton button)
+    protected void inputClicked(IGameInput button)
     {
         if (button == playButton)
         {

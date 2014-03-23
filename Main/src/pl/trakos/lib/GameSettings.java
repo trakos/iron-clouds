@@ -133,4 +133,9 @@ public class GameSettings
     {
         return screenHeight;
     }
+
+    public static void saveOptions()
+    {
+        // @TODO
+    }
 }

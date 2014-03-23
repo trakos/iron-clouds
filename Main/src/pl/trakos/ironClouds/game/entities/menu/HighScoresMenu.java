@@ -1,7 +1,7 @@
 package pl.trakos.ironClouds.game.entities.menu;
 
-import pl.trakos.lib.GameButton;
 import pl.trakos.lib.GameEntityMenu;
+import pl.trakos.lib.input.IGameInput;
 
 public class HighScoresMenu extends GameEntityMenu
 {
@@ -11,7 +11,7 @@ public class HighScoresMenu extends GameEntityMenu
     }
 
     @Override
-    protected void buttonClicked(GameButton button)
+    protected void inputClicked(IGameInput button)
     {
 
     }
