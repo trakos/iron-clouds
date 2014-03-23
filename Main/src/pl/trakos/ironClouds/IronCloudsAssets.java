@@ -14,11 +14,14 @@ import com.badlogic.gdx.utils.Array;
  */
 public class IronCloudsAssets
 {
+    public static String creditsText;
+
     public static BitmapFont fontDejavu;
     public static BitmapFont fontDejavuB;
     public static BitmapFont fontDejavuI;
     public static BitmapFont fontDejavuBI;
     public static BitmapFont fontKenVector;
+    public static BitmapFont fontKenVectorSmall;
 
     public static Music music01spaceFighterLoop;
     public static Music soundTank;
@@ -70,30 +73,33 @@ public class IronCloudsAssets
 
     public static void loadAssets()
     {
+        creditsText = Gdx.files.internal("credits.txt").readString();
+
         // fonts
         fontDejavu = new BitmapFont(Gdx.files.internal("fonts/dejavu.fnt"));
         fontDejavuB = new BitmapFont(Gdx.files.internal("fonts/dejavub.fnt"));
         fontDejavuI = new BitmapFont(Gdx.files.internal("fonts/dejavui.fnt"));
         fontDejavuBI = new BitmapFont(Gdx.files.internal("fonts/dejavubi.fnt"));
         fontKenVector = new BitmapFont(Gdx.files.internal("fonts/kenvector.fnt"));
+        fontKenVectorSmall = new BitmapFont(Gdx.files.internal("fonts/kenvector_small.fnt"));
 
         // music
-        IronCloudsAssets.music01spaceFighterLoop = Gdx.audio.newMusic(Gdx.files.internal("music01_space_fighter_loop.mp3"));
+        IronCloudsAssets.music01spaceFighterLoop = Gdx.audio.newMusic(Gdx.files.internal("audio/music01_space_fighter_loop.mp3"));
 
         // sound as music objects
-        IronCloudsAssets.soundTank = Gdx.audio.newMusic(Gdx.files.internal("tank.mp3"));
+        IronCloudsAssets.soundTank = Gdx.audio.newMusic(Gdx.files.internal("audio/tank.mp3"));
         // sound
-        IronCloudsAssets.soundTankShot = Gdx.audio.newSound(Gdx.files.internal("tank_shot.wav"));
-        IronCloudsAssets.soundHeli = Gdx.audio.newSound(Gdx.files.internal("heli.wav"));
-        IronCloudsAssets.soundBomb = Gdx.audio.newSound(Gdx.files.internal("bomb.wav"));
-        IronCloudsAssets.soundSimpleExplosion = Gdx.audio.newSound(Gdx.files.internal("simple_explosion.wav"));
+        IronCloudsAssets.soundTankShot = Gdx.audio.newSound(Gdx.files.internal("audio/tank_shot.wav"));
+        IronCloudsAssets.soundHeli = Gdx.audio.newSound(Gdx.files.internal("audio/heli.wav"));
+        IronCloudsAssets.soundBomb = Gdx.audio.newSound(Gdx.files.internal("audio/bomb.wav"));
+        IronCloudsAssets.soundSimpleExplosion = Gdx.audio.newSound(Gdx.files.internal("audio/simple_explosion.wav"));
 
-        // textures (non-atlased)
-        Texture groundTexture = new Texture(Gdx.files.internal("ground.png"));
+        // textures (non-atlas)
+        Texture groundTexture = new Texture(Gdx.files.internal("images/ground.png"));
         groundTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
 
         // texture atlas
-        TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images.atlas"));
+        TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images/images.atlas"));
 
         // textures
         IronCloudsAssets.textureGround = groundTexture;
@@ -139,16 +145,16 @@ public class IronCloudsAssets
 
         // particles
         ParticleEffect exhaustEffect = new ParticleEffect();
-        exhaustEffect.load(Gdx.files.internal("exhaust.particle"), atlas);
+        exhaustEffect.load(Gdx.files.internal("particles/exhaust.particle"), atlas);
         IronCloudsAssets.particleEffectExhaust = new ParticleEffectPool(exhaustEffect, 1, 1);
         ParticleEffect grayExhaustEffect = new ParticleEffect();
-        grayExhaustEffect.load(Gdx.files.internal("exhaust_gray.particle"), atlas);
+        grayExhaustEffect.load(Gdx.files.internal("particles/exhaust_gray.particle"), atlas);
         IronCloudsAssets.particleEffectGrayExhaust = new ParticleEffectPool(grayExhaustEffect, 1, 1);
         ParticleEffect explosionEffect = new ParticleEffect();
-        explosionEffect.load(Gdx.files.internal("explosion.particle"), atlas);
+        explosionEffect.load(Gdx.files.internal("particles/explosion.particle"), atlas);
         IronCloudsAssets.particleEffectExplosion = new ParticleEffectPool(explosionEffect, 1, 1);
         ParticleEffect smallExplosionEffect = new ParticleEffect();
-        smallExplosionEffect.load(Gdx.files.internal("small_explosion.particle"), atlas);
+        smallExplosionEffect.load(Gdx.files.internal("particles/small_explosion.particle"), atlas);
         IronCloudsAssets.particleEffectSmallExplosion = new ParticleEffectPool(smallExplosionEffect, 1, 1);
     }
 }

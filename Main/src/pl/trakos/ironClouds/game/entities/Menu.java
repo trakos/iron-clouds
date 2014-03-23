@@ -5,32 +5,37 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.ironClouds.game.GameCoreEntity;
-import pl.trakos.ironClouds.game.entities.menu.LevelMenuButtons;
-import pl.trakos.ironClouds.game.entities.menu.MainMenuButtons;
+import pl.trakos.ironClouds.game.entities.menu.*;
 import pl.trakos.lib.*;
 
 public class Menu extends GameEntitiesContainer
 {
     public enum CurrentMenu
     {
-        MainMenu,
-        LevelsMenu,
-        OptionsMenu,
+        CreditsMenu,
         HighScoresMenu,
-        CreditsMenu
+        LevelsMenu,
+        MainMenu,
+        OptionsMenu,
     }
 
     static public Menu instance = new Menu();
-    protected final MainMenuButtons menuButtons;
+    protected final CreditsMenu creditsMenu;
+    protected final HighScoresMenu highScoresMenu;
     protected final LevelMenuButtons levelButtons;
+    protected final MainMenuButtons menuButtons;
+    protected final OptionsMenuButtons optionsMenuButtons;
 
     public CurrentMenu currentMenu = CurrentMenu.MainMenu;
 
 
     protected Menu()
     {
-        menuButtons = new MainMenuButtons();
+        creditsMenu = new CreditsMenu();
+        highScoresMenu = new HighScoresMenu();
         levelButtons = new LevelMenuButtons();
+        menuButtons = new MainMenuButtons();
+        optionsMenuButtons = new OptionsMenuButtons();
         add(menuButtons);
     }
 
@@ -49,13 +54,16 @@ public class Menu extends GameEntitiesContainer
     {
         switch (currentMenu)
         {
-            case MainMenu:
-                return menuButtons;
+            case CreditsMenu:
+                return creditsMenu;
+            case HighScoresMenu:
+                return highScoresMenu;
             case LevelsMenu:
                 return levelButtons;
+            case MainMenu:
+                return menuButtons;
             case OptionsMenu:
-            case HighScoresMenu:
-            case CreditsMenu:
+                return optionsMenuButtons;
             default:
                 return null;
         }
@@ -81,7 +89,10 @@ public class Menu extends GameEntitiesContainer
 
         if (layer == GameLayers.LayerHud)
         {
-            float width = GameButton.getStandardButtonWidth() + 50;
+            float width =
+                currentMenu == CurrentMenu.CreditsMenu
+                ? GameSettings.getCameraWidth() - 80
+                : GameButton.getStandardButtonWidth() + 50;
             float positionX = (GameSettings.getCameraWidth() - width) / 2;
 
             IronCloudsAssets.textureHudPanelDark.setColor(new Color(0, 0, 0, .7f));

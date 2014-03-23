@@ -1,0 +1,43 @@
+
+
+
+
+
+music
+
+"Space Fighter Loop" Kevin MacLeod (incompetech.com)
+"Hitman" Kevin MacLeod (incompetech.com)
+
+sounds
+
+detonation by M-RED
+helicopter loop by qubodup
+bomb by smcameron
+tank engine by ReadeOnly
+gunshot by Cyberkineticfilms
+all sounds come from freesound.org
+
+images
+
+UI elements and controls by www.kenney.nl
+planes and clouds based on assets from War On Water
+(game available on Android Market)
+tank image by mishonis from opengameart.org
+background assets from glitchthegame.com
+
+Thanks to many great people sharing
+their assets on CC-BY-SA or CC0 license!
+
+
+
+
+
+
+
+GAME AND CODING BY:
+Piotr Stankowski
+
+
+
+QUALITY ASSURANCE:
+Mariusz Wiaderek

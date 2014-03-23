@@ -69,15 +69,15 @@ public class MainMenuButtons extends GameEntityMenu
         }
         else if (button == optionsButton)
         {
-            // @TODO
+            Menu.instance.currentMenu = Menu.CurrentMenu.OptionsMenu;
         }
         else if (button == highScoresButton)
         {
-            // @TODO
+            Menu.instance.currentMenu = Menu.CurrentMenu.HighScoresMenu;
         }
         else if (button == creditsButton)
         {
-            // @TODO
+            Menu.instance.currentMenu = Menu.CurrentMenu.CreditsMenu;
         }
         else if (button == quitButton)
         {

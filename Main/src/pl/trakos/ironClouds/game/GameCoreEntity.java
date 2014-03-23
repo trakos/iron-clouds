@@ -125,6 +125,14 @@ public class GameCoreEntity extends GameEntitiesContainer
     {
         if (gameState != GameState.GameActive)
         {
+            if (gameState == GameState.MainMenu)
+            {
+                Menu.instance.update(delta);
+            }
+            else if (gameState == GameState.GamePausedInMenu)
+            {
+                Hud.instance.update(delta);
+            }
             return;
         }
         super.update(delta);

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Polygon;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class GameDebug
@@ -31,6 +32,15 @@ public class GameDebug
         batch.end();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.polygon(polygon.getTransformedVertices());
+        shapeRenderer.end();
+        batch.begin();
+    }
+
+    static public void markRectangle(SpriteBatch batch, Rectangle rectangle)
+    {
+        batch.end();
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        shapeRenderer.rect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
         shapeRenderer.end();
         batch.begin();
     }
