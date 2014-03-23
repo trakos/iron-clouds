@@ -55,7 +55,7 @@ public abstract class AbstractLevel
         timeTaken = 0;
         nextSpawn = 0;
         nextSpawnTime = enemySpawns.get(0).time;
-        GameCoreEntity.instance.resetGame((int) Math.floor(getTotalHitPoints() * GameSettings.getMissilesPerHitPoint()));
+        GameCoreEntity.instance.resetGame((int) Math.floor(getTotalHitPoints() * GameSettings.getGameDifficulty().missilesPerHitPoint));
         Hud.instance.showTitle(getTitle(), 2f);
     }
 
@@ -74,7 +74,7 @@ public abstract class AbstractLevel
     public void update(float delta)
     {
         timeTaken += delta;
-        if (timeTaken > nextSpawnTime)
+        if (timeTaken > nextSpawnTime * GameSettings.getGameDifficulty().spawnTimeMultiplier)
         {
             AbstractTarget.EnemyType enemyType = enemySpawns.get(nextSpawn).enemyType;
             GameCoreEntity.instance.addEnemy(enemyType, enemyType.minHeight + random.nextFloat() * (enemyType.maxHeight - enemyType.minHeight));

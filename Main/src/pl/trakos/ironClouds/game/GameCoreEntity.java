@@ -115,8 +115,8 @@ public class GameCoreEntity extends GameEntitiesContainer
         targetsAndBombs.bombs.clear();
         tankAndMissiles.tank.setPositionX(GameSettings.getMapWidth() / 2);
         tankAndMissiles.tank.setDestinationX(GameSettings.getMapWidth() / 2);
-        tankAndMissiles.tank.setMaxHealth(GameSettings.getMaxHealth());
-        tankAndMissiles.tank.setHealth(GameSettings.getMaxHealth());
+        tankAndMissiles.tank.setMaxHealth(GameSettings.getGameDifficulty().maxHealth);
+        tankAndMissiles.tank.setHealth(GameSettings.getGameDifficulty().maxHealth);
         tankAndMissiles.tank.setMissiles(missilesLeft);
     }
 
@@ -157,6 +157,7 @@ public class GameCoreEntity extends GameEntitiesContainer
             if (currentLevelIndex >= levels.length)
             {
                 Gdx.app.exit();
+                return;
             }
             currentLevel = levels[currentLevelIndex];
             currentLevel.start();

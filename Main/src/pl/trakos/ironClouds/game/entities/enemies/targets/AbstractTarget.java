@@ -85,7 +85,7 @@ public abstract class AbstractTarget extends GameEntity
     {
         this.texture = texture;
         hp = getInitialHp();
-        nextBombIn = getNextBombDelay();
+        nextBombIn = getNextBombDelay() * GameSettings.getGameDifficulty().bombTimeMultiplier;
         float minHeight = GameSettings.groundPositionY + 50;
         positionX = GameSettings.getMapWidth() * x - texture.getRegionWidth();
         positionY = (GameSettings.getMapHeight() - minHeight - 50) * y + minHeight;
@@ -159,7 +159,7 @@ public abstract class AbstractTarget extends GameEntity
     {
         if (nextBombIn < 0)
         {
-            nextBombIn = getNextBombDelay();
+            nextBombIn = getNextBombDelay() * GameSettings.getGameDifficulty().bombTimeMultiplier;
             return true;
         }
         return false;
