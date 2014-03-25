@@ -40,15 +40,20 @@ public class Menu extends GameEntitiesContainer
         add(menuButtons);
     }
 
+    public void filterAvailableLevels()
+    {
+        levelButtons.filterAvailableLevels();
+    }
+
     @Override
-    public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType)
+    public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType, Integer activeTouchId)
     {
         if (GameCoreEntity.instance.getGameState() != GameCoreEntity.GameState.MainMenu)
         {
             return GameTouchType.NotIntercepted;
         }
 
-        return getCurrentMenu().handleTouch(x, y, previousTouchType);
+        return getCurrentMenu().handleTouch(x, y, previousTouchType, activeTouchId);
     }
 
     protected GameEntityMenu getCurrentMenu()

@@ -29,6 +29,8 @@ public class GameScreen implements Screen
     }
 
     GameTouchType[] activeTouches = new GameTouchType[10];
+    Integer[] activeTouchesIds = new Integer[10];
+    int activeTouchNextId = 0;
 
     public void handleInput()
     {
@@ -36,19 +38,31 @@ public class GameScreen implements Screen
         {
             if (Gdx.input.isTouched(k))
             {
+                if (activeTouchesIds[k] == null)
+                {
+                    activeTouchesIds[k] = activeTouchNextId++;
+                    if (activeTouchNextId == Integer.MAX_VALUE)
+                    {
+                        activeTouchNextId = 0;
+                    }
+                }
+
                 Vector3 touchPos = new Vector3();
                 touchPos.set(Gdx.input.getX(k), Gdx.input.getY(k), 0);
                 GameSettings.getCamera().unproject(touchPos);
 
-                GameTouchType touchType = gameCoreEntity.handleTouch(touchPos.x, touchPos.y, activeTouches[k]);
+                GameTouchType touchType = gameCoreEntity.handleTouch(touchPos.x, touchPos.y, activeTouches[k], activeTouchesIds[k]);
                 activeTouches[k] =
                     touchType != GameTouchType.NotIntercepted
                     ? touchType
                     : (activeTouches[k] == null ? GameTouchType.NotIntercepted : activeTouches[k]);
+
+
             }
             else
             {
                 activeTouches[k] = null;
+                activeTouchesIds[k] = null;
             }
         }
     }

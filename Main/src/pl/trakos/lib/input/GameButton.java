@@ -39,6 +39,7 @@ public class GameButton extends GameInputElement
     @Override
     public void draw(GameLayers layer, SpriteBatch batch)
     {
+        if (!visible) return;
         if (layer == GameLayers.LayerHud)
         {
             NinePatch ninePatch = active ? activeTextureRegion : textureRegion;

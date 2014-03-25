@@ -10,7 +10,7 @@ import pl.trakos.lib.input.IGameInput;
 public class LevelMenuButtons extends GameEntityMenu
 {
     private final GameButton backButton;
-    GameButton[] levelButtons = new GameButton[10];
+    GameButton[] levelButtons = new GameButton[GameCoreEntity.getLevelsCount()];
 
     public LevelMenuButtons()
     {
@@ -20,10 +20,10 @@ public class LevelMenuButtons extends GameEntityMenu
         float levelWidth = 50;
         float levelHeight = 50;
 
-        buttons = new GameButton[11];
+        buttons = new GameButton[GameCoreEntity.getLevelsCount() + 1];
         float currentX = positionX;
         int rowCount = 5;
-        for (int i = 1; i <= 10; i++)
+        for (int i = 1; i <= GameCoreEntity.getLevelsCount(); i++)
         {
             GameButton levelButton = new GameButton(Integer.toString(i), currentX, positionY);
             levelButton.setWidth(levelWidth);
@@ -42,7 +42,15 @@ public class LevelMenuButtons extends GameEntityMenu
 
         positionY -= GameButton.getStandardButtonHeight() + 50;
         this.backButton = new GameButton("back", positionX, positionY);
-        buttons[10] = this.backButton;
+        buttons[GameCoreEntity.getLevelsCount()] = this.backButton;
+    }
+
+    public void filterAvailableLevels()
+    {
+        for (int i = 0; i < GameCoreEntity.getLevelsCount(); i++)
+        {
+            buttons[i].setVisible(i <= GameSettings.getReachedLevel(GameSettings.getGameDifficulty()));
+        }
     }
 
     @Override

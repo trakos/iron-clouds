@@ -1,11 +1,13 @@
 package pl.trakos.lib.input;
 
 import pl.trakos.lib.GameEntity;
+import pl.trakos.lib.GameTouchType;
 
 public abstract class GameInputElement extends GameEntity implements IGameInput
 {
 
     public boolean active = false;
+    public boolean visible = true;
     float x;
     float y;
     float width;
@@ -76,5 +78,35 @@ public abstract class GameInputElement extends GameEntity implements IGameInput
     public void dispose()
     {
 
+    }
+
+    @Override
+    public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType, Integer activeTouchId)
+    {
+        if (
+            visible
+            && x > getX()
+            && y > getY()
+            && x < getX() + getWidth()
+            && y < getY() + getHeight()
+        )
+        {
+            setActive(true);
+            if (previousTouchType == null || previousTouchType == GameTouchType.NotIntercepted)
+            {
+                return GameTouchType.InterceptedByMenu;
+            }
+        }
+        return GameTouchType.NotIntercepted;
+    }
+
+    public boolean getVisible()
+    {
+        return visible;
+    }
+
+    public void setVisible(boolean visible)
+    {
+        this.visible = visible;
     }
 }

@@ -26,7 +26,7 @@ public class TankAndMissiles extends GameEntitiesContainer
         missileHeight = IronCloudsAssets.textureShell.getRegionHeight();
     }
 
-    public GameTouchType handleTouch(float touchPosX, float touchPosY, GameTouchType previousTouchType)
+    public GameTouchType handleTouch(float touchPosX, float touchPosY, GameTouchType previousTouchType, Integer activeTouchId)
     {
         if (previousTouchType == GameTouchType.InterceptedByMenu)
         {

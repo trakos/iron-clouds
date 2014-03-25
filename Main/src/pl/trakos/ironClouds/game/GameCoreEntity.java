@@ -13,10 +13,6 @@ import java.util.Map;
 
 public class GameCoreEntity extends GameEntitiesContainer
 {
-    public GameState getGameState()
-    {
-        return gameState;
-    }
 
     public enum GameState
     {
@@ -27,19 +23,36 @@ public class GameCoreEntity extends GameEntitiesContainer
         GamePausedByOSGame,
     }
 
+    static AbstractLevel[] levels = new AbstractLevel[]
+    {
+            new Level1(),
+            new Level2(),
+            new Level3(),
+            new Level4(),
+            new Level5(),
+            new Level6(),
+            new Level7(),
+            new Level8(),
+            new Level9(),
+            new Level10(),
+    };
     static public GameCoreEntity instance = new GameCoreEntity();
+    static public int getLevelsCount()
+    {
+        return levels.length;
+    }
 
     GameState gameState = GameState.GameActive;
-    Menu menu = Menu.instance;
+    Menu menu;
     Background background;
     TankAndMissiles tankAndMissiles;
     TargetsAndBombs targetsAndBombs;
     AbstractLevel currentLevel;
-    AbstractLevel[] levels;
     int currentLevelIndex = 0;
 
     protected GameCoreEntity()
     {
+        menu = Menu.instance;
         background = new Background();
         tankAndMissiles = new TankAndMissiles();
         targetsAndBombs = new TargetsAndBombs();
@@ -51,20 +64,11 @@ public class GameCoreEntity extends GameEntitiesContainer
         add(GameFboParticle.foregroundInstance);
         add(Hud.instance);
         add(menu);
+    }
 
-        levels = new AbstractLevel[]
-        {
-                new Level1(),
-                new Level2(),
-                new Level3(),
-                new Level4(),
-                new Level5(),
-                new Level6(),
-                new Level7(),
-                new Level8(),
-                new Level9(),
-                new Level10(),
-        };
+    public GameState getGameState()
+    {
+        return gameState;
     }
 
     public void showRandomlyPlacedEnemiesForBackground()
@@ -162,6 +166,8 @@ public class GameCoreEntity extends GameEntitiesContainer
         if (currentLevel.checkForWin())
         {
             currentLevelIndex++;
+            GameSettings.setReachedLevel(GameSettings.getGameDifficulty(), currentLevelIndex);
+            GameSettings.saveOptions();
             if (currentLevelIndex >= levels.length)
             {
                 Gdx.app.exit();
@@ -172,8 +178,13 @@ public class GameCoreEntity extends GameEntitiesContainer
         }
         else if (currentLevel.checkForLoss())
         {
-            currentLevel.start();
+            restartCurrentLevel();
         }
+    }
+
+    public void restartCurrentLevel()
+    {
+        currentLevel.start();
     }
 
     @Override
@@ -182,22 +193,22 @@ public class GameCoreEntity extends GameEntitiesContainer
         super.draw(layer, batch);
     }
 
-    public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType)
+    public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType, Integer activeTouchId)
     {
         if (gameState == GameState.MainMenu)
         {
-            return menu.handleTouch(x, y, previousTouchType);
+            return menu.handleTouch(x, y, previousTouchType, activeTouchId);
         }
         else
         {
-            GameTouchType hudInterception = Hud.instance.handleTouch(x, y, previousTouchType);
+            GameTouchType hudInterception = Hud.instance.handleTouch(x, y, previousTouchType, activeTouchId);
             if (hudInterception != GameTouchType.NotIntercepted)
             {
                 return hudInterception;
             }
             if (gameState == GameState.GameActive)
             {
-                return tankAndMissiles.handleTouch(x, y, previousTouchType);
+                return tankAndMissiles.handleTouch(x, y, previousTouchType, activeTouchId);
             }
             return GameTouchType.NotIntercepted;
         }

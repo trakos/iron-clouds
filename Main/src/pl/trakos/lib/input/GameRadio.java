@@ -39,6 +39,7 @@ public class GameRadio extends GameInputElement
     @Override
     public void draw(GameLayers layer, SpriteBatch batch)
     {
+        if (!visible) return;
         if (layer == GameLayers.LayerHud)
         {
             TextureRegion textureRegion = checked ? radioCircleOn : radioCircleOff;

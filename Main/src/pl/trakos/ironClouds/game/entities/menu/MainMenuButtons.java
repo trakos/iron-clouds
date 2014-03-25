@@ -61,12 +61,13 @@ public class MainMenuButtons extends GameEntityMenu
     {
         if (button == playButton)
         {
-            // @TODO: ostatnio grana mapa
-            GameCoreEntity.instance.startLevel(0);
+            int reachedLevel = GameSettings.getReachedLevel(GameSettings.getGameDifficulty());
+            GameCoreEntity.instance.startLevel(reachedLevel >= GameCoreEntity.getLevelsCount() ? 0 : reachedLevel);
         }
         else if (button == levelButton)
         {
             Menu.instance.currentMenu = Menu.CurrentMenu.LevelsMenu;
+            Menu.instance.filterAvailableLevels();
         }
         else if (button == optionsButton)
         {

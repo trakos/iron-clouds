@@ -3,7 +3,7 @@ package pl.trakos.lib;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pl.trakos.lib.input.IGameInput;
 
-public abstract class GameEntityMenu extends GameEntitiesContainer
+public abstract class GameEntityMenu extends GameEntitiesContainer implements IGameInput
 {
     public IGameInput[] buttons;
 
@@ -31,35 +31,44 @@ public abstract class GameEntityMenu extends GameEntitiesContainer
         }
     }
 
-    public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType)
+    public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType, Integer activeTouchId)
     {
         GameTouchType gameTouchType = GameTouchType.NotIntercepted;
         for (IGameInput button : buttons)
         {
-            if (button instanceof GameEntityMenu)
+            gameTouchType = button.handleTouch(x, y, previousTouchType, activeTouchId);
+            if (gameTouchType != GameTouchType.NotIntercepted)
             {
-                if (button.handleTouch(x, y, previousTouchType) == GameTouchType.NotIntercepted)
-                {
-                    break;
-                }
-            }
-            else if (
-                x > button.getX()
-                && y > button.getY()
-                && x < button.getX() + button.getWidth()
-                && y < button.getY() + button.getHeight()
-            )
-            {
-                button.setActive(true);
-                if (previousTouchType == null || previousTouchType == GameTouchType.NotIntercepted)
-                {
-                    inputClicked(button);
-                }
-                return GameTouchType.InterceptedByMenu;
+                inputClicked(button);
+                break;
             }
         }
-        return GameTouchType.NotIntercepted;
+        return gameTouchType;
     }
 
     abstract protected void inputClicked(IGameInput button);
+
+    @Override
+    public boolean getActive()
+    {
+        return false;
+    }
+
+    @Override
+    public void setActive(boolean value)
+    {
+
+    }
+
+    @Override
+    public boolean getVisible()
+    {
+        return false;
+    }
+
+    @Override
+    public void setVisible(boolean value)
+    {
+
+    }
 }

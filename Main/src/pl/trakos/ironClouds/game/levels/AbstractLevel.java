@@ -13,6 +13,7 @@ import java.util.Random;
 
 public abstract class AbstractLevel
 {
+
     public float getTimeTaken()
     {
         return timeTaken;

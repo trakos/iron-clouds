@@ -9,7 +9,7 @@ public interface IGameEntity
     public abstract float getY();
     public abstract float getWidth();
     public abstract float getHeight();
-    public abstract GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType);
+    public abstract GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType, Integer activeTouchId);
 
     public abstract void update(float delta);
     public abstract void draw(GameLayers layer, SpriteBatch batch);

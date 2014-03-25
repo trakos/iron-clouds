@@ -4,5 +4,5 @@ public enum GameTouchType
 {
     NotIntercepted,
     InterceptedByMenu,
-    InterceptedByGame
+    InterceptedByDragging, InterceptedByGame
 }

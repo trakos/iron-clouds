@@ -2,8 +2,9 @@ package pl.trakos.lib.input;
 
 import pl.trakos.lib.GameEntityMenu;
 
-public abstract class GameRadioGroup extends GameEntityMenu implements IGameInput
+public class GameRadioGroup extends GameEntityMenu
 {
+
     static public class Definition
     {
         public int id;
@@ -43,20 +44,18 @@ public abstract class GameRadioGroup extends GameEntityMenu implements IGameInpu
             }
         }
         ((GameRadio) button).checked = true;
-        radioChecked((GameRadio) button);
     }
 
-    @Override
-    public boolean getActive()
+    public Integer getCheckedId()
     {
-        return false;
+        Integer checkedId = null;
+        for (IGameInput iGameInput : buttons)
+        {
+            if (iGameInput instanceof GameRadio && ((GameRadio) iGameInput).checked)
+            {
+                checkedId = ((GameRadio) iGameInput).id;
+            }
+        }
+        return checkedId;
     }
-
-    @Override
-    public void setActive(boolean value)
-    {
-
-    }
-
-    abstract protected void radioChecked(GameRadio button);
 }

@@ -29,7 +29,7 @@ public abstract class GameEntity implements Disposable, IGameEntity
         return polygon2 != null && Intersector.overlapConvexPolygons(polygon, polygon2);
     }
 
-    public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType)
+    public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType, Integer activeTouchId)
     {
         return GameTouchType.NotIntercepted;
     }

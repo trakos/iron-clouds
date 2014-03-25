@@ -9,14 +9,13 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.ironClouds.game.GameCoreEntity;
-import pl.trakos.lib.GameEntityMenu;
+import pl.trakos.ironClouds.game.entities.menu.HudMenu;
+import pl.trakos.lib.GameEntity;
 import pl.trakos.lib.GameLayers;
 import pl.trakos.lib.GameSettings;
 import pl.trakos.lib.GameTouchType;
-import pl.trakos.lib.input.GameButton;
-import pl.trakos.lib.input.IGameInput;
 
-public class Hud extends GameEntityMenu
+public class Hud extends GameEntity
 {
     static public Hud instance = new Hud();
 
@@ -25,9 +24,7 @@ public class Hud extends GameEntityMenu
     protected final TextureRegion emptyHeartTexture;
     protected final TextureRegion planeTexture;
     protected final TextureRegion pauseTexture;
-    protected final GameButton resumeButton;
-    protected final GameButton mainMenuButton;
-    protected final GameButton quitButton;
+    protected final HudMenu hudMenu;
 
 
     private final float pauseX;
@@ -42,22 +39,10 @@ public class Hud extends GameEntityMenu
         planeTexture = IronCloudsAssets.texturePlane1;
         pauseTexture = IronCloudsAssets.textureHudPause;
 
-        float positionX = (GameSettings.getCameraWidth() - GameButton.getStandardButtonWidth()) / 2;
-        float positionY = 300;
-        resumeButton = new GameButton("resume", positionX, positionY);
-        positionY -= GameButton.getStandardButtonHeight() + 10;
-        mainMenuButton = new GameButton("main menu", positionX, positionY);
-        positionY -= GameButton.getStandardButtonHeight() + 10;
-        quitButton = new GameButton("quit", positionX, positionY);
-
-        buttons = new GameButton[]{
-                resumeButton,
-                mainMenuButton,
-                quitButton
-        };
-
         pauseX = GameSettings.getCameraWidth() - pauseTexture.getRegionWidth() - 10;
         pauseY = GameSettings.groundPositionY + 10;
+
+        hudMenu = new HudMenu();
     }
 
     @Override
@@ -87,11 +72,11 @@ public class Hud extends GameEntityMenu
     @Override
     public void update(float delta)
     {
-        super.update(delta);
         if (timeTitleLeft > 0)
         {
             timeTitleLeft -= delta;
         }
+        hudMenu.update(delta);
     }
 
     float timeTitleLeft = 0;
@@ -142,7 +127,7 @@ public class Hud extends GameEntityMenu
                 shapeRenderer.rect(0, 0, GameSettings.getScreenWidth(), GameSettings.getScreenHeight());
                 shapeRenderer.end();
                 batch.begin();
-                drawButtons(layer, batch);
+                hudMenu.draw(layer, batch);
             }
             else
             {
@@ -279,7 +264,7 @@ public class Hud extends GameEntityMenu
 
     }
 
-    public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType)
+    public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType, Integer activeTouchId)
     {
         if (previousTouchType == GameTouchType.InterceptedByGame)
         {
@@ -309,23 +294,6 @@ public class Hud extends GameEntityMenu
         {
             return GameTouchType.NotIntercepted;
         }
-        return super.handleTouch(x, y, previousTouchType);
-    }
-
-    @Override
-    protected void inputClicked(IGameInput button)
-    {
-        if (button == resumeButton)
-        {
-            GameCoreEntity.instance.changeGameState(GameCoreEntity.GameState.GameActive);
-        }
-        else if (button == mainMenuButton)
-        {
-            GameCoreEntity.instance.showMainMenu();
-        }
-        else
-        {
-            Gdx.app.exit();
-        }
+        return hudMenu.handleTouch(x, y, previousTouchType, activeTouchId);
     }
 }
