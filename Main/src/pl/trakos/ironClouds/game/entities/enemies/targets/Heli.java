@@ -91,4 +91,12 @@ public class Heli extends AbstractTarget
             }
         }
     }
+
+    @Override
+    public void entityPause()
+    {
+        super.entityPause();
+
+        ensureEngineSoundIs(false);
+    }
 }

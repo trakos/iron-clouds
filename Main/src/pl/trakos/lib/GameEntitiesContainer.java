@@ -127,4 +127,14 @@ public class GameEntitiesContainer extends GameEntity
     {
         return entities.size();
     }
+
+    @Override
+    public void entityPause()
+    {
+        for (GameEntity entity : entities)
+        {
+            entity.entityPause();
+        }
+        super.entityPause();
+    }
 }

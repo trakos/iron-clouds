@@ -164,7 +164,8 @@ public class GameScreen implements Screen
         if (Gdx.app.getType() == Application.ApplicationType.Android)
         {
             gameCoreEntity.changeGameState(
-                    gameCoreEntity.getGameState() == GameCoreEntity.GameState.GameActive
+                    (gameCoreEntity.getGameState() == GameCoreEntity.GameState.GameActive
+                            || gameCoreEntity.getGameState() == GameCoreEntity.GameState.GamePausedInMenu)
                             ? GameCoreEntity.GameState.GamePausedByOSGame
                             : GameCoreEntity.GameState.GamePausedByOSMainMenu
             );

@@ -9,7 +9,7 @@ public class Zeppelin extends AbstractTarget
     public Zeppelin(float x, float y)
     {
         super(x, y, IronCloudsAssets.textureZeppelin);
-        speed = 50;
+        speed = 45 + 5f * (float) Math.random();
     }
 
     @Override

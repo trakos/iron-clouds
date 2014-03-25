@@ -9,7 +9,7 @@ public class Bomber extends AbstractTarget
     public Bomber(float x, float y)
     {
         super(x, y, IronCloudsAssets.textureBomber);
-        speed = 300;
+        speed = 300 + 10f * (float) Math.random();
     }
 
     @Override

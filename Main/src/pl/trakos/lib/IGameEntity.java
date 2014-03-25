@@ -14,4 +14,6 @@ public interface IGameEntity
     public abstract void update(float delta);
     public abstract void draw(GameLayers layer, SpriteBatch batch);
     public abstract void dispose();
+
+    public abstract void entityPause();
 }

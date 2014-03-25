@@ -8,7 +8,7 @@ public class PlaneWeak extends AbstractTarget
     public PlaneWeak(float x, float y)
     {
         super(x, y, IronCloudsAssets.texturePlane1);
-        speed = 200;
+        speed = 150 + 50f * (float) Math.random();
     }
 
     @Override

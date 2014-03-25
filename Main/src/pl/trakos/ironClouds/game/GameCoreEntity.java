@@ -80,6 +80,15 @@ public class GameCoreEntity extends GameEntitiesContainer
 
     public void changeGameState(GameState newGameState)
     {
+        if (
+            newGameState == GameState.GamePausedByOSGame
+            || newGameState == GameState.GamePausedByOSMainMenu
+            || newGameState == GameState.GamePausedInMenu
+            || newGameState == GameState.MainMenu
+        )
+        {
+            entityPause();
+        }
         gameState = newGameState;
     }
 
@@ -147,6 +156,7 @@ public class GameCoreEntity extends GameEntitiesContainer
             entry.getKey().alive = false;
             AbstractTarget targetHit = (AbstractTarget) entry.getValue()[0];
             targetHit.targetHit();
+            currentLevel.registerHit(targetHit);
             GameFboParticle.instance.playParticleEffect(
                     targetHit.alive ? IronCloudsAssets.particleEffectSmallExplosion : IronCloudsAssets.particleEffectExplosion,
                     (targetHit.alive ? 0 : targetHit.getX()) + entry.getValue()[0].getWidth() / 2,
@@ -176,7 +186,7 @@ public class GameCoreEntity extends GameEntitiesContainer
             currentLevel = levels[currentLevelIndex];
             currentLevel.start();
         }
-        else if (currentLevel.checkForLoss())
+        else if (currentLevel.checkForLoss() != null)
         {
             restartCurrentLevel();
         }

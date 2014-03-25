@@ -7,7 +7,7 @@ public class PlaneNormal extends AbstractTarget
     public PlaneNormal(float x, float y)
     {
         super(x, y, IronCloudsAssets.texturePlane2);
-        speed = 300;
+        speed = 250 + 50f * (float) Math.random();
     }
 
     @Override

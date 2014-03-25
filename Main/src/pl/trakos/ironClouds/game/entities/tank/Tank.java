@@ -108,6 +108,14 @@ public class Tank extends GameEntity
     }
 
     @Override
+    public void entityPause()
+    {
+        super.entityPause();
+
+        ensureEngineSoundIs(false);
+    }
+
+    @Override
     public void update(float delta)
     {
         deltaX = maxSpeedX * delta;

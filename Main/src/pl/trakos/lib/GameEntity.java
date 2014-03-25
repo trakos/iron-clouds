@@ -33,4 +33,10 @@ public abstract class GameEntity implements Disposable, IGameEntity
     {
         return GameTouchType.NotIntercepted;
     }
+
+    @Override
+    public void entityPause()
+    {
+
+    }
 }

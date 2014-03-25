@@ -4,6 +4,7 @@ package pl.trakos.ironClouds.game.levels;
 import pl.trakos.ironClouds.game.GameCoreEntity;
 import pl.trakos.ironClouds.game.entities.Hud;
 import pl.trakos.ironClouds.game.entities.enemies.targets.AbstractTarget;
+import pl.trakos.ironClouds.game.enums.LossReason;
 import pl.trakos.lib.GameSettings;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public abstract class AbstractLevel
     {
         return timeTaken;
     }
+
 
     class EnemySpawn
     {
@@ -34,6 +36,7 @@ public abstract class AbstractLevel
     float timeTaken = 0;
     float nextSpawnTime;
     int nextSpawn;
+    int remainingHitPoints = 0;
 
     ArrayList<EnemySpawn> enemySpawns = new ArrayList<EnemySpawn>();
     Random random = new Random();
@@ -56,8 +59,14 @@ public abstract class AbstractLevel
         timeTaken = 0;
         nextSpawn = 0;
         nextSpawnTime = enemySpawns.get(0).time;
-        GameCoreEntity.instance.resetGame((int) Math.floor(getTotalHitPoints() * GameSettings.getGameDifficulty().missilesPerHitPoint));
+        remainingHitPoints = getTotalHitPoints();
+        GameCoreEntity.instance.resetGame((int) Math.floor(remainingHitPoints * GameSettings.getGameDifficulty().missilesPerHitPoint));
         Hud.instance.showTitle(getTitle(), 2f);
+    }
+
+    public void registerHit(AbstractTarget targetHit)
+    {
+        remainingHitPoints--;
     }
 
     abstract protected String getTitle();
@@ -97,9 +106,24 @@ public abstract class AbstractLevel
         return nextSpawn >= enemySpawns.size() && GameCoreEntity.instance.getTargetsCount() == 0;
     }
 
-    public boolean checkForLoss()
+    public LossReason checkForLoss()
     {
         GameCoreEntity game = GameCoreEntity.instance;
-        return game.getTankHealth() <= 0 || ( game.getTankMissilesLeft() <= 0 && game.getAirborneMissilesCount() == 0);
+        if (game.getTankHealth() <= 0)
+        {
+            return LossReason.OutOfHealth;
+        }
+        else if (game.getTankMissilesLeft() <= 0 && game.getAirborneMissilesCount() <= 0)
+        {
+            return LossReason.ZeroMissiles;
+        }
+        else if (game.getTankMissilesLeft() + game.getAirborneMissilesCount() < remainingHitPoints)
+        {
+            return LossReason.TooFewMissiles;
+        }
+        else
+        {
+            return null;
+        }
     }
 }
