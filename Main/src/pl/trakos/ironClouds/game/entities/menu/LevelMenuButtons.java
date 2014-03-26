@@ -4,6 +4,7 @@ import pl.trakos.ironClouds.game.GameCoreEntity;
 import pl.trakos.ironClouds.game.entities.Menu;
 import pl.trakos.lib.GameEntityMenu;
 import pl.trakos.lib.GameSettings;
+import pl.trakos.lib._;
 import pl.trakos.lib.input.GameButton;
 import pl.trakos.lib.input.IGameInput;
 
@@ -41,7 +42,7 @@ public class LevelMenuButtons extends GameEntityMenu
         }
 
         positionY -= GameButton.getStandardButtonHeight() + 50;
-        this.backButton = new GameButton("back", positionX, positionY);
+        this.backButton = new GameButton(_.tr("menu.back"), positionX, positionY);
         buttons[GameCoreEntity.getLevelsCount()] = this.backButton;
     }
 

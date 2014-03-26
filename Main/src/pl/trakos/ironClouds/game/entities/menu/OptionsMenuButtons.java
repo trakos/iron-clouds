@@ -3,10 +3,7 @@ package pl.trakos.ironClouds.game.entities.menu;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.ironClouds.game.entities.Menu;
-import pl.trakos.lib.GameDifficulty;
-import pl.trakos.lib.GameEntityMenu;
-import pl.trakos.lib.GameLayers;
-import pl.trakos.lib.GameSettings;
+import pl.trakos.lib.*;
 import pl.trakos.lib.input.*;
 
 public class OptionsMenuButtons extends GameEntityMenu
@@ -19,19 +16,19 @@ public class OptionsMenuButtons extends GameEntityMenu
     public OptionsMenuButtons()
     {
         this.backButton = new GameButton(
-                "back",
+                _.tr("menu.back"),
                 (GameSettings.getResolutionWidth() - GameButton.getStandardButtonWidth()) / 2,
                 20
         );
         difficultyRadio = new GameRadioGroup(new GameRadioGroup.Definition[]
         {
-                new GameRadioGroup.Definition(GameDifficulty.Easy.ordinal(), "easy", 80, 300),
-                new GameRadioGroup.Definition(GameDifficulty.Medium.ordinal(), "medium", 80, 220),
-                new GameRadioGroup.Definition(GameDifficulty.Hard.ordinal(), "hard", 80, 140)
+                new GameRadioGroup.Definition(GameDifficulty.Easy.ordinal(), _.tr("options.difficulty.easy"), 80, 300),
+                new GameRadioGroup.Definition(GameDifficulty.Medium.ordinal(), _.tr("options.difficulty.medium"), 80, 220),
+                new GameRadioGroup.Definition(GameDifficulty.Hard.ordinal(), _.tr("options.difficulty.hard"), 80, 140)
         });
         ((GameRadio)difficultyRadio.buttons[GameSettings.getGameDifficulty().ordinal()]).checked = true;
-        soundVolumeSlider = new GameSlider("sound volume:", 400, 400);
-        musicVolumeSlider = new GameSlider("music volume:", 400, 250);
+        soundVolumeSlider = new GameSlider(_.tr("options.soundVolume") + ":", 400, 400);
+        musicVolumeSlider = new GameSlider(_.tr("options.musicVolume") + ":", 400, 250);
         soundVolumeSlider.value = GameSettings.getSoundVolume();
         musicVolumeSlider.value = GameSettings.getMusicVolume();
         buttons = new IGameInput[]
@@ -75,7 +72,7 @@ public class OptionsMenuButtons extends GameEntityMenu
     {
         IronCloudsAssets.fontKenVector.draw(
             batch,
-            "Difficulty:",
+            _.tr("options.difficulty") + ":",
             80,
             400
         );

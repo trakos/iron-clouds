@@ -1,11 +1,14 @@
 package pl.trakos.ironClouds.game.levels;
 
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pl.trakos.ironClouds.game.GameCoreEntity;
 import pl.trakos.ironClouds.game.entities.Hud;
 import pl.trakos.ironClouds.game.entities.enemies.targets.AbstractTarget;
 import pl.trakos.ironClouds.game.enums.LossReason;
+import pl.trakos.lib.GameLayers;
 import pl.trakos.lib.GameSettings;
+import pl.trakos.lib.GameTouchType;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,6 +22,7 @@ public abstract class AbstractLevel
     {
         return timeTaken;
     }
+
 
 
     class EnemySpawn
@@ -60,8 +64,13 @@ public abstract class AbstractLevel
         nextSpawn = 0;
         nextSpawnTime = enemySpawns.get(0).time;
         remainingHitPoints = getTotalHitPoints();
-        GameCoreEntity.instance.resetGame((int) Math.floor(remainingHitPoints * GameSettings.getGameDifficulty().missilesPerHitPoint));
+        GameCoreEntity.instance.resetGame(getMissilesCount(remainingHitPoints));
         Hud.instance.showTitle(getTitle(), 2f);
+    }
+
+    public int getMissilesCount(int remainingHitPoints)
+    {
+        return (int) Math.floor(remainingHitPoints * GameSettings.getGameDifficulty().missilesPerHitPoint);
     }
 
     public void registerHit(AbstractTarget targetHit)
@@ -99,6 +108,16 @@ public abstract class AbstractLevel
             }
         }
         Hud.instance.enemiesLeft = enemySpawns.size() - nextSpawn + GameCoreEntity.instance.getTargetsSize();
+    }
+
+    public void draw(GameLayers layer, SpriteBatch batch)
+    {
+
+    }
+
+    public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType, Integer activeTouchId)
+    {
+        return GameTouchType.NotIntercepted;
     }
 
     public boolean checkForWin()

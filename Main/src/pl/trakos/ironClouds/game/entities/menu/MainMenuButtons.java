@@ -5,6 +5,7 @@ import pl.trakos.ironClouds.game.GameCoreEntity;
 import pl.trakos.ironClouds.game.entities.Menu;
 import pl.trakos.lib.GameEntityMenu;
 import pl.trakos.lib.GameSettings;
+import pl.trakos.lib._;
 import pl.trakos.lib.input.GameButton;
 import pl.trakos.lib.input.IGameInput;
 
@@ -27,22 +28,22 @@ public class MainMenuButtons extends GameEntityMenu
         float otherButtonHeight = 50;
 
         positionY -= mainButtonHeight + 10;
-        this.playButton = new GameButton("play", positionX, positionY);
+        this.playButton = new GameButton(_.tr("menu.play"), positionX, positionY);
         playButton.setHeight(mainButtonHeight);
         positionY -= otherButtonHeight + 10;
-        this.levelButton = new GameButton("choose level", positionX, positionY);
+        this.levelButton = new GameButton(_.tr("menu.levels"), positionX, positionY);
         levelButton.setHeight(otherButtonHeight);
         positionY -= otherButtonHeight + 10;
-        this.optionsButton = new GameButton("settings", positionX, positionY);
+        this.optionsButton = new GameButton(_.tr("menu.settings"), positionX, positionY);
         optionsButton.setHeight(otherButtonHeight);
         positionY -= otherButtonHeight + 10;
-        this.highScoresButton = new GameButton("high scores", positionX, positionY);
+        this.highScoresButton = new GameButton(_.tr("menu.highScores"), positionX, positionY);
         highScoresButton.setHeight(otherButtonHeight);
         positionY -= otherButtonHeight + 10;
-        this.creditsButton = new GameButton("credits", positionX, positionY);
+        this.creditsButton = new GameButton(_.tr("menu.credits"), positionX, positionY);
         creditsButton.setHeight(otherButtonHeight);
         positionY -= otherButtonHeight + 10;
-        this.quitButton = new GameButton("quit", positionX, positionY);
+        this.quitButton = new GameButton(_.tr("menu.quit"), positionX, positionY);
         quitButton.setHeight(otherButtonHeight);
 
         buttons = new GameButton[]{

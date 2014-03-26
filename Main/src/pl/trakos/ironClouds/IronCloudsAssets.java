@@ -46,6 +46,8 @@ public class IronCloudsAssets
     public static TextureRegion textureHudPause;
     public static TextureRegion textureHudRadioOff;
     public static TextureRegion textureHudRadioOn;
+    public static TextureRegion textureHudFinger;
+    public static TextureRegion textureHudArrow;
 
     public static TextureRegion textureGun;
     public static TextureRegion textureShell;
@@ -114,6 +116,8 @@ public class IronCloudsAssets
         IronCloudsAssets.textureHudPause = atlas.findRegion("hud/osc_pause");
         IronCloudsAssets.textureHudRadioOff = atlas.findRegion("hud/osc_radio_off");
         IronCloudsAssets.textureHudRadioOn = atlas.findRegion("hud/osc_radio_on");
+        IronCloudsAssets.textureHudFinger = atlas.findRegion("hud/finger");
+        IronCloudsAssets.textureHudArrow = atlas.findRegion("hud/arrow");
         IronCloudsAssets.textureHudButtonN = new NinePatch(atlas.findRegion("hud/osc_button_neutral"),
             6, 6, 7, 10
         );

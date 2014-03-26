@@ -310,4 +310,9 @@ public class Tank extends GameEntity
     {
         tankPos.x = x;
     }
+
+    public boolean isTankMoving()
+    {
+        return Math.abs(this.destinationPos.x - this.tankPos.x) > 1f;
+    }
 }

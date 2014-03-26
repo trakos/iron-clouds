@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import pl.trakos.ironClouds.game.GameCoreEntity;
 import pl.trakos.lib.GameEntityMenu;
 import pl.trakos.lib.GameSettings;
+import pl.trakos.lib._;
 import pl.trakos.lib.input.GameButton;
 import pl.trakos.lib.input.IGameInput;
 
@@ -20,13 +21,13 @@ public class HudMenu extends GameEntityMenu
         float positionX = (GameSettings.getCameraWidth() - GameButton.getStandardButtonWidth()) / 2;
         float positionY = 340;
 
-        resumeButton = new GameButton("resume", positionX, positionY);
+        resumeButton = new GameButton(_.tr("pause.resume"), positionX, positionY);
         positionY -= GameButton.getStandardButtonHeight() + 10;
-        restartButton = new GameButton("restart", positionX, positionY);
+        restartButton = new GameButton(_.tr("pause.restart"), positionX, positionY);
         positionY -= GameButton.getStandardButtonHeight() + 10;
-        mainMenuButton = new GameButton("main menu", positionX, positionY);
+        mainMenuButton = new GameButton(_.tr("pause.mainMenu"), positionX, positionY);
         positionY -= GameButton.getStandardButtonHeight() + 10;
-        quitButton = new GameButton("quit", positionX, positionY);
+        quitButton = new GameButton(_.tr("pause.quit"), positionX, positionY);
 
         buttons = new GameButton[]{
                 resumeButton,

@@ -1,7 +1,7 @@
 
 
 
-
+assets under CC0 or CC-BY-SA licenses:
 
 music
 
@@ -19,11 +19,12 @@ all sounds come from freesound.org
 
 images
 
-UI elements and controls by www.kenney.nl
-planes and clouds based on assets from War On Water
-(game available on Android Market)
+UI font, elements and controls by www.kenney.nl
+planes and clouds from "War On Water"
+ - game available on Google Play Store
 tank image by mishonis from opengameart.org
 background assets from glitchthegame.com
+Xelu FREE keyboard & controller prompts pack by Nicolae Berbece
 
 Thanks to many great people sharing
 their assets on CC-BY-SA or CC0 license!

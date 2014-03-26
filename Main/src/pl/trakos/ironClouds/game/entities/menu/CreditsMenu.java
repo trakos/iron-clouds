@@ -9,6 +9,7 @@ import pl.trakos.ironClouds.game.entities.Menu;
 import pl.trakos.lib.GameEntityMenu;
 import pl.trakos.lib.GameLayers;
 import pl.trakos.lib.GameSettings;
+import pl.trakos.lib._;
 import pl.trakos.lib.input.GameButton;
 import pl.trakos.lib.input.IGameInput;
 
@@ -31,7 +32,7 @@ public class CreditsMenu extends GameEntityMenu
     public CreditsMenu()
     {
         this.backButton = new GameButton(
-            "back",
+            _.tr("menu.back"),
             (GameSettings.getResolutionWidth() - GameButton.getStandardButtonWidth()) / 2,
             20
         );

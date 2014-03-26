@@ -1,6 +1,7 @@
 package pl.trakos.ironClouds.game.levels;
 
 import pl.trakos.ironClouds.game.entities.enemies.targets.AbstractTarget;
+import pl.trakos.lib._;
 
 public class Level5 extends AbstractLevel
 {
@@ -24,6 +25,6 @@ public class Level5 extends AbstractLevel
     @Override
     protected String getTitle()
     {
-        return "LEVEL 5";
+        return _.tr("game.level", 5);
     }
 }

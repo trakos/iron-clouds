@@ -14,6 +14,7 @@ import java.util.Map;
 public class GameCoreEntity extends GameEntitiesContainer
 {
 
+
     public enum GameState
     {
         MainMenu,
@@ -25,6 +26,7 @@ public class GameCoreEntity extends GameEntitiesContainer
 
     static AbstractLevel[] levels = new AbstractLevel[]
     {
+            new LevelTutorial(),
             new Level1(),
             new Level2(),
             new Level3(),
@@ -107,6 +109,10 @@ public class GameCoreEntity extends GameEntitiesContainer
         currentLevelIndex = levelNumber;
         currentLevel = levels[currentLevelIndex];
         currentLevel.start();
+    }
+    public boolean isTankMoving()
+    {
+        return tankAndMissiles.tank.isTankMoving();
     }
 
     public void showMainMenu()
@@ -200,6 +206,10 @@ public class GameCoreEntity extends GameEntitiesContainer
     @Override
     public void draw(GameLayers layer, SpriteBatch batch)
     {
+        if (gameState == GameState.GameActive)
+        {
+            currentLevel.draw(layer, batch);
+        }
         super.draw(layer, batch);
     }
 
@@ -218,6 +228,11 @@ public class GameCoreEntity extends GameEntitiesContainer
             }
             if (gameState == GameState.GameActive)
             {
+                hudInterception = currentLevel.handleTouch(x, y, previousTouchType, activeTouchId);
+                if (hudInterception != GameTouchType.NotIntercepted)
+                {
+                    return hudInterception;
+                }
                 return tankAndMissiles.handleTouch(x, y, previousTouchType, activeTouchId);
             }
             return GameTouchType.NotIntercepted;
