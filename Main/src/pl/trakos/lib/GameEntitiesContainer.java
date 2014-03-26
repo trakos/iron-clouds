@@ -30,15 +30,18 @@ public class GameEntitiesContainer extends GameEntity
     }
 
     protected List<GameEntity> entities;
+    protected List<IGameTouchHandler> touchHandlers;
 
     public GameEntitiesContainer()
     {
         entities = new ArrayList<GameEntity>();
+        touchHandlers = new ArrayList<IGameTouchHandler>();
     }
 
     public GameEntitiesContainer(int initialCapacity)
     {
         entities = new ArrayList<GameEntity>(initialCapacity);
+        touchHandlers = new ArrayList<IGameTouchHandler>(initialCapacity);
     }
 
     public void add(GameEntity entity)
@@ -136,5 +139,20 @@ public class GameEntitiesContainer extends GameEntity
             entity.entityPause();
         }
         super.entityPause();
+    }
+
+    GameTouchType touchInterception;
+    public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType, Integer activeTouchId)
+    {
+        touchInterception = GameTouchType.NotIntercepted;
+        for (IGameTouchHandler touchHandler : touchHandlers)
+        {
+            touchInterception = touchHandler.handleTouch(x, y, previousTouchType, activeTouchId);
+            if (touchInterception != GameTouchType.NotIntercepted)
+            {
+                return touchInterception;
+            }
+        }
+        return GameTouchType.NotIntercepted;
     }
 }

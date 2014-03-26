@@ -1,6 +1,7 @@
 package pl.trakos.ironClouds.game.entities;
 
 import pl.trakos.ironClouds.IronCloudsAssets;
+import pl.trakos.ironClouds.game.GameCoreEntity;
 import pl.trakos.ironClouds.game.entities.tank.Tank;
 import pl.trakos.ironClouds.game.entities.tank.TankMissileContainer;
 import pl.trakos.lib.GameEntitiesContainer;
@@ -28,6 +29,10 @@ public class TankAndMissiles extends GameEntitiesContainer
 
     public GameTouchType handleTouch(float touchPosX, float touchPosY, GameTouchType previousTouchType, Integer activeTouchId)
     {
+        if (GameCoreEntity.instance.getGameState() != GameCoreEntity.GameState.GameActive)
+        {
+            return GameTouchType.NotIntercepted;
+        }
         if (previousTouchType == GameTouchType.InterceptedByMenu)
         {
             return GameTouchType.NotIntercepted;

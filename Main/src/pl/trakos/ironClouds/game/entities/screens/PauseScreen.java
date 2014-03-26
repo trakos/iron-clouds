@@ -1,8 +1,5 @@
 package pl.trakos.ironClouds.game.entities.screens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import pl.trakos.ironClouds.IronCloudsUtils;
@@ -58,13 +55,7 @@ public class PauseScreen extends GameEntity
         {
             if (GameCoreEntity.instance.getGamePauseType() == GameCoreEntity.GamePauseType.InPauseMenu)
             {
-                batch.end();
-                Gdx.gl.glEnable(GL10.GL_BLEND);
-                shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-                shapeRenderer.setColor(new Color(0, 0, 0, .5f));
-                shapeRenderer.rect(0, 0, GameSettings.getScreenWidth(), GameSettings.getScreenHeight());
-                shapeRenderer.end();
-                batch.begin();
+                IronCloudsUtils.drawBlackingMask(batch);
                 float width = GameButton.getStandardButtonWidth() + 50;
                 IronCloudsUtils.drawMenuBox(batch, _.tr("game.pause"), (GameSettings.getCameraWidth() - width)
                                                                        / 2, 15, width, 450);

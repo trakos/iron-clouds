@@ -1,11 +1,16 @@
 package pl.trakos.ironClouds;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import pl.trakos.lib.GameSettings;
 
 public class IronCloudsUtils
 {
+    static ShapeRenderer shapeRenderer = new ShapeRenderer();
 
     static public void drawMenuBox(SpriteBatch batch, String title, float positionX, float positionY, float width, float height)
     {
@@ -35,5 +40,17 @@ public class IronCloudsUtils
                 BitmapFont.HAlignment.CENTER
         );
         IronCloudsAssets.fontKenVector.setColor(Color.WHITE);
+    }
+
+    public static void drawBlackingMask(SpriteBatch batch)
+    {
+        batch.end();
+        Gdx.gl.glEnable(GL10.GL_BLEND);
+        shapeRenderer.setProjectionMatrix(GameSettings.getCamera().combined);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(new Color(0, 0, 0, .5f));
+        shapeRenderer.rect(0, 0, GameSettings.getCameraWidth(), GameSettings.getCameraHeight());
+        shapeRenderer.end();
+        batch.begin();
     }
 }

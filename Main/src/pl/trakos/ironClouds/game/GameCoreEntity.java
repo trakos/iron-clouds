@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.ironClouds.game.entities.*;
 import pl.trakos.ironClouds.game.entities.enemies.targets.AbstractTarget;
+import pl.trakos.ironClouds.game.entities.screens.LossScreen;
 import pl.trakos.ironClouds.game.entities.screens.PauseScreen;
 import pl.trakos.ironClouds.game.levels.*;
 import pl.trakos.lib.*;
@@ -58,16 +59,20 @@ public class GameCoreEntity extends GameEntitiesContainer
     TankAndMissiles tankAndMissiles;
     TargetsAndBombs targetsAndBombs;
     AbstractLevel currentLevel;
-    PauseScreen pauseMenu;
+    PauseScreen pauseScreen;
+    LossScreen lossScreen;
     int currentLevelIndex = 0;
 
     protected GameCoreEntity()
     {
+        super();
+
         menu = Menu.instance;
         background = new Background();
         tankAndMissiles = new TankAndMissiles();
         targetsAndBombs = new TargetsAndBombs();
-        pauseMenu = new PauseScreen();
+        pauseScreen = new PauseScreen();
+        lossScreen = new LossScreen();
 
         add(background);
         add(GameFboParticle.instance);
@@ -76,7 +81,26 @@ public class GameCoreEntity extends GameEntitiesContainer
         add(GameFboParticle.foregroundInstance);
         add(Hud.instance);
         add(menu);
-        add(pauseMenu);
+        add(pauseScreen);
+        add(lossScreen);
+
+        touchHandlers.add(menu);
+        touchHandlers.add(lossScreen);
+        touchHandlers.add(pauseScreen);
+        touchHandlers.add(Hud.instance);
+        touchHandlers.add(new IGameTouchHandler()
+        {
+            @Override
+            public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType, Integer activeTouchId)
+            {
+                if (currentLevel != null)
+                {
+                    return currentLevel.handleTouch(x, y, previousTouchType, activeTouchId);
+                }
+                return GameTouchType.NotIntercepted;
+            }
+        });
+        touchHandlers.add(tankAndMissiles);
     }
 
     public GameState getGameState()
@@ -213,7 +237,8 @@ public class GameCoreEntity extends GameEntitiesContainer
         }
         else if (currentLevel.checkForLoss() != null)
         {
-            restartCurrentLevel();
+            changeGameState(GameState.GamePaused, GamePauseType.JustLost);
+            lossScreen.setLossReason(currentLevel.checkForLoss());
         }
     }
 
@@ -230,37 +255,6 @@ public class GameCoreEntity extends GameEntitiesContainer
             currentLevel.draw(layer, batch);
         }
         super.draw(layer, batch);
-    }
-
-    public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType, Integer activeTouchId)
-    {
-        if (gameState == GameState.MainMenu)
-        {
-            return menu.handleTouch(x, y, previousTouchType, activeTouchId);
-        }
-        else
-        {
-            GameTouchType hudInterception = pauseMenu.handleTouch(x, y, previousTouchType, activeTouchId);
-            if (hudInterception != GameTouchType.NotIntercepted)
-            {
-                return hudInterception;
-            }
-            hudInterception = Hud.instance.handleTouch(x, y, previousTouchType, activeTouchId);
-            if (hudInterception != GameTouchType.NotIntercepted)
-            {
-                return hudInterception;
-            }
-            if (gameState == GameState.GameActive)
-            {
-                hudInterception = currentLevel.handleTouch(x, y, previousTouchType, activeTouchId);
-                if (hudInterception != GameTouchType.NotIntercepted)
-                {
-                    return hudInterception;
-                }
-                return tankAndMissiles.handleTouch(x, y, previousTouchType, activeTouchId);
-            }
-            return GameTouchType.NotIntercepted;
-        }
     }
 
     public float getPlayerCameraX()

@@ -157,7 +157,11 @@ public class LevelTutorial extends AbstractLevel
     @Override
     public GameTouchType handleTouch(float x, float y, GameTouchType previousTouchType, Integer activeTouchId)
     {
-        if (previousTouchType == null && waitingForTap)
+        if (GameCoreEntity.instance.getGameState() != GameCoreEntity.GameState.GameActive)
+        {
+            return GameTouchType.NotIntercepted;
+        }
+        else if (previousTouchType == null && waitingForTap)
         {
             waitingForTap = false;
             return GameTouchType.InterceptedByMenu;

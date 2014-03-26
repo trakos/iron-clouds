@@ -9,21 +9,20 @@ import pl.trakos.ironClouds.game.enums.LossReason;
 import pl.trakos.lib.GameLayers;
 import pl.trakos.lib.GameSettings;
 import pl.trakos.lib.GameTouchType;
+import pl.trakos.lib.IGameTouchHandler;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Random;
 
-public abstract class AbstractLevel
+public abstract class AbstractLevel implements IGameTouchHandler
 {
 
     public float getTimeTaken()
     {
         return timeTaken;
     }
-
-
 
     class EnemySpawn
     {
