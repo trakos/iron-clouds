@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pl.trakos.ironClouds.IronCloudsAssets;
+import pl.trakos.ironClouds.IronCloudsUtils;
 import pl.trakos.ironClouds.game.GameCoreEntity;
 import pl.trakos.ironClouds.game.entities.menu.*;
 import pl.trakos.lib.*;
@@ -101,32 +102,7 @@ public class Menu extends GameEntitiesContainer
                 : GameButton.getStandardButtonWidth() + 50;
             float positionX = (GameSettings.getCameraWidth() - width) / 2;
 
-            IronCloudsAssets.textureHudPanelDark.setColor(new Color(0, 0, 0, .7f));
-            IronCloudsAssets.textureHudPanelDark.draw(
-                    batch,
-                    positionX,
-                    15,
-                    width,
-                    450
-            );
-            IronCloudsAssets.textureHudPanelLight.setColor(new Color(0, 0, 0, .3f));
-            IronCloudsAssets.textureHudPanelLight.draw(
-                    batch,
-                    positionX,
-                    15,
-                    width,
-                    410
-            );
-            IronCloudsAssets.fontKenVector.setColor(new Color(.8f, .8f, .8f, .8f));
-            IronCloudsAssets.fontKenVector.drawWrapped(
-                    batch,
-                    "Iron Clouds",
-                    positionX,
-                    454,
-                    width,
-                    BitmapFont.HAlignment.CENTER
-            );
-            IronCloudsAssets.fontKenVector.setColor(Color.WHITE);
+            IronCloudsUtils.drawMenuBox(batch, "Iron Clouds", positionX, 15, width, 450);
 
             getCurrentMenu().draw(layer, batch);
         }

@@ -3,6 +3,7 @@
 <language name="en" >
     <string key="game.level">level %d</string>
     <string key="game.finalLevel">final level</string>
+    <string key="game.pause">pause</string>
     <string key="tutorial.tapToShoot">tap anywhere on the sky to shoot</string>
     <string key="tutorial.tapToMove">tap on the ground to move</string>
     <string key="tutorial.hudHealth">here you can see amount of health left - each enemy bomb that hits your tank will take one away.
@@ -47,6 +48,7 @@ Tap to finish tutorial.</string>
 <language name="pl-bak" >
     <string key="game.level">poziom %d</string>
     <string key="game.finalLevel">ostatni poziom</string>
+    <string key="game.pause">pauza</string>
     <string key="tutorial.tapToShoot">tapnij gdziekolwiek na niebie aby wystrzelić</string>
     <string key="tutorial.tapToMove">tapnij na ziemi aby się przemieścić</string>
     <string key="tutorial.hudHealth">Tutaj widzisz, ile życia Ci pozostało - każde trafienie bombą Twojego czołgu zabierze jedno.
@@ -91,6 +93,7 @@ Tapnij, aby kontynuować.</string>
 <language name="pl" >
     <string key="game.level">poziom %d</string>
     <string key="game.finalLevel">ostatni poziom</string>
+    <string key="game.pause">pauza</string>
     <string key="tutorial.tapToShoot">tapnij gdziekolwiek na niebie aby wystrzelic</string>
     <string key="tutorial.tapToMove">tapnij na ziemi aby sie przemiescic</string>
     <string key="tutorial.hudHealth">Tutaj widzisz, ile zycia Ci pozostalo - kazde trafienie bomba Twojego czolgu zabierze jedno.

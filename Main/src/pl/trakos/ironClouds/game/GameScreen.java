@@ -1,5 +1,6 @@
 package pl.trakos.ironClouds.game;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
@@ -157,17 +158,17 @@ public class GameScreen implements Screen
     {
     }
 
+
+    GameCoreEntity.GameState previousGameState;
+    GameCoreEntity.GamePauseType previousGamePauseType;
     @Override
     public void pause()
     {
         if (Gdx.app.getType() == Application.ApplicationType.Android)
         {
-            gameCoreEntity.changeGameState(
-                    (gameCoreEntity.getGameState() == GameCoreEntity.GameState.GameActive
-                            || gameCoreEntity.getGameState() == GameCoreEntity.GameState.GamePausedInMenu)
-                            ? GameCoreEntity.GameState.GamePausedByOSGame
-                            : GameCoreEntity.GameState.GamePausedByOSMainMenu
-            );
+            previousGameState = gameCoreEntity.getGameState();
+            previousGamePauseType = gameCoreEntity.getGamePauseType();
+            gameCoreEntity.changeGameState(GameCoreEntity.GameState.GamePaused, GameCoreEntity.GamePauseType.ByOS);
             GameFboParticle.disposeAll();
         }
     }
@@ -178,11 +179,7 @@ public class GameScreen implements Screen
         if (Gdx.app.getType() == Application.ApplicationType.Android)
         {
             GameFboParticle.createOrResumeAll();
-            gameCoreEntity.changeGameState(
-                    gameCoreEntity.getGameState() == GameCoreEntity.GameState.GamePausedByOSMainMenu
-                            ? GameCoreEntity.GameState.MainMenu
-                            : GameCoreEntity.GameState.GamePausedInMenu
-            );
+            gameCoreEntity.changeGameState(previousGameState, previousGamePauseType);
         }
     }
 

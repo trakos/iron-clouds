@@ -9,17 +9,17 @@ import pl.trakos.lib.input.GameButton;
 import pl.trakos.lib.input.IGameInput;
 
 
-public class HudMenu extends GameEntityMenu
+public class PauseMenu extends GameEntityMenu
 {
     protected final GameButton resumeButton;
     protected final GameButton restartButton;
     protected final GameButton mainMenuButton;
     protected final GameButton quitButton;
 
-    public HudMenu()
+    public PauseMenu()
     {
         float positionX = (GameSettings.getCameraWidth() - GameButton.getStandardButtonWidth()) / 2;
-        float positionY = 340;
+        float positionY = 320;
 
         resumeButton = new GameButton(_.tr("pause.resume"), positionX, positionY);
         positionY -= GameButton.getStandardButtonHeight() + 10;

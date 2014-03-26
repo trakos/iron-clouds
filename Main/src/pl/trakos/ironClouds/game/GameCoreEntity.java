@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.ironClouds.game.entities.*;
 import pl.trakos.ironClouds.game.entities.enemies.targets.AbstractTarget;
+import pl.trakos.ironClouds.game.entities.screens.PauseScreen;
 import pl.trakos.ironClouds.game.levels.*;
 import pl.trakos.lib.*;
 
@@ -19,9 +20,15 @@ public class GameCoreEntity extends GameEntitiesContainer
     {
         MainMenu,
         GameActive,
-        GamePausedInMenu,
-        GamePausedByOSMainMenu,
-        GamePausedByOSGame,
+        GamePaused
+    }
+
+    public enum GamePauseType
+    {
+        InPauseMenu,
+        JustLost,
+        JustWon,
+        ByOS,
     }
 
     static AbstractLevel[] levels = new AbstractLevel[]
@@ -45,11 +52,13 @@ public class GameCoreEntity extends GameEntitiesContainer
     }
 
     GameState gameState = GameState.GameActive;
+    GamePauseType gamePauseType = null;
     Menu menu;
     Background background;
     TankAndMissiles tankAndMissiles;
     TargetsAndBombs targetsAndBombs;
     AbstractLevel currentLevel;
+    PauseScreen pauseMenu;
     int currentLevelIndex = 0;
 
     protected GameCoreEntity()
@@ -58,6 +67,7 @@ public class GameCoreEntity extends GameEntitiesContainer
         background = new Background();
         tankAndMissiles = new TankAndMissiles();
         targetsAndBombs = new TargetsAndBombs();
+        pauseMenu = new PauseScreen();
 
         add(background);
         add(GameFboParticle.instance);
@@ -66,6 +76,7 @@ public class GameCoreEntity extends GameEntitiesContainer
         add(GameFboParticle.foregroundInstance);
         add(Hud.instance);
         add(menu);
+        add(pauseMenu);
     }
 
     public GameState getGameState()
@@ -80,18 +91,26 @@ public class GameCoreEntity extends GameEntitiesContainer
         targetsAndBombs.targets.randomlyPlaceEnemiesForBackground();
     }
 
+    public GamePauseType getGamePauseType()
+    {
+        return gamePauseType;
+    }
+
     public void changeGameState(GameState newGameState)
     {
+        changeGameState(newGameState, null);
+    }
+
+    public void changeGameState(GameState newGameState, GamePauseType newPauseType)
+    {
         if (
-            newGameState == GameState.GamePausedByOSGame
-            || newGameState == GameState.GamePausedByOSMainMenu
-            || newGameState == GameState.GamePausedInMenu
-            || newGameState == GameState.MainMenu
+            newGameState == GameState.GamePaused
         )
         {
             entityPause();
         }
         gameState = newGameState;
+        gamePauseType = newPauseType;
     }
 
     public void start()
@@ -148,7 +167,7 @@ public class GameCoreEntity extends GameEntitiesContainer
             {
                 Menu.instance.update(delta);
             }
-            else if (gameState == GameState.GamePausedInMenu)
+            else if (gamePauseType == GamePauseType.InPauseMenu)
             {
                 Hud.instance.update(delta);
             }
@@ -221,7 +240,12 @@ public class GameCoreEntity extends GameEntitiesContainer
         }
         else
         {
-            GameTouchType hudInterception = Hud.instance.handleTouch(x, y, previousTouchType, activeTouchId);
+            GameTouchType hudInterception = pauseMenu.handleTouch(x, y, previousTouchType, activeTouchId);
+            if (hudInterception != GameTouchType.NotIntercepted)
+            {
+                return hudInterception;
+            }
+            hudInterception = Hud.instance.handleTouch(x, y, previousTouchType, activeTouchId);
             if (hudInterception != GameTouchType.NotIntercepted)
             {
                 return hudInterception;

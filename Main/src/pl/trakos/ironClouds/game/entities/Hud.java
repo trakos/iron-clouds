@@ -1,15 +1,10 @@
 package pl.trakos.ironClouds.game.entities;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.ironClouds.game.GameCoreEntity;
-import pl.trakos.ironClouds.game.entities.menu.HudMenu;
 import pl.trakos.lib.GameEntity;
 import pl.trakos.lib.GameLayers;
 import pl.trakos.lib.GameSettings;
@@ -24,12 +19,9 @@ public class Hud extends GameEntity
     protected final TextureRegion emptyHeartTexture;
     protected final TextureRegion planeTexture;
     protected final TextureRegion pauseTexture;
-    protected final HudMenu hudMenu;
-
 
     private final float pauseX;
     private final float pauseY;
-    private ShapeRenderer shapeRenderer = new ShapeRenderer();
 
     public Hud()
     {
@@ -41,8 +33,6 @@ public class Hud extends GameEntity
 
         pauseX = GameSettings.getCameraWidth() - pauseTexture.getRegionWidth() - 10;
         pauseY = GameSettings.groundPositionY + 10;
-
-        hudMenu = new HudMenu();
     }
 
     @Override
@@ -76,7 +66,6 @@ public class Hud extends GameEntity
         {
             timeTitleLeft -= delta;
         }
-        hudMenu.update(delta);
     }
 
     float timeTitleLeft = 0;
@@ -118,30 +107,17 @@ public class Hud extends GameEntity
             positionX = drawX(batch, positionX, positionY);
             positionX = drawShell(batch, positionX, positionY);
 
-            if (GameCoreEntity.instance.getGameState() == GameCoreEntity.GameState.GamePausedInMenu)
+            if (GameCoreEntity.instance.getGameState() == GameCoreEntity.GameState.GameActive
+                    && timeTitleLeft > 0)
             {
-                batch.end();
-                Gdx.gl.glEnable(GL10.GL_BLEND);
-                shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-                shapeRenderer.setColor(new Color(0, 0, 0, .5f));
-                shapeRenderer.rect(0, 0, GameSettings.getScreenWidth(), GameSettings.getScreenHeight());
-                shapeRenderer.end();
-                batch.begin();
-                hudMenu.draw(layer, batch);
-            }
-            else
-            {
-                if (timeTitleLeft > 0)
-                {
-                    IronCloudsAssets.fontKenVector.drawWrapped(
-                            batch,
-                            titleText,
-                            0,
-                            GameSettings.getCameraHeight() / 2 + 60,
-                            GameSettings.getCameraWidth(),
-                            BitmapFont.HAlignment.CENTER
-                    );
-                }
+                IronCloudsAssets.fontKenVector.drawWrapped(
+                        batch,
+                        titleText,
+                        0,
+                        GameSettings.getCameraHeight() / 2 + 60,
+                        GameSettings.getCameraWidth(),
+                        BitmapFont.HAlignment.CENTER
+                );
             }
 
             drawPauseButton(batch, pauseX, pauseY);
@@ -285,15 +261,11 @@ public class Hud extends GameEntity
                 }
                 else
                 {
-                    GameCoreEntity.instance.changeGameState(GameCoreEntity.GameState.GamePausedInMenu);
+                    GameCoreEntity.instance.changeGameState(GameCoreEntity.GameState.GamePaused, GameCoreEntity.GamePauseType.InPauseMenu);
                 }
             }
             return GameTouchType.InterceptedByMenu;
         }
-        else if (GameCoreEntity.instance.getGameState() != GameCoreEntity.GameState.GamePausedInMenu)
-        {
-            return GameTouchType.NotIntercepted;
-        }
-        return hudMenu.handleTouch(x, y, previousTouchType, activeTouchId);
+        return GameTouchType.NotIntercepted;
     }
 }
