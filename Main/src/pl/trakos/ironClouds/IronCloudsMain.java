@@ -3,13 +3,20 @@ package pl.trakos.ironClouds;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import pl.trakos.ironClouds.game.GameCoreEntity;
 import pl.trakos.ironClouds.game.GameScreen;
 import pl.trakos.lib.GameSettings;
 
 
 public class IronCloudsMain extends Game
 {
-    Screen gameScreen;
+    static Screen gameScreen;
+    static boolean first = true;
+
+    public IronCloudsMain()
+    {
+
+    }
 
     @Override
     public void create()
@@ -18,13 +25,19 @@ public class IronCloudsMain extends Game
         IronCloudsAssets.music01spaceFighterLoop.setLooping(true);
         GameSettings.refreshMusicVolume();
         IronCloudsAssets.music01spaceFighterLoop.play();
-        GameSettings.loadOptions();
-        GameSettings.loadHighScores();
-        Gdx.input.setCatchBackKey(true);
-        Gdx.input.setCatchMenuKey(true);
+        if (first)
+        {
+            GameSettings.loadOptions();
+            GameSettings.loadHighScores();
+            Gdx.input.setCatchBackKey(true);
+            Gdx.input.setCatchMenuKey(true);
+            gameScreen = new GameScreen();
 
-        gameScreen = new GameScreen();
+            first = false;
+        }
+        gameScreen.resume();
         setScreen(gameScreen);
+        GameCoreEntity.instance.start();
     }
 
     @Override

@@ -6,13 +6,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import pl.trakos.ironClouds.IronCloudsAssets;
+import pl.trakos.ironClouds.IronCloudsUtils;
 import pl.trakos.lib.GameLayers;
 import pl.trakos.lib.GameSettings;
 import pl.trakos.lib.input.GameInputElement;
 
 public class TapHereIcon extends GameInputElement
 {
-    ShapeRenderer shapeRenderer = new ShapeRenderer();
     TextureRegion hudFinger = IronCloudsAssets.textureHudFinger;
 
     float currentDiffY = 0;
@@ -44,6 +44,7 @@ public class TapHereIcon extends GameInputElement
             return;
         }
         batch.end();
+        ShapeRenderer shapeRenderer = IronCloudsUtils.getShapeRenderer();
         shapeRenderer.setProjectionMatrix(GameSettings.getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(new Color(0xA91818FF));

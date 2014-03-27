@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
+import pl.trakos.ironClouds.IronCloudsUtils;
 import pl.trakos.ironClouds.game.entities.Hud;
 import pl.trakos.ironClouds.game.entities.Menu;
 import pl.trakos.lib.GameFboParticle;
@@ -28,7 +29,6 @@ public class GameScreen implements Screen
         cameraMarginX = GameSettings.getCameraWidth() / 4;
 
         gameCoreEntity = GameCoreEntity.instance;
-        gameCoreEntity.start();
     }
 
     GameTouchType[] activeTouches = new GameTouchType[10];
@@ -106,7 +106,7 @@ public class GameScreen implements Screen
         gameCoreEntity.update(delta);
         updateCameraPosition(GameSettings.getCameraStartX(), gameCoreEntity.getPlayerCameraX(), GameSettings.getCamera());
 
-        if (fpsDrawDelay <= 0)
+        /*if (fpsDrawDelay <= 0)
         {
             Gdx.app.log("fps", String.valueOf(Math.round(Gdx.graphics.getFramesPerSecond())));
             fpsDrawDelay = 1;
@@ -114,7 +114,7 @@ public class GameScreen implements Screen
         else
         {
             fpsDrawDelay -= delta;
-        }
+        }*/
     }
 
     final float cameraMarginX;
@@ -212,6 +212,12 @@ public class GameScreen implements Screen
         {
             GameFboParticle.createOrResumeAll();
             gameCoreEntity.changeGameState(previousGameState, previousGamePauseType);
+            IronCloudsUtils.recreateShapeRenderer();
+
+            GameSettings.getCamera().setToOrtho(false, GameSettings.getResolutionWidth(), GameSettings.getResolutionHeight());
+            batch = new SpriteBatch();
+
+            gameCoreEntity = GameCoreEntity.instance;
         }
     }
 

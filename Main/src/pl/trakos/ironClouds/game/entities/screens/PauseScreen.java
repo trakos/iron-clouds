@@ -1,7 +1,6 @@
 package pl.trakos.ironClouds.game.entities.screens;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import pl.trakos.ironClouds.IronCloudsUtils;
 import pl.trakos.ironClouds.game.GameCoreEntity;
 import pl.trakos.ironClouds.game.entities.menu.PauseMenu;
@@ -11,7 +10,6 @@ import pl.trakos.lib.input.GameButton;
 public class PauseScreen extends GameEntity
 {
     protected final PauseMenu hudMenu;
-    private final ShapeRenderer shapeRenderer = new ShapeRenderer();
 
     public PauseScreen()
     {

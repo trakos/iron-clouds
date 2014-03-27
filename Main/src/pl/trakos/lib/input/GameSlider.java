@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
 import pl.trakos.ironClouds.IronCloudsAssets;
+import pl.trakos.ironClouds.IronCloudsUtils;
 import pl.trakos.lib.GameLayers;
 import pl.trakos.lib.GameSettings;
 import pl.trakos.lib.GameTouchType;
@@ -14,7 +15,6 @@ public class GameSlider extends GameInputElement
 {
     String text;
     TextureRegion radioCircleOff = IronCloudsAssets.textureHudRadioOff;
-    ShapeRenderer shapeRenderer = new ShapeRenderer();
     public float value;
     protected Vector3 vectorStart = new Vector3();
     protected Vector3 vectorEnd = new Vector3();
@@ -52,6 +52,7 @@ public class GameSlider extends GameInputElement
             batch.end();
 
             fillVectors();
+            ShapeRenderer shapeRenderer = IronCloudsUtils.getShapeRenderer();
             shapeRenderer.setProjectionMatrix(GameSettings.getCamera().combined);
             shapeRenderer.setColor(new Color(.5f, .5f, .5f, 1));
 

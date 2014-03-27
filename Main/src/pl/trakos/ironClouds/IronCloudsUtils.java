@@ -12,6 +12,22 @@ public class IronCloudsUtils
 {
     static ShapeRenderer shapeRenderer = new ShapeRenderer();
 
+    static public void recreateShapeRenderer()
+    {
+        Gdx.app.log("fps", "shaperenderer");
+        if (shapeRenderer != null)
+        {
+            shapeRenderer.dispose();
+            shapeRenderer = null;
+        }
+        shapeRenderer = new ShapeRenderer();
+    }
+
+    static public ShapeRenderer getShapeRenderer()
+    {
+        return shapeRenderer;
+    }
+
     static public void drawMenuBox(SpriteBatch batch, String title, float positionX, float positionY, float width, float height)
     {
         IronCloudsAssets.textureHudPanelDark.setColor(new Color(0, 0, 0, .7f));
