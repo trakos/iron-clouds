@@ -41,7 +41,7 @@ public class LevelMenuButtons extends GameEntityMenu
             }
         }
 
-        positionY -= GameButton.getStandardButtonHeight() + 50;
+        positionY = 20;
         this.backButton = new GameButton(_.tr("menu.back"), positionX, positionY);
         buttons[GameCoreEntity.getLevelsCount()] = this.backButton;
     }

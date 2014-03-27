@@ -7,6 +7,7 @@ import pl.trakos.ironClouds.game.entities.Hud;
 import pl.trakos.ironClouds.game.entities.enemies.targets.AbstractTarget;
 import pl.trakos.ironClouds.game.entities.menu.ArrowExplanationIcon;
 import pl.trakos.ironClouds.game.entities.menu.TapHereIcon;
+import pl.trakos.ironClouds.game.var.WinPoints;
 import pl.trakos.lib.GameLayers;
 import pl.trakos.lib.GameSettings;
 import pl.trakos.lib.GameTouchType;
@@ -46,6 +47,12 @@ public class LevelTutorial extends AbstractLevel
     }
 
     boolean waitingForTap = false;
+
+    @Override
+    public WinPoints getMissionCompletePoints()
+    {
+        return null;
+    }
 
     private void setCurrentStep(TutorialStep tutorialStep)
     {
@@ -218,7 +225,7 @@ public class LevelTutorial extends AbstractLevel
     }
 
     @Override
-    public int getMissilesCount(int remainingHitPoints)
+    public int getMissilesCount(int totalHitPoints)
     {
         return 100;
     }

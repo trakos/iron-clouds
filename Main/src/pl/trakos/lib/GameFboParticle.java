@@ -146,8 +146,10 @@ public class GameFboParticle extends GameEntity
     @Override
     public void dispose()
     {
-        particleFbo.dispose();
-        particleBatch.dispose();
+        if (particleFbo != null)
+            particleFbo.dispose();
+        if (particleBatch != null)
+            particleBatch.dispose();
         particleFbo = null;
         particleBatch = null;
     }

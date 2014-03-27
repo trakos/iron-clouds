@@ -41,6 +41,7 @@ public class IronCloudsAssets
 
     public static Array<TextureAtlas.AtlasRegion> textureHudDigits;
     public static TextureRegion textureHudX;
+    public static TextureRegion textureHudEqualSign;
     public static TextureRegion textureHudHeart;
     public static TextureRegion textureHudHeartEmpty;
     public static TextureRegion textureHudPause;
@@ -86,6 +87,7 @@ public class IronCloudsAssets
         fontDejavuBI = new BitmapFont(Gdx.files.internal("fonts/dejavubi.fnt"));
         fontKenVector = new BitmapFont(Gdx.files.internal("fonts/kenvector.fnt"));
         fontKenVectorSmall = new BitmapFont(Gdx.files.internal("fonts/kenvector_small.fnt"));
+        fontKenVector.setFixedWidthGlyphs("0123456789");
 
         // music
         IronCloudsAssets.music01spaceFighterLoop = Gdx.audio.newMusic(Gdx.files.internal("audio/music01_space_fighter_loop.mp3"));
@@ -111,6 +113,7 @@ public class IronCloudsAssets
 
         IronCloudsAssets.textureHudDigits = atlas.findRegions("hud/digit");
         IronCloudsAssets.textureHudX = atlas.findRegion("hud/x");
+        IronCloudsAssets.textureHudEqualSign = atlas.findRegion("hud/=");
         IronCloudsAssets.textureHudHeart = atlas.findRegion("hud/heart");
         IronCloudsAssets.textureHudHeartEmpty = atlas.findRegion("hud/empty_heart");
         IronCloudsAssets.textureHudPause = atlas.findRegion("hud/osc_pause");

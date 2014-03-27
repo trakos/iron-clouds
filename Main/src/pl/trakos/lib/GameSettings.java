@@ -153,13 +153,80 @@ public class GameSettings
         saveOptions();
     }
 
-    public static Preferences getPreferences()
+    static Preferences getPreferences()
     {
         if (preferences == null)
         {
             preferences = Gdx.app.getPreferences("IronClouds");
         }
         return preferences;
+    }
+
+    static Preferences getHighScoresPreferences()
+    {
+        if (preferences == null)
+        {
+            preferences = Gdx.app.getPreferences("IronClouds.highScores");
+        }
+        return preferences;
+    }
+
+    public static Tuple<String, Integer>[] getHighScores()
+    {
+        return highScores;
+    }
+
+    public static boolean isScoreHigh(int value)
+    {
+        return highScores[9].b < value;
+    }
+
+    public static void addHighScore(String name, int value)
+    {
+        Tuple<String, Integer> prevScore = null;
+        boolean added = false;
+        for (int k = 0; k < 10; k++)
+        {
+            if (!added && highScores[k].b < value)
+            {
+                prevScore = highScores[k];
+                highScores[k] = new Tuple<String, Integer>(name, value);
+                added = true;
+            }
+            else if (added)
+            {
+                Tuple<String, Integer> temporary = highScores[k];
+                highScores[k] = prevScore;
+                prevScore = temporary;
+            }
+        }
+        saveHighScores();
+    }
+
+    static Tuple<String, Integer>[] highScores;
+    
+    @SuppressWarnings({"unchecked"})
+    public static void loadHighScores()
+    {
+        highScores = new Tuple[10];
+        Preferences preferences = getHighScoresPreferences();
+        for (int k = 0; k < 10; k++)
+        {
+            String name = preferences.getString("name" + Integer.toString(k));
+            Integer value = preferences.getInteger("value" + Integer.toString(k));
+            highScores[k] = new Tuple<String, Integer>(name, value);
+        }
+    }
+    
+    public static void saveHighScores()
+    {
+        Preferences preferences = getHighScoresPreferences();
+        for (int k = 0; k < 10; k++)
+        {
+            preferences.putString("name" + Integer.toString(k), highScores[k].a);
+            preferences.putInteger("value" + Integer.toString(k), highScores[k].b);
+        }
+        preferences.flush();
     }
 
     public static void saveOptions()
@@ -169,6 +236,7 @@ public class GameSettings
         preferences.putFloat("music", getMusicVolume());
         preferences.putFloat("sound", getSoundVolume());
         preferences.putInteger("difficulty", getGameDifficulty().ordinal());
+        preferences.putString("lastUsedNick", lastUsedNick);
         preferences.putBoolean("initialized", true);
         preferences.flush();
     }
@@ -189,6 +257,7 @@ public class GameSettings
             setMusicVolume(preferences.getFloat("music"));
             setSoundVolume(preferences.getFloat("sound"));
             setGameDifficulty(GameDifficulty.values()[Math.min(GameDifficulty.values().length, Math.max(0, preferences.getInteger("difficulty")))]);
+            lastUsedNick = preferences.getString("lastUsedNick");
         }
         else
         {
@@ -201,6 +270,25 @@ public class GameSettings
             setSoundVolume(1);
             setGameDifficulty(GameDifficulty.Medium);
             saveOptions();
+            lastUsedNick = "";
         }
+    }
+
+    public static GameDifficulty getEasiestDifficulty()
+    {
+        return GameDifficulty.Easy;
+    }
+
+    public static void setLastUsedNick(String lastUsedNick)
+    {
+        GameSettings.lastUsedNick = lastUsedNick;
+        saveOptions();
+    }
+
+    static String lastUsedNick;
+
+    public static String getLastUsedNick()
+    {
+        return lastUsedNick;
     }
 }

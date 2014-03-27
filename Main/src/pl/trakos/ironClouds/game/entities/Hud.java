@@ -1,9 +1,11 @@
 package pl.trakos.ironClouds.game.entities;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import pl.trakos.ironClouds.IronCloudsAssets;
+import pl.trakos.ironClouds.IronCloudsUtils;
 import pl.trakos.ironClouds.game.GameCoreEntity;
 import pl.trakos.lib.GameEntity;
 import pl.trakos.lib.GameLayers;
@@ -154,36 +156,7 @@ public class Hud extends GameEntity
 
     private float typeNumber(SpriteBatch batch, int number, float positionX, float positionY)
     {
-        number = Math.min(Math.max(number, 0), 999);
-        int firstDigit = (int) Math.floor(number / 100);
-        int secondDigit = (int) Math.floor((number - firstDigit * 100) / 10);
-        int thirdDigit = number - firstDigit * 100 - secondDigit * 10;
-
-        batch.draw(
-                IronCloudsAssets.textureHudDigits.get(firstDigit),
-                positionX,
-                positionY - 8,
-                IronCloudsAssets.textureHudDigits.get(firstDigit).getRegionWidth(),
-                IronCloudsAssets.textureHudDigits.get(firstDigit).getRegionHeight()
-        );
-        positionX += 24;
-        batch.draw(
-                IronCloudsAssets.textureHudDigits.get(secondDigit),
-                positionX,
-                positionY - 8,
-                IronCloudsAssets.textureHudDigits.get(secondDigit).getRegionWidth(),
-                IronCloudsAssets.textureHudDigits.get(secondDigit).getRegionHeight()
-        );
-        positionX += 24;
-        batch.draw(
-                IronCloudsAssets.textureHudDigits.get(thirdDigit),
-                positionX,
-                positionY - 8,
-                IronCloudsAssets.textureHudDigits.get(thirdDigit).getRegionWidth(),
-                IronCloudsAssets.textureHudDigits.get(thirdDigit).getRegionHeight()
-        );
-        positionX += 24;
-        return positionX;
+        return IronCloudsUtils.typeNumber(batch, number, 3, positionX, positionY, Color.WHITE);
     }
 
     private float drawX(SpriteBatch batch, float positionX, float positionY)

@@ -1,5 +1,6 @@
 package pl.trakos.ironClouds.game.entities.menu;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -58,6 +59,7 @@ public class CreditsMenu extends GameEntityMenu
         calculateScissors(area, scissor, batch);
         batch.flush();
         ScissorStack.pushScissors(scissor);
+        IronCloudsAssets.fontKenVectorSmall.setColor(Color.WHITE);
         BitmapFont.TextBounds textBounds = IronCloudsAssets.fontKenVectorSmall.drawWrapped(
                 batch,
                 IronCloudsAssets.creditsText,

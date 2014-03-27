@@ -8,6 +8,10 @@
     <string key="game.loss.outOfHealth">You were hit by one bomb too much!</string>
     <string key="game.loss.zeroMissiles">You're out of ammo!</string>
     <string key="game.loss.tooFewMissiles">You have too few missiles to finish the level.</string>
+    <string key="game.won">mission complete</string>
+    <string key="game.won.next">next</string>
+    <string key="game.won.total">total</string>
+    <string key="game.won.inputTitle">Type your nick</string>
     <string key="tutorial.tapToShoot">tap anywhere on the sky to shoot</string>
     <string key="tutorial.tapToMove">tap on the ground to move</string>
     <string key="tutorial.hudHealth">here you can see amount of health left - each enemy bomb that hits your tank will take one away.
@@ -56,7 +60,11 @@ Tap to finish tutorial.</string>
     <string key="game.loss">przegrana</string>
     <string key="game.loss.outOfHealth">Trafiła Cię o jedna bomba za dużo!</string>
     <string key="game.loss.zeroMissiles">Skonczyła Ci się amunicja!</string>
-    <string key="game.loss.tooFewMissiles">Amunicji jest za mało do dokończenia poziomu.</string>
+    <string key="game.loss.tooFewMissiles">Zostało za mało amunicji do dokończenia poziomu.</string>
+    <string key="game.won">zwycięstwo</string>
+    <string key="game.won.next">kontynuuj</string>
+    <string key="game.won.total">razem</string>
+    <string key="game.won.inputTitle">Wpisz swój nick</string>
     <string key="tutorial.tapToShoot">tapnij gdziekolwiek na niebie aby wystrzelić</string>
     <string key="tutorial.tapToMove">tapnij na ziemi aby się przemieścić</string>
     <string key="tutorial.hudHealth">Tutaj widzisz, ile życia Ci pozostało - każde trafienie bombą Twojego czołgu zabierze jedno.
@@ -105,7 +113,11 @@ Tapnij, aby kontynuować.</string>
     <string key="game.loss">przegrana</string>
     <string key="game.loss.outOfHealth">Trafila Cie o jedna bomba za duzo!</string>
     <string key="game.loss.zeroMissiles">Skonczyla Ci sie amunicja!</string>
-    <string key="game.loss.tooFewMissiles">Amunicji jest za malo do dokonczenia poziomu.</string>
+    <string key="game.loss.tooFewMissiles">Zostalo za malo amunicji do dokonczenia poziomu.</string>
+    <string key="game.won">zwyciestwo</string>
+    <string key="game.won.next">kontynuuj</string>
+    <string key="game.won.total">razem</string>
+    <string key="game.won.inputTitle">Wpisz swój nick</string>
     <string key="tutorial.tapToShoot">tapnij gdziekolwiek na niebie aby wystrzelic</string>
     <string key="tutorial.tapToMove">tapnij na ziemi aby sie przemiescic</string>
     <string key="tutorial.hudHealth">Tutaj widzisz, ile zycia Ci pozostalo - kazde trafienie bomba Twojego czolgu zabierze jedno.

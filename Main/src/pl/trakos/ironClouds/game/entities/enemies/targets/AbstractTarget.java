@@ -3,6 +3,7 @@ package pl.trakos.ironClouds.game.entities.enemies.targets;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Polygon;
+import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.lib.*;
 
 import java.util.ArrayList;
@@ -17,21 +18,23 @@ public abstract class AbstractTarget extends GameEntity
 
     public enum EnemyType
     {
-        PlaneWeak(.2f, .7f, 1),
-        PlaneNormal(.4f, .9f, 1),
-        Heli(0, .6f, 1),
-        Zeppelin(.7f, 1, 5),
-        Bomber(.8f, 1, 3);
+        PlaneWeak(.2f, .7f, 1, IronCloudsAssets.texturePlane1),
+        PlaneNormal(.4f, .9f, 1, IronCloudsAssets.texturePlane2),
+        Heli(0, .6f, 1, IronCloudsAssets.textureHeli),
+        Zeppelin(.7f, 1, 5, IronCloudsAssets.textureZeppelin),
+        Bomber(.8f, 1, 3, IronCloudsAssets.textureBomber);
 
         public float minHeight;
         public float maxHeight;
         public int hitPoints;
+        public TextureRegion textureRegion;
 
-        EnemyType(float minHeight, float maxHeight, int hitPoints)
+        EnemyType(float minHeight, float maxHeight, int hitPoints, TextureRegion textureRegion)
         {
             this.minHeight = minHeight;
             this.maxHeight = maxHeight;
             this.hitPoints = hitPoints;
+            this.textureRegion = textureRegion;
         }
     }
 

@@ -6,10 +6,8 @@ import pl.trakos.ironClouds.game.GameCoreEntity;
 import pl.trakos.ironClouds.game.entities.Hud;
 import pl.trakos.ironClouds.game.entities.enemies.targets.AbstractTarget;
 import pl.trakos.ironClouds.game.enums.LossReason;
-import pl.trakos.lib.GameLayers;
-import pl.trakos.lib.GameSettings;
-import pl.trakos.lib.GameTouchType;
-import pl.trakos.lib.IGameTouchHandler;
+import pl.trakos.ironClouds.game.var.WinPoints;
+import pl.trakos.lib.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,6 +20,33 @@ public abstract class AbstractLevel implements IGameTouchHandler
     public float getTimeTaken()
     {
         return timeTaken;
+    }
+
+    public WinPoints getMissionCompletePoints()
+    {
+        GameDifficulty easy = GameSettings.getEasiestDifficulty();
+        GameDifficulty current = GameSettings.getGameDifficulty();
+        WinPoints winPoints = new WinPoints();
+        winPoints.healthLeft = GameCoreEntity.instance.getTankHealth();
+        winPoints.healthLessThanOnEasiest = easy.maxHealth - current.maxHealth;
+        winPoints.missilesLeft = GameCoreEntity.instance.getTankMissilesLeft();
+        winPoints.missilesLessThanOnEasiest = getMissilesCount(getTotalHitPoints(), easy) - getMissilesCount(getTotalHitPoints(), current);
+        winPoints.timeTaken = timeTaken;
+        winPoints.difficultyBonus = current.difficultyBonusPoints;
+        winPoints.gameDifficulty = GameSettings.getGameDifficulty();
+        for (EnemySpawn enemySpawn : enemySpawns)
+        {
+            if (winPoints.targetsShotDictionary.get(enemySpawn.enemyType) == null)
+            {
+                winPoints.targetsShotDictionary.put(enemySpawn.enemyType, 1);
+            }
+            else
+            {
+                winPoints.targetsShotDictionary.put(enemySpawn.enemyType,
+                        winPoints.targetsShotDictionary.get(enemySpawn.enemyType) + 1);
+            }
+        }
+        return winPoints;
     }
 
     class EnemySpawn
@@ -67,9 +92,14 @@ public abstract class AbstractLevel implements IGameTouchHandler
         Hud.instance.showTitle(getTitle(), 2f);
     }
 
-    public int getMissilesCount(int remainingHitPoints)
+    public int getMissilesCount(int totalHitPoints)
     {
-        return (int) Math.floor(remainingHitPoints * GameSettings.getGameDifficulty().missilesPerHitPoint);
+        return getMissilesCount(totalHitPoints, GameSettings.getGameDifficulty());
+    }
+
+    public int getMissilesCount(int totalHitPoints, GameDifficulty gameDifficulty)
+    {
+        return (int) Math.floor(totalHitPoints * gameDifficulty.missilesPerHitPoint);
     }
 
     public void registerHit(AbstractTarget targetHit)

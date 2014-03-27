@@ -18,6 +18,7 @@ public class IronCloudsMain extends Game
         GameSettings.refreshMusicVolume();
         IronCloudsAssets.music01spaceFighterLoop.play();
         GameSettings.loadOptions();
+        GameSettings.loadHighScores();
 
         gameScreen = new GameScreen();
         setScreen(gameScreen);

@@ -1,13 +1,14 @@
 package pl.trakos.ironClouds.game;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.ironClouds.game.entities.*;
 import pl.trakos.ironClouds.game.entities.enemies.targets.AbstractTarget;
 import pl.trakos.ironClouds.game.entities.screens.LossScreen;
 import pl.trakos.ironClouds.game.entities.screens.PauseScreen;
+import pl.trakos.ironClouds.game.entities.screens.WinScreen;
 import pl.trakos.ironClouds.game.levels.*;
+import pl.trakos.ironClouds.game.var.WinPoints;
 import pl.trakos.lib.*;
 
 import java.util.Hashtable;
@@ -61,6 +62,7 @@ public class GameCoreEntity extends GameEntitiesContainer
     AbstractLevel currentLevel;
     PauseScreen pauseScreen;
     LossScreen lossScreen;
+    WinScreen winScreen;
     int currentLevelIndex = 0;
 
     protected GameCoreEntity()
@@ -73,6 +75,7 @@ public class GameCoreEntity extends GameEntitiesContainer
         targetsAndBombs = new TargetsAndBombs();
         pauseScreen = new PauseScreen();
         lossScreen = new LossScreen();
+        winScreen = new WinScreen();
 
         add(background);
         add(GameFboParticle.instance);
@@ -83,9 +86,11 @@ public class GameCoreEntity extends GameEntitiesContainer
         add(menu);
         add(pauseScreen);
         add(lossScreen);
+        add(winScreen);
 
         touchHandlers.add(menu);
         touchHandlers.add(lossScreen);
+        touchHandlers.add(winScreen);
         touchHandlers.add(pauseScreen);
         touchHandlers.add(Hud.instance);
         touchHandlers.add(new IGameTouchHandler()
@@ -221,19 +226,15 @@ public class GameCoreEntity extends GameEntitiesContainer
 
         currentLevel.update(delta);
 
-        // @TODO
         if (currentLevel.checkForWin())
         {
-            currentLevelIndex++;
-            GameSettings.setReachedLevel(GameSettings.getGameDifficulty(), currentLevelIndex);
+            GameSettings.setReachedLevel(GameSettings.getGameDifficulty(), currentLevelIndex + 1);
             GameSettings.saveOptions();
-            if (currentLevelIndex >= levels.length)
-            {
-                Gdx.app.exit();
-                return;
-            }
-            currentLevel = levels[currentLevelIndex];
-            currentLevel.start();
+
+            Integer nextLevel = currentLevelIndex + 1 < levels.length ? currentLevelIndex + 1 : null;
+            WinPoints winPoints = currentLevel.getMissionCompletePoints();
+            winScreen.setData(winPoints, nextLevel);
+            changeGameState(GameState.GamePaused, GamePauseType.JustWon);
         }
         else if (currentLevel.checkForLoss() != null)
         {

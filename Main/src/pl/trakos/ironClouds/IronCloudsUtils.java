@@ -53,4 +53,41 @@ public class IronCloudsUtils
         shapeRenderer.end();
         batch.begin();
     }
+
+    public static float typeNumber(SpriteBatch batch, int number, int digitCount, float positionX, float positionY, Color color)
+    {
+        number = Math.min(Math.max(number, 0), (int)Math.pow(10, digitCount) - 1);
+        batch.setColor(color);
+        for (int k = digitCount - 1; k >= 0; k--)
+        {
+            int digit = (int) Math.floor(number / Math.pow(10, k));
+            batch.draw(
+                    IronCloudsAssets.textureHudDigits.get(digit),
+                    positionX,
+                    positionY - 8,
+                    IronCloudsAssets.textureHudDigits.get(digit).getRegionWidth(),
+                    IronCloudsAssets.textureHudDigits.get(digit).getRegionHeight()
+            );
+            positionX += 24;
+            number -= (int)(digit * Math.pow(10, k));
+        }
+        batch.setColor(Color.WHITE);
+        return positionX;
+    }
+
+    public static void typeWrapped(SpriteBatch batch, String text, float positionX, float positionY, float width, BitmapFont.HAlignment alignment, boolean makeDarker)
+    {
+        if (makeDarker)
+            IronCloudsAssets.fontKenVector.setColor(new Color(.8f, .8f, .8f, .8f));
+        IronCloudsAssets.fontKenVector.drawWrapped(
+                batch,
+                text,
+                positionX,
+                positionY + 10,
+                width,
+                alignment
+        );
+        if (makeDarker)
+            IronCloudsAssets.fontKenVector.setColor(Color.WHITE);
+    }
 }
