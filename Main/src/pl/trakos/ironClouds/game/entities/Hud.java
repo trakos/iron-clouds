@@ -241,4 +241,29 @@ public class Hud extends GameEntity
         }
         return GameTouchType.NotIntercepted;
     }
+
+    public void menuPressed()
+    {
+        togglePauseIfPossible();
+    }
+
+    public boolean backPressed()
+    {
+        return togglePauseIfPossible();
+    }
+
+    public boolean togglePauseIfPossible()
+    {
+        if (GameCoreEntity.instance.getGameState() == GameCoreEntity.GameState.GamePaused && GameCoreEntity.instance.getGamePauseType() == GameCoreEntity.GamePauseType.InPauseMenu)
+        {
+            GameCoreEntity.instance.changeGameState(GameCoreEntity.GameState.GameActive);
+            return true;
+        }
+        else if (GameCoreEntity.instance.getGameState() == GameCoreEntity.GameState.GameActive)
+        {
+            GameCoreEntity.instance.changeGameState(GameCoreEntity.GameState.GamePaused, GameCoreEntity.GamePauseType.InPauseMenu);
+            return true;
+        }
+        return false;
+    }
 }

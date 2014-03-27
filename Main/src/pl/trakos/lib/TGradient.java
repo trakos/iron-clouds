@@ -1,10 +1,9 @@
 package pl.trakos.lib;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import pl.trakos.ironClouds.IronCloudsAssets;
 
 /**
  * User: trakos
@@ -13,19 +12,15 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  */
 public class TGradient
 {
-
-    static TextureRegion textureRegion;
-    static
-    {
-        Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA4444);
-        pixmap.setColor(Color.WHITE);
-        pixmap.fill();
-        textureRegion = new TextureRegion(new Texture(pixmap));
-    }
     static float[] vertices = new float[20];
 
+    static TextureRegion textureRegion;
     private static void drawGradient(SpriteBatch batch, float x, float y, float width, float height, Color a, Color b, boolean horizontal)
     {
+        if (textureRegion == null)
+        {
+            textureRegion = new TextureRegion(IronCloudsAssets.textureBlank);
+        }
         float ca = a.toFloatBits();
         float cb = b.toFloatBits();
 
@@ -103,25 +98,4 @@ public class TGradient
     {
         drawGradientVertical(batch, x, y, w, h, colors, positions);
     }
-
-    public static TGradient sky = new TGradient(
-            new Color[] {
-                    Color.valueOf("c5a497ff"),
-                    Color.valueOf("caad9eff"),
-                    Color.valueOf("c2c5c2ff"),
-                    Color.valueOf("b5c8c9ff"),
-                    Color.valueOf("98baceff"),
-                    Color.valueOf("7ca7c8ff"),
-                    Color.valueOf("6b99bdff"),
-            },
-            new float[] {
-                    0,
-                    .1f,
-                    .23f,
-                    .36f,
-                    .56f,
-                    .86f,
-                    1,
-            }
-    );
 }

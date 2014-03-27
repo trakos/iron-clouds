@@ -10,6 +10,13 @@ bg
   orig: 800, 200
   offset: 0, 0
   index: -1
+blank
+  rotate: false
+  xy: 1019, 1021
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
 clouds/cloud1
   rotate: false
   xy: 2, 4

@@ -1,5 +1,6 @@
 package pl.trakos.ironClouds.game.entities;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -51,12 +52,33 @@ public class Background extends GameEntitiesContainer
         randomlyAddCloudDelay-=delta;
     }
 
+    TGradient sky = new TGradient(
+            new Color[] {
+                    new Color(0xc5a497ff),
+                    new Color(0xcaad9eff),
+                    new Color(0xc2c5c2ff),
+                    new Color(0xb5c8c9ff),
+                    new Color(0x98baceff),
+                    new Color(0x7ca7c8ff),
+                    new Color(0x6b99bdff),
+            },
+            new float[] {
+                    0,
+                    .1f,
+                    .23f,
+                    .36f,
+                    .56f,
+                    .86f,
+                    1,
+            }
+    );
+
     @Override
     public void draw(GameLayers layer, SpriteBatch batch)
     {
         if (layer == GameLayers.LayerBackground)
         {
-            TGradient.sky.drawVertical(batch, 0, GameSettings.groundPositionY, GameSettings.getMapWidth(),
+            sky.drawVertical(batch, 0, GameSettings.groundPositionY, GameSettings.getMapWidth(),
                     GameSettings.getMapHeight() - GameSettings.groundPositionY);
             float scale = 1f;
             batch.draw(

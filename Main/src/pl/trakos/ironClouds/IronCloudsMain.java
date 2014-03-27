@@ -1,6 +1,7 @@
 package pl.trakos.ironClouds;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import pl.trakos.ironClouds.game.GameScreen;
 import pl.trakos.lib.GameSettings;
@@ -19,6 +20,8 @@ public class IronCloudsMain extends Game
         IronCloudsAssets.music01spaceFighterLoop.play();
         GameSettings.loadOptions();
         GameSettings.loadHighScores();
+        Gdx.input.setCatchBackKey(true);
+        Gdx.input.setCatchMenuKey(true);
 
         gameScreen = new GameScreen();
         setScreen(gameScreen);

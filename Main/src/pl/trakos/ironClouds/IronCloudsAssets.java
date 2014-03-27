@@ -27,6 +27,8 @@ public class IronCloudsAssets
     public static Sound soundSimpleExplosion;
 
     public static Texture textureGround;
+    public static Texture textureBlank;
+
     public static TextureRegion textureBackground;
     public static TextureRegion textureLogo;
 
@@ -92,15 +94,15 @@ public class IronCloudsAssets
         IronCloudsAssets.soundSimpleExplosion = Gdx.audio.newSound(Gdx.files.internal("audio/simple_explosion.wav"));
 
         // textures (non-atlas)
-        Texture groundTexture = new Texture(Gdx.files.internal("images/ground.png"));
-        groundTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+        IronCloudsAssets.textureGround = new Texture(Gdx.files.internal("images/ground.png"));
+        IronCloudsAssets.textureGround.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+        IronCloudsAssets.textureBlank = new Texture(Gdx.files.internal("images/blank.png"));
+        IronCloudsAssets.textureBlank.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
 
         // texture atlas
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images/images.atlas"));
 
         // textures
-        IronCloudsAssets.textureGround = groundTexture;
-
         IronCloudsAssets.textureBackground = atlas.findRegion("bg");
         IronCloudsAssets.textureLogo = atlas.findRegion("logo");
 

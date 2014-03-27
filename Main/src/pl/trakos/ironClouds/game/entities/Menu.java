@@ -9,6 +9,11 @@ import pl.trakos.lib.input.GameButton;
 
 public class Menu extends GameEntitiesContainer
 {
+    public void backPressed()
+    {
+        currentMenu = CurrentMenu.MainMenu;
+    }
+
     public enum CurrentMenu
     {
         CreditsMenu,

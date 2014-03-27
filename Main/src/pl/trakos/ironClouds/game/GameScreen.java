@@ -2,11 +2,14 @@ package pl.trakos.ironClouds.game;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
+import pl.trakos.ironClouds.game.entities.Hud;
+import pl.trakos.ironClouds.game.entities.Menu;
 import pl.trakos.lib.GameFboParticle;
 import pl.trakos.lib.GameLayers;
 import pl.trakos.lib.GameSettings;
@@ -65,7 +68,36 @@ public class GameScreen implements Screen
                 activeTouchesIds[k] = null;
             }
         }
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK))
+        {
+            if (!isBackPressed)
+            {
+                if (!Hud.instance.backPressed())
+                {
+                    Menu.instance.backPressed();
+                }
+                isBackPressed = true;
+            }
+        }
+        else
+        {
+            isBackPressed = false;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.MENU))
+        {
+            if (!isMenuPressed)
+            {
+                Hud.instance.menuPressed();
+                isMenuPressed = true;
+            }
+        }
+        else
+        {
+            isMenuPressed = false;
+        }
     }
+    boolean isBackPressed = false;
+    boolean isMenuPressed = false;
 
     private float fpsDrawDelay = 1;
 

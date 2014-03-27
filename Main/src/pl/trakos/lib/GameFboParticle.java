@@ -46,10 +46,6 @@ public class GameFboParticle extends GameEntity
         particleBatch = new SpriteBatch();
         particleFboRegion = new TextureRegion(particleFbo.getColorBufferTexture(), 0, 0, GameSettings.getResolutionWidth(), GameSettings.getResolutionHeight());
         particleFboRegion.flip(false, true);
-        particleBatch.setBlendFunction(-1, -1);
-        particleFbo.begin();
-        Gdx.gl20.glBlendFuncSeparate(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA, GL10.GL_ONE, GL10.GL_ONE);
-        particleFbo.end();
     }
 
     @Override
@@ -128,8 +124,10 @@ public class GameFboParticle extends GameEntity
 
     public void beginPreparing()
     {
-        if (particleFbo == null) return;
+        if (particleFbo == null || particleBatch == null) return;
+        particleBatch.setBlendFunction(-1, -1);
         particleFbo.begin();
+        Gdx.gl20.glBlendFuncSeparate(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA, GL10.GL_ONE, GL10.GL_ONE);
         particleBatch.setProjectionMatrix(GameSettings.getCamera().combined);
         Gdx.gl.glClearColor(0f, 0f, 0f, 0f);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
