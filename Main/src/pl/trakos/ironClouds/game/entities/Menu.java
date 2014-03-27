@@ -1,9 +1,6 @@
 package pl.trakos.ironClouds.game.entities;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import pl.trakos.ironClouds.IronCloudsAssets;
 import pl.trakos.ironClouds.IronCloudsUtils;
 import pl.trakos.ironClouds.game.GameCoreEntity;
 import pl.trakos.ironClouds.game.entities.menu.*;
@@ -18,10 +15,11 @@ public class Menu extends GameEntitiesContainer
         HighScoresMenu,
         LevelsMenu,
         MainMenu,
-        OptionsMenu,
+        OptionsMenu, StartingScreen,
     }
 
     static public Menu instance = new Menu();
+    protected final StartingScreen startingScreen;
     protected final CreditsMenu creditsMenu;
     protected final HighScoresMenu highScoresMenu;
     protected final LevelMenuButtons levelButtons;
@@ -33,6 +31,7 @@ public class Menu extends GameEntitiesContainer
 
     protected Menu()
     {
+        startingScreen = new StartingScreen();
         creditsMenu = new CreditsMenu();
         highScoresMenu = new HighScoresMenu();
         levelButtons = new LevelMenuButtons();
@@ -61,6 +60,8 @@ public class Menu extends GameEntitiesContainer
     {
         switch (currentMenu)
         {
+            case StartingScreen:
+                return startingScreen;
             case CreditsMenu:
                 return creditsMenu;
             case HighScoresMenu:
@@ -102,7 +103,10 @@ public class Menu extends GameEntitiesContainer
                 : GameButton.getStandardButtonWidth() + 50;
             float positionX = (GameSettings.getCameraWidth() - width) / 2;
 
-            IronCloudsUtils.drawMenuBox(batch, "Iron Clouds", positionX, 15, width, 450);
+            if (currentMenu != CurrentMenu.StartingScreen)
+            {
+                IronCloudsUtils.drawMenuBox(batch, "Iron Clouds", positionX, 15, width, 450);
+            }
 
             getCurrentMenu().draw(layer, batch);
         }

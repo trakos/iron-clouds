@@ -73,9 +73,9 @@ public class LossScreen extends GameEntityMenu
             IronCloudsUtils.drawBlackingMask(batch);
             float width = GameButton.getStandardButtonWidth() + 50;
             IronCloudsUtils.drawMenuBox(batch, _.tr("game.loss"), (GameSettings.getCameraWidth() - width)
-                                                                   / 2, 15, width, 450);
-            IronCloudsAssets.fontKenVector.setColor(new Color(.8f, .8f, .8f, .8f));
-            IronCloudsAssets.fontKenVector.drawWrapped(
+                                                                  / 2, 15, width, 450);
+            IronCloudsAssets.fontPrimeRegular.setColor(new Color(.8f, .8f, .8f, .8f));
+            IronCloudsAssets.fontPrimeRegular.drawWrapped(
                     batch,
                     lossReason,
                     (GameSettings.getCameraWidth() - width) / 2 + 10,
@@ -83,7 +83,7 @@ public class LossScreen extends GameEntityMenu
                     width - 20,
                     BitmapFont.HAlignment.CENTER
             );
-            IronCloudsAssets.fontKenVector.setColor(Color.WHITE);
+            IronCloudsAssets.fontPrimeRegular.setColor(Color.WHITE);
             super.draw(layer, batch);
         }
     }

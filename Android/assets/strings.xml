@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <languages xml:space="preserve">
 <language name="en" >
+    <string key="game.start">tap to start</string>
     <string key="game.level">level %d</string>
     <string key="game.finalLevel">final level</string>
     <string key="game.pause">pause</string>
@@ -12,18 +13,17 @@
     <string key="game.won.next">next</string>
     <string key="game.won.total">total</string>
     <string key="game.won.inputTitle">Type your nick</string>
-    <string key="tutorial.tapToShoot">tap anywhere on the sky to shoot</string>
-    <string key="tutorial.tapToMove">tap on the ground to move</string>
-    <string key="tutorial.hudHealth">here you can see amount of health left - each enemy bomb that hits your tank will take one away.
+    <string key="tutorial.tapToShoot">Tap anywhere on the sky to shoot</string>
+    <string key="tutorial.tapToMove">Tap on the ground to move</string>
+    <string key="tutorial.hudHealth">Here you can see amount of health left - each enemy bomb that hits your tank will take one away.
 Be cautious, as soon as it drops to 0 the mission is lost!
 
 Tap to continue.</string>
-    <string key="tutorial.hudTargets">here you can see amount of targets left - mission is won when it drops to zero.
+    <string key="tutorial.hudTargets">Here you can see amount of targets left - mission is won when it drops to zero.
 
 Tap to continue.</string>
-    <string key="tutorial.hudMissiles">here you can see amount of missiles left.
-As soon as it drops below the amount needed to complete the level,
-the mission is lost.
+    <string key="tutorial.hudMissiles">Here you can see amount of missiles left.
+As soon as it drops below the amount needed to complete the level, the mission is lost.
 
 Tap to continue.</string>
     <string key="tutorial.enemyIncoming">Enemies always come from the left, and as soon as they reach right side, they turn back.
@@ -53,7 +53,8 @@ Tap to finish tutorial.</string>
     <string key="options.difficulty">difficulty</string>
 </language>
 
-<language name="pl-bak" >
+<language name="pl" >
+    <string key="game.start">tapnij aby rozpocząć...</string>
     <string key="game.level">poziom %d</string>
     <string key="game.finalLevel">ostatni poziom</string>
     <string key="game.pause">pauza</string>
@@ -65,8 +66,8 @@ Tap to finish tutorial.</string>
     <string key="game.won.next">kontynuuj</string>
     <string key="game.won.total">razem</string>
     <string key="game.won.inputTitle">Wpisz swój nick</string>
-    <string key="tutorial.tapToShoot">tapnij gdziekolwiek na niebie aby wystrzelić</string>
-    <string key="tutorial.tapToMove">tapnij na ziemi aby się przemieścić</string>
+    <string key="tutorial.tapToShoot">Tapnij gdziekolwiek na niebie aby wystrzelić</string>
+    <string key="tutorial.tapToMove">Tapnij na ziemi aby się przemieścić</string>
     <string key="tutorial.hudHealth">Tutaj widzisz, ile życia Ci pozostało - każde trafienie bombą Twojego czołgu zabierze jedno.
 Bądź ostrożny, kiedy ten wskaźnik spadnie do 0, przegrasz!
 
@@ -106,7 +107,8 @@ Tapnij, aby kontynuować.</string>
     <string key="options.difficulty">poziom trudności</string>
 </language>
 
-<language name="pl" >
+<language name="pl-bak" >
+    <string key="game.start">tapnij aby rozpoczac...</string>
     <string key="game.level">poziom %d</string>
     <string key="game.finalLevel">ostatni poziom</string>
     <string key="game.pause">pauza</string>

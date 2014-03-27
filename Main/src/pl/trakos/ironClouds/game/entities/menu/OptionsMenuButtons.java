@@ -70,7 +70,7 @@ public class OptionsMenuButtons extends GameEntityMenu
     @Override
     public void draw(GameLayers layer, SpriteBatch batch)
     {
-        IronCloudsAssets.fontKenVector.draw(
+        IronCloudsAssets.fontPrimeRegular.draw(
             batch,
             _.tr("options.difficulty") + ":",
             80,

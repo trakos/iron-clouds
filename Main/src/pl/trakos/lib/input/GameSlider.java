@@ -75,7 +75,7 @@ public class GameSlider extends GameInputElement
                     radioCircleOff.getRegionHeight()
             );
 
-            IronCloudsAssets.fontKenVector.draw(
+            IronCloudsAssets.fontPrimeRegular.draw(
                     batch,
                     getText(),
                     getX(),

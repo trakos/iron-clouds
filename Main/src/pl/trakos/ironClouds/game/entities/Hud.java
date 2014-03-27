@@ -112,7 +112,7 @@ public class Hud extends GameEntity
             if (GameCoreEntity.instance.getGameState() == GameCoreEntity.GameState.GameActive
                     && timeTitleLeft > 0)
             {
-                IronCloudsAssets.fontKenVector.drawWrapped(
+                IronCloudsAssets.fontPrimeRegular.drawWrapped(
                         batch,
                         titleText,
                         0,

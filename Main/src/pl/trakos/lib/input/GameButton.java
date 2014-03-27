@@ -50,17 +50,17 @@ public class GameButton extends GameInputElement
                     getWidth(),
                     getHeight()
             );
-            IronCloudsAssets.fontKenVector.setColor(new Color(1, 1, 1, .8f));
-            IronCloudsAssets.fontKenVector.drawWrapped(
+            IronCloudsAssets.fontPrimeRegular.setColor(new Color(1, 1, 1, .8f));
+            IronCloudsAssets.fontPrimeRegular.drawWrapped(
                     batch,
-                    text,
+                    text.toUpperCase(),
                     getX(),
-                    getY() + getHeight() / 2 + IronCloudsAssets.fontKenVector.getLineHeight() / 2 - getHeight() / 20
+                    getY() + getHeight() / 2 + IronCloudsAssets.fontPrimeRegular.getLineHeight() / 2
                     + (active ? -2 : 0),
                     getWidth(),
                     BitmapFont.HAlignment.CENTER
             );
-            IronCloudsAssets.fontKenVector.setColor(Color.WHITE);
+            IronCloudsAssets.fontPrimeRegular.setColor(Color.WHITE);
         }
     }
 

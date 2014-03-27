@@ -16,12 +16,7 @@ public class IronCloudsAssets
 {
     public static String creditsText;
 
-    public static BitmapFont fontDejavu;
-    public static BitmapFont fontDejavuB;
-    public static BitmapFont fontDejavuI;
-    public static BitmapFont fontDejavuBI;
-    public static BitmapFont fontKenVector;
-    public static BitmapFont fontKenVectorSmall;
+    public static BitmapFont fontPrimeRegular;
 
     public static Music music01spaceFighterLoop;
     public static Music soundTank;
@@ -33,6 +28,7 @@ public class IronCloudsAssets
 
     public static Texture textureGround;
     public static TextureRegion textureBackground;
+    public static TextureRegion textureLogo;
 
     public static NinePatch textureHudButtonA;
     public static NinePatch textureHudButtonN;
@@ -81,13 +77,8 @@ public class IronCloudsAssets
         creditsText = Gdx.files.internal("credits.txt").readString();
 
         // fonts
-        fontDejavu = new BitmapFont(Gdx.files.internal("fonts/dejavu.fnt"));
-        fontDejavuB = new BitmapFont(Gdx.files.internal("fonts/dejavub.fnt"));
-        fontDejavuI = new BitmapFont(Gdx.files.internal("fonts/dejavui.fnt"));
-        fontDejavuBI = new BitmapFont(Gdx.files.internal("fonts/dejavubi.fnt"));
-        fontKenVector = new BitmapFont(Gdx.files.internal("fonts/kenvector.fnt"));
-        fontKenVectorSmall = new BitmapFont(Gdx.files.internal("fonts/kenvector_small.fnt"));
-        fontKenVector.setFixedWidthGlyphs("0123456789");
+        fontPrimeRegular = new BitmapFont(Gdx.files.internal("fonts/prime_regular.fnt"));
+        fontPrimeRegular.setFixedWidthGlyphs("0123456789");
 
         // music
         IronCloudsAssets.music01spaceFighterLoop = Gdx.audio.newMusic(Gdx.files.internal("audio/music01_space_fighter_loop.mp3"));
@@ -109,7 +100,9 @@ public class IronCloudsAssets
 
         // textures
         IronCloudsAssets.textureGround = groundTexture;
+
         IronCloudsAssets.textureBackground = atlas.findRegion("bg");
+        IronCloudsAssets.textureLogo = atlas.findRegion("logo");
 
         IronCloudsAssets.textureHudDigits = atlas.findRegions("hud/digit");
         IronCloudsAssets.textureHudX = atlas.findRegion("hud/x");

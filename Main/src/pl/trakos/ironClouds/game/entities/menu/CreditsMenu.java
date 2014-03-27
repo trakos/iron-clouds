@@ -59,8 +59,8 @@ public class CreditsMenu extends GameEntityMenu
         calculateScissors(area, scissor, batch);
         batch.flush();
         ScissorStack.pushScissors(scissor);
-        IronCloudsAssets.fontKenVectorSmall.setColor(Color.WHITE);
-        BitmapFont.TextBounds textBounds = IronCloudsAssets.fontKenVectorSmall.drawWrapped(
+        IronCloudsAssets.fontPrimeRegular.setColor(Color.WHITE);
+        BitmapFont.TextBounds textBounds = IronCloudsAssets.fontPrimeRegular.drawWrapped(
                 batch,
                 IronCloudsAssets.creditsText,
                 marginX,

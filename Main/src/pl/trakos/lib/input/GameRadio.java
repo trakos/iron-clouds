@@ -51,17 +51,17 @@ public class GameRadio extends GameInputElement
                     textureRegion.getRegionHeight()
             );
             float marginX = 20;
-            IronCloudsAssets.fontKenVector.setColor(new Color(1, 1, 1, .8f));
-            IronCloudsAssets.fontKenVector.drawWrapped(
+            IronCloudsAssets.fontPrimeRegular.setColor(new Color(1, 1, 1, .8f));
+            IronCloudsAssets.fontPrimeRegular.drawWrapped(
                     batch,
                     text,
                     getX() + textureRegion.getRegionWidth() + marginX,
-                    getY() + textureRegion.getRegionHeight() / 2 + IronCloudsAssets.fontKenVector.getLineHeight() / 2 - getHeight() / 16
+                    getY() + textureRegion.getRegionHeight() / 2 + IronCloudsAssets.fontPrimeRegular.getLineHeight() / 2 - getHeight() / 16
                     + (active ? -2 : 0),
                     getWidth() - textureRegion.getRegionHeight() - marginX,
                     BitmapFont.HAlignment.LEFT
             );
-            IronCloudsAssets.fontKenVector.setColor(Color.WHITE);
+            IronCloudsAssets.fontPrimeRegular.setColor(Color.WHITE);
         }
     }
 

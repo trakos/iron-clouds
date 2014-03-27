@@ -65,7 +65,7 @@ public class ArrowExplanationIcon extends GameInputElement
                 isRotated ? 90 : 0
             );
         }
-        IronCloudsAssets.fontKenVectorSmall.setColor(Color.WHITE);
+        IronCloudsAssets.fontPrimeRegular.setColor(Color.WHITE);
         switch (hAlignment)
         {
             case LEFT:
@@ -78,7 +78,7 @@ public class ArrowExplanationIcon extends GameInputElement
                 textPositionX = GameSettings.getCameraWidth() - width - 20;
                 break;
         }
-        IronCloudsAssets.fontKenVectorSmall.drawWrapped(
+        IronCloudsAssets.fontPrimeRegular.drawWrapped(
                 batch,
                 text,
                 textPositionX,

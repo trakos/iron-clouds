@@ -145,6 +145,7 @@ public class GameCoreEntity extends GameEntitiesContainer
     public void start()
     {
         showMainMenu();
+        Menu.instance.currentMenu = Menu.CurrentMenu.StartingScreen;
     }
 
     public void startLevel(int levelNumber)

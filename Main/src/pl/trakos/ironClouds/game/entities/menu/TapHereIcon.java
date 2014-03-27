@@ -64,12 +64,12 @@ public class TapHereIcon extends GameInputElement
             1,
             invert ? 180 : 0
         );
-        IronCloudsAssets.fontKenVectorSmall.setColor(new Color(0xE02727FF));
-        IronCloudsAssets.fontKenVectorSmall.drawWrapped(
+        IronCloudsAssets.fontPrimeRegular.setColor(new Color(0xE02727FF));
+        IronCloudsAssets.fontPrimeRegular.drawWrapped(
             batch,
             text,
             getX() - 300,
-            getY() + 40 * (invert ? -.8f : 1),
+            getY() + 40 * (invert ? -.8f : 1.3f),
             600,
             BitmapFont.HAlignment.CENTER
         );

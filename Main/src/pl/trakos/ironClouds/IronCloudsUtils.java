@@ -30,8 +30,8 @@ public class IronCloudsUtils
                 width,
                 height - 40
         );
-        IronCloudsAssets.fontKenVector.setColor(new Color(.8f, .8f, .8f, .8f));
-        IronCloudsAssets.fontKenVector.drawWrapped(
+        IronCloudsAssets.fontPrimeRegular.setColor(new Color(.8f, .8f, .8f, .8f));
+        IronCloudsAssets.fontPrimeRegular.drawWrapped(
                 batch,
                 title,
                 positionX,
@@ -39,7 +39,7 @@ public class IronCloudsUtils
                 width,
                 BitmapFont.HAlignment.CENTER
         );
-        IronCloudsAssets.fontKenVector.setColor(Color.WHITE);
+        IronCloudsAssets.fontPrimeRegular.setColor(Color.WHITE);
     }
 
     public static void drawBlackingMask(SpriteBatch batch)
@@ -78,8 +78,8 @@ public class IronCloudsUtils
     public static void typeWrapped(SpriteBatch batch, String text, float positionX, float positionY, float width, BitmapFont.HAlignment alignment, boolean makeDarker)
     {
         if (makeDarker)
-            IronCloudsAssets.fontKenVector.setColor(new Color(.8f, .8f, .8f, .8f));
-        IronCloudsAssets.fontKenVector.drawWrapped(
+            IronCloudsAssets.fontPrimeRegular.setColor(new Color(.8f, .8f, .8f, .8f));
+        IronCloudsAssets.fontPrimeRegular.drawWrapped(
                 batch,
                 text,
                 positionX,
@@ -88,6 +88,6 @@ public class IronCloudsUtils
                 alignment
         );
         if (makeDarker)
-            IronCloudsAssets.fontKenVector.setColor(Color.WHITE);
+            IronCloudsAssets.fontPrimeRegular.setColor(Color.WHITE);
     }
 }
