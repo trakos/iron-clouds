@@ -161,8 +161,8 @@ public class WinScreen extends GameEntityMenu
             boolean isCurrentScore = winPoints != null && nick != null && nick.equals(score.a) && score.b != null && score.b.equals(winPoints.getTotalPoints());
             if (score.a != null && !score.a.equals(""))
             {
-                String name = score.a.length() > 11 ? score.a.substring(0, 10) : score.a;
-                typeWrapped(batch, score.a, positionNameX, positionY, 150, BitmapFont.HAlignment.LEFT, !isCurrentScore);
+                String name = score.a.length() > 12 ? score.a.substring(0, 11) : score.a;
+                typeWrapped(batch, name, positionNameX, positionY, 200, BitmapFont.HAlignment.LEFT, !isCurrentScore);
             }
             if (score.b != null && score.b > 0)
             {

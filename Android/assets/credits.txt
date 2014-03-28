@@ -1,16 +1,16 @@
 
 
-thanks for playing!
+Thanks for playing!
 
 
-assets under CC0 or CC-BY-SA licenses:
+Assets under CC0 or CC-BY-SA licenses:
 
-music
+MUSIC
 
 "Space Fighter Loop" Kevin MacLeod (incompetech.com)
 "Hitman" Kevin MacLeod (incompetech.com)
 
-sounds
+SOUNDS
 
 detonation by M-RED
 helicopter loop by qubodup
@@ -19,19 +19,21 @@ tank engine by ReadeOnly
 gunshot by Cyberkineticfilms
 all sounds come from freesound.org
 
-images
+IMAGES
 
 UI elements and controls by www.kenney.nl
 planes and clouds from "War On Water"
  - game available on Google Play Store
 tank image by mishonis from opengameart.org
 background assets from glitchthegame.com
-Xelu FREE keyboard & controller prompts pack by Nicolae Berbece
-font by Fontfabric (www.fontfabric.com)
+keyboard & controller prompts pack by Xelu
 
 Thanks to many great people sharing
 their assets on CC-BY-SA or CC0 license!
 
+FONT
+
+freeware prism font by Fontfabric (www.fontfabric.com)
 
 
 

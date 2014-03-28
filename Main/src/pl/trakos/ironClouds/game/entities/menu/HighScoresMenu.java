@@ -53,8 +53,8 @@ public class HighScoresMenu extends GameEntityMenu
             boolean isCurrentScore = false;
             if (score.a != null && !score.a.equals(""))
             {
-                String name = score.a.length() > 11 ? score.a.substring(0, 10) : score.a;
-                IronCloudsUtils.typeWrapped(batch, score.a, positionNameX, positionY, 150, BitmapFont.HAlignment.LEFT, !isCurrentScore);
+                String name = score.a.length() > 12 ? score.a.substring(0, 11) : score.a;
+                IronCloudsUtils.typeWrapped(batch, name, positionNameX, positionY, 200, BitmapFont.HAlignment.LEFT, !isCurrentScore);
             }
             if (score.b != null && score.b > 0)
             {
