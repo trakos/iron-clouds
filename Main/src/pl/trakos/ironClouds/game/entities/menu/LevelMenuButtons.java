@@ -24,13 +24,13 @@ public class LevelMenuButtons extends GameEntityMenu
         buttons = new GameButton[GameCoreEntity.getLevelsCount() + 1];
         float currentX = positionX;
         int rowCount = 5;
-        for (int i = 1; i <= GameCoreEntity.getLevelsCount(); i++)
+        for (int i = 0; i < GameCoreEntity.getLevelsCount(); i++)
         {
-            GameButton levelButton = new GameButton(Integer.toString(i), currentX, positionY);
+            GameButton levelButton = new GameButton(i == 0 ? "T" : Integer.toString(i), currentX, positionY);
             levelButton.setWidth(levelWidth);
             levelButton.setHeight(levelHeight);
-            levelButtons[i-1] = levelButton;
-            buttons[i-1] = levelButton;
+            levelButtons[i] = levelButton;
+            buttons[i] = levelButton;
 
             currentX += levelWidth + (GameButton.getStandardButtonWidth() - rowCount * levelWidth) / (rowCount  - 1);
 

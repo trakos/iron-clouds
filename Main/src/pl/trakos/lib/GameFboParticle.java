@@ -154,6 +154,7 @@ public class GameFboParticle extends GameEntity
 
     public void renderParticle(ParticleEffectPool.PooledEffect exhaustEffect)
     {
-        exhaustEffect.draw(particleBatch);
+        if (particleBatch != null)
+            exhaustEffect.draw(particleBatch);
     }
 }

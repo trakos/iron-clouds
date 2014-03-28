@@ -55,6 +55,23 @@ public class WinScreen extends GameEntityMenu
                 mainMenuButton,
                 nextButton
         };
+
+        textInputListener = new Input.TextInputListener()
+        {
+            @Override
+            public void input(String text)
+            {
+                nick = text;
+                GameSettings.setLastUsedNick(nick);
+                GameSettings.addHighScore(nick, winPoints.getTotalPoints());
+            }
+
+            @Override
+            public void canceled()
+            {
+                Gdx.input.getTextInput(textInputListener, _.tr("game.won.inputTitle"), GameSettings.getLastUsedNick());
+            }
+        };
     }
 
     @Override
@@ -156,6 +173,7 @@ public class WinScreen extends GameEntityMenu
     }
 
     String nick = null;
+    final Input.TextInputListener textInputListener;
     public void setData(WinPoints winPointsParam, Integer nextLevel)
     {
         this.winPoints = winPointsParam;
@@ -163,22 +181,8 @@ public class WinScreen extends GameEntityMenu
         if (this.winPoints != null && GameSettings.isScoreHigh(this.winPoints.getTotalPoints()))
         {
             nick = null;
-            Gdx.input.getTextInput(new Input.TextInputListener()
-            {
-                @Override
-                public void input(String text)
-                {
-                    nick = text;
-                    GameSettings.setLastUsedNick(nick);
-                    GameSettings.addHighScore(nick, winPoints.getTotalPoints());
-                }
 
-                @Override
-                public void canceled()
-                {
-                    nick = null;
-                }
-            }, _.tr("game.won.inputTitle"), GameSettings.getLastUsedNick());
+            Gdx.input.getTextInput(textInputListener, _.tr("game.won.inputTitle"), GameSettings.getLastUsedNick());
         }
     }
 
