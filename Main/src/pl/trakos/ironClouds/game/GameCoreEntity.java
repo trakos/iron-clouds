@@ -148,6 +148,16 @@ public class GameCoreEntity extends GameEntitiesContainer
         {
             entityPause();
         }
+        if (newGameState == GameState.GameActive)
+        {
+            IronCloudsAssets.music01spaceFighterLoop.pause();
+            IronCloudsAssets.music02Hitman.play();
+        }
+        else
+        {
+            IronCloudsAssets.music02Hitman.pause();
+            IronCloudsAssets.music01spaceFighterLoop.play();
+        }
         gameState = newGameState;
         gamePauseType = newPauseType;
     }

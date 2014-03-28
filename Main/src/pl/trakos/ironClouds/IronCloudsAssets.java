@@ -19,6 +19,7 @@ public class IronCloudsAssets
     public static BitmapFont fontPrimeRegular;
 
     public static Music music01spaceFighterLoop;
+    public static Music music02Hitman;
     public static Music soundTank;
 
     public static Sound soundTankShot;
@@ -84,6 +85,7 @@ public class IronCloudsAssets
 
         // music
         IronCloudsAssets.music01spaceFighterLoop = Gdx.audio.newMusic(Gdx.files.internal("audio/music01_space_fighter_loop.mp3"));
+        IronCloudsAssets.music02Hitman = Gdx.audio.newMusic(Gdx.files.internal("audio/music02_hitman.mp3"));
 
         // sound as music objects
         IronCloudsAssets.soundTank = Gdx.audio.newMusic(Gdx.files.internal("audio/tank.mp3"));

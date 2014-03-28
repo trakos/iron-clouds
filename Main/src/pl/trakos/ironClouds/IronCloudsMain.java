@@ -23,6 +23,7 @@ public class IronCloudsMain extends Game
     {
         IronCloudsAssets.loadAssets();
         IronCloudsAssets.music01spaceFighterLoop.setLooping(true);
+        IronCloudsAssets.music02Hitman.setLooping(true);
         GameSettings.refreshMusicVolume();
         IronCloudsAssets.music01spaceFighterLoop.play();
         if (first)

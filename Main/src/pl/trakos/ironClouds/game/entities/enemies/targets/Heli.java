@@ -74,15 +74,15 @@ public class Heli extends AbstractTarget
         return 1.5f + .5f * (float)Math.random();
     }
 
-    long soundId = 0;
+    long soundId = -1;
 
     public void ensureEngineSoundIs(boolean stateToggle)
     {
-        if (stateToggle != (soundId != 0))
+        if (stateToggle != (soundId != -1))
         {
-            if (stateToggle && soundId == 0)
+            if (stateToggle && soundId == -1)
             {
-                soundId = IronCloudsAssets.soundHeli.loop(GameSettings.getSoundVolume() * 0.3f);
+                soundId = IronCloudsAssets.soundHeli.loop(GameSettings.getSoundVolume() * 0.2f);
             }
             else
             {
